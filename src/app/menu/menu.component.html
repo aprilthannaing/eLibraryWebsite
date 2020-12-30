@@ -1,0 +1,50 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" [routerLink]="[_profile.logoLink]">
+        <img alt="Home" title="Home" src="assets/images/menu.png">
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+  
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul *ngIf="_profile.menus!=null" class="navbar-nav mr-auto">
+          <li *ngFor="let item of _profile.menus;" class="nav-item dropdown">
+           
+          <a class="nav-link dropdown-toggle" style="color:white;font-size: 14px" href="#" id="navbarDropdownMenuLink1" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false" href="#">{{item.caption}}
+          <span class="caret"></span>
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink1">
+          <ng-container *ngFor="let subitem of item.menuItems;">
+          <a class="dropdown-item" [routerLink]="[subitem.menuItem]">{{subitem.caption}}</a>
+          </ng-container>
+          </div>
+          </li>
+          </ul>
+  
+        <span class="navbar-text">{{_profile.userName}}</span>
+  
+  
+        <ul class="navbar-nav">
+          <li class="nav-item dropdown" *ngFor="let item of _profile.rightMenus;">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          <i class="fa fa-cog fa-spin fa-lg fa-fw"></i>
+          <span class="sr-only">Loading...</span>
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a *ngFor="let subitem of item.menuItems;" class="dropdown-item" [routerLink]="[subitem.menuItem]">{{subitem.caption}}</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" [routerLink]="[_signOut]">Sign Out</a>
+          </div>
+          </li>
+          </ul>
+  
+      </div>
+    </div>
+  </nav>
+  
+  
+  
