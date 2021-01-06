@@ -1,5 +1,4 @@
-  
-  .card5 .card-body{
+.card5 .card-body{
     color : #F8F9FF
   }
   .card4 .card-body{
@@ -19,8 +18,8 @@
   .card2 {
     position: absolute;
     top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    /* left: 50%;
+    transform: translate(-50%, -50%); */
   }
   .card4 {
     position: absolute;
@@ -31,8 +30,8 @@
   .card3 {
     position: absolute;
     top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    /* left: 50%;
+    transform: translate(-50%, -50%); */
   }
   .card1 {
     padding: 0px 120px 0px 120px;

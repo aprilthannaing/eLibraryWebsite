@@ -31,228 +31,188 @@
             </div>
             <div class="card" style="background-color:unset">
                 <span style="text-align: right;color: #F8F9FF;font-size: 1.4em;font-weight: 600;letter-spacing: -0.055em;">Show all</span>
-                <span class='arrow-left'><i class="fa fa-chevron-circle-left" style="font-size: 2.4rem;background-color: unset;color: #F8F9FF"></i></span>
-                <span class='arrow-right'><i class="fa fa-chevron-circle-right" style="font-size: 2.4rem;background-color: unset;color: #F8F9FF"></i></span>
-                <!-- <div class="card" style="background-color:unset;"> -->
-                    <div class="row col-md-12" style="justify-content: center">
-                        <div class="card" style="padding: 5px 20px 0px 20px;background-color: initial;">
-                            <img src="assets/images/book/3.png" >
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">abcd</p>
-                                <span *ngFor="let item of [0,1,2,3,4]">
-                                    <span class="fa fa-star" style="color: gold;"></span>
-                                </span>
-                                
-                            </div>
-                        </div>
-                        <div class="card" style="padding: 5px 20px 0px 20px;background-color: initial;">
-                            <img src="assets/images/book/3.png" >
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">abcd</p>
-                                <span *ngFor="let item of [0,1,2,3,4]">
-                                    <span class="fa fa-star" style="color: gold;"></span>
-                                </span>
-                                
-                            </div>
-                        </div>
-                        <div class="card" style="padding: 5px 20px 0px 20px;background-color: initial;">
-                            <img src="assets/images/book/3.png" >
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">abcd</p>
-                                <span *ngFor="let item of [0,1,2,3,4]">
-                                    <span class="fa fa-star" style="color: gold;"></span>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="card" style="padding: 5px 20px 0px 20px;background-color: initial;">
-                            <img src="assets/images/book/3.png" >
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">abcd</p>
-                                <span *ngFor="let item of [0,1,2,3,4]">
-                                    <span class="fa fa-star" style="color: gold;"></span>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="card" style="padding: 5px 20px 0px 20px;background-color: initial;">
-                            <img src="assets/images/book/3.png" >
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">abcd</p>
-                                <span *ngFor="let item of [0,1,2,3,4]">
-                                    <span class="fa fa-star" style="color: gold;"></span>
-                                </span>
-                            </div>
-                        </div>
+                <ngx-slick-carousel class="carousel" 
+                #slickModal="slick-carousel" 
+                [config]="slideConfig" 
+                (init)="slickInit($event)"
+                (breakpoint)="breakpoint($event)"
+                (afterChange)="afterChange($event)"
+                (beforeChange)="beforeChange($event)">
+                <div ngxSlickItem *ngFor="let slide of slides" class="slide" style="background-color: initial;padding: 5px 35px;">
+                    <img src="{{ slide.img }}" alt="" width="100%">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">abcd</p>
+                        <span *ngFor="let item of [0,1,2,3,4]">
+                            <span class="fa fa-star" style="color: gold;"></span>
+                        </span>
+                        
                     </div>
-                <!-- </div> -->
+                </div>
+                </ngx-slick-carousel>
             </div>
         </div>
     </div>
     <div class="col-md-12">
-            <div class="container-fluid card1">
-                <div class="row col-md-12">
-                    <div class="col-md-8">
-                        <p style="font-size: 1.8em;">Popular Books</p>
-                        <div class="card">
-                            <div class="row no-gutters">
-                                <div class="col-sm-2" style="background: #868e96;">
-                                    <img src="assets/images/book/3.png" class="card-img-top h-100" alt="...">
-                                </div>
-                                <div class="col-sm-10">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Alice Liddel</h5>
-                                        <h6 style="color: gray;">abcd</h6>
-                                        <p>
-                                            <span *ngFor="let item of [0,1,2,3,4]">
-                                                <span class="fa fa-star" style="color: gold;"></span>
-                                            </span>
-                                        </p>
-                                        <p class="card-text">Alice is a freelance web designer and developer based in London. She is specialized in HTML5, CSS3, JavaScript, Bootstrap, etc.</p>
-                                    </div>
+        <div class="container-fluid card1">
+            <div class="row col-md-12">
+                <div class="col-md-8">
+                    <p style="font-size: 1.8em;">Popular Books</p>
+                    <div class="card">
+                        <div class="row no-gutters">
+                            <div class="col-sm-2" style="background: #868e96;">
+                                <img src="assets/images/book/3.png" class="card-img-top h-100" alt="...">
+                            </div>
+                            <div class="col-sm-10">
+                                <div class="card-body">
+                                    <h5 class="card-title">Alice Liddel</h5>
+                                    <h6 style="color: gray;">abcd</h6>
+                                    <p>
+                                        <span *ngFor="let item of [0,1,2,3,4]">
+                                            <span class="fa fa-star" style="color: gold;"></span>
+                                        </span>
+                                    </p>
+                                    <p class="card-text">Alice is a freelance web designer and developer based in London. She is specialized in HTML5, CSS3, JavaScript, Bootstrap, etc.</p>
                                 </div>
                             </div>
                         </div>
-                        <br>
-                        <div class="card">
-                            <div class="row no-gutters">
-                                <div class="col-sm-2" style="background: #868e96;">
-                                    <img src="assets/images/book/3.png" class="card-img-top h-100" alt="...">
-                                </div>
-                                <div class="col-sm-10">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Alice Liddel</h5>
-                                        <h6 style="color: gray;">abcd</h6>
-                                        <p>
-                                            <span *ngFor="let item of [0,1,2,3,4]">
-                                                <span class="fa fa-star" style="color: gold;"></span>
-                                            </span>
-                                        </p>
-                                        <p class="card-text">Alice is a freelance web designer and developer based in London. She is specialized in HTML5, CSS3, JavaScript, Bootstrap, etc.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <br>
-                        <div class="card">
-                            <div class="row no-gutters">
-                                <div class="col-sm-2" style="background: #868e96;">
-                                    <img src="assets/images/book/3.png" class="card-img-top h-100" alt="...">
-                                </div>
-                                <div class="col-sm-10">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Alice Liddel</h5>
-                                        <h6 style="color: gray;">abcd</h6>
-                                        <p>
-                                            <span *ngFor="let item of [0,1,2,3,4]">
-                                                <span class="fa fa-star" style="color: gold;"></span>
-                                            </span>
-                                        </p>
-                                        <p class="card-text">Alice is a freelance web designer and developer based in London. She is specialized in HTML5, CSS3, JavaScript, Bootstrap, etc.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <p style="text-align:center;">
-                            <a href="#" class="btn btn-lg" style="color: blue;border-color: blue;">See More >></a>
-                        </p>
                     </div>
-                    <div class="col-md-4">
-                        <p style="font-size: 1.8em;">Latest Books</p>
-                        <div class="card">
-                            <div class="row no-gutters">
-                                <div class="col-sm-4" style="background: #868e96;height: 120px;">
-                                    <img src="assets/images/book/3.png" class="card-img-top h-100" alt="...">
-                                </div>
-                                <div class="col-sm-8">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Alice Liddel</h5>
-                                        <h6 style="color: gray;">abcd</h6>
-                                        <p>
-                                            <span *ngFor="let item of [0,1,2,3,4]">
-                                                <span class="fa fa-star" style="color: gold;"></span>
-                                            </span>
-                                        </p>
-                                    </div>
+                    <br>
+                    <div class="card">
+                        <div class="row no-gutters">
+                            <div class="col-sm-2" style="background: #868e96;">
+                                <img src="assets/images/book/3.png" class="card-img-top h-100" alt="...">
+                            </div>
+                            <div class="col-sm-10">
+                                <div class="card-body">
+                                    <h5 class="card-title">Alice Liddel</h5>
+                                    <h6 style="color: gray;">abcd</h6>
+                                    <p>
+                                        <span *ngFor="let item of [0,1,2,3,4]">
+                                            <span class="fa fa-star" style="color: gold;"></span>
+                                        </span>
+                                    </p>
+                                    <p class="card-text">Alice is a freelance web designer and developer based in London. She is specialized in HTML5, CSS3, JavaScript, Bootstrap, etc.</p>
                                 </div>
                             </div>
                         </div>
-                        <br>
-                        <div class="card">
-                            <div class="row no-gutters">
-                                <div class="col-sm-4" style="background: #868e96;height: 120px;">
-                                    <img src="assets/images/book/3.png" class="card-img-top h-100" alt="...">
-                                </div>
-                                <div class="col-sm-8">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Alice Liddel</h5>
-                                        <h6 style="color: gray;">abcd</h6>
-                                        <p>
-                                            <span *ngFor="let item of [0,1,2,3,4]">
-                                                <span class="fa fa-star" style="color: gold;"></span>
-                                            </span>
-                                        </p>
-                                    </div>
+                    </div>
+                    <br>
+                    <div class="card">
+                        <div class="row no-gutters">
+                            <div class="col-sm-2" style="background: #868e96;">
+                                <img src="assets/images/book/3.png" class="card-img-top h-100" alt="...">
+                            </div>
+                            <div class="col-sm-10">
+                                <div class="card-body">
+                                    <h5 class="card-title">Alice Liddel</h5>
+                                    <h6 style="color: gray;">abcd</h6>
+                                    <p>
+                                        <span *ngFor="let item of [0,1,2,3,4]">
+                                            <span class="fa fa-star" style="color: gold;"></span>
+                                        </span>
+                                    </p>
+                                    <p class="card-text">Alice is a freelance web designer and developer based in London. She is specialized in HTML5, CSS3, JavaScript, Bootstrap, etc.</p>
                                 </div>
                             </div>
                         </div>
-                        <br>
-                        <div class="card">
-                            <div class="row no-gutters">
-                                <div class="col-sm-4" style="background: #868e96;height: 120px;">
-                                    <img src="assets/images/book/3.png" class="card-img-top h-100" alt="...">
-                                </div>
-                                <div class="col-sm-8">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Alice Liddel</h5>
-                                        <h6 style="color: gray;">abcd</h6>
-                                        <p>
-                                            <span *ngFor="let item of [0,1,2,3,4]">
-                                                <span class="fa fa-star" style="color: gold;"></span>
-                                            </span>
-                                        </p>
-                                    </div>
+                    </div>
+                    <p style="text-align:center;">
+                        <a href="#" class="btn btn-lg" style="color: blue;border-color: blue;">See More >></a>
+                    </p>
+                </div>
+                <div class="col-md-4">
+                    <p style="font-size: 1.8em;">Latest Books</p>
+                    <div class="card">
+                        <div class="row no-gutters">
+                            <div class="col-sm-4" style="background: #868e96;height: 120px;">
+                                <img src="assets/images/book/3.png" class="card-img-top h-100" alt="...">
+                            </div>
+                            <div class="col-sm-8">
+                                <div class="card-body">
+                                    <h5 class="card-title">Alice Liddel</h5>
+                                    <h6 style="color: gray;">abcd</h6>
+                                    <p>
+                                        <span *ngFor="let item of [0,1,2,3,4]">
+                                            <span class="fa fa-star" style="color: gold;"></span>
+                                        </span>
+                                    </p>
                                 </div>
                             </div>
                         </div>
-                        <br>
-                        <div class="card">
-                            <div class="row no-gutters">
-                                <div class="col-sm-4" style="background: #868e96;height: 120px;">
-                                    <img src="assets/images/book/3.png" class="card-img-top h-100" alt="...">
-                                </div>
-                                <div class="col-sm-8">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Alice Liddel</h5>
-                                        <h6 style="color: gray;">abcd</h6>
-                                        <p>
-                                            <span *ngFor="let item of [0,1,2,3,4]">
-                                                <span class="fa fa-star" style="color: gold;"></span>
-                                            </span>
-                                        </p>
-                                    </div>
+                    </div>
+                    <br>
+                    <div class="card">
+                        <div class="row no-gutters">
+                            <div class="col-sm-4" style="background: #868e96;height: 120px;">
+                                <img src="assets/images/book/3.png" class="card-img-top h-100" alt="...">
+                            </div>
+                            <div class="col-sm-8">
+                                <div class="card-body">
+                                    <h5 class="card-title">Alice Liddel</h5>
+                                    <h6 style="color: gray;">abcd</h6>
+                                    <p>
+                                        <span *ngFor="let item of [0,1,2,3,4]">
+                                            <span class="fa fa-star" style="color: gold;"></span>
+                                        </span>
+                                    </p>
                                 </div>
                             </div>
                         </div>
-                        <br>
-                        <div class="card">
-                            <div class="row no-gutters">
-                                <div class="col-sm-4" style="background: #868e96;height: 120px;">
-                                    <img src="assets/images/book/3.png" class="card-img-top h-100" alt="...">
+                    </div>
+                    <br>
+                    <div class="card">
+                        <div class="row no-gutters">
+                            <div class="col-sm-4" style="background: #868e96;height: 120px;">
+                                <img src="assets/images/book/3.png" class="card-img-top h-100" alt="...">
+                            </div>
+                            <div class="col-sm-8">
+                                <div class="card-body">
+                                    <h5 class="card-title">Alice Liddel</h5>
+                                    <h6 style="color: gray;">abcd</h6>
+                                    <p>
+                                        <span *ngFor="let item of [0,1,2,3,4]">
+                                            <span class="fa fa-star" style="color: gold;"></span>
+                                        </span>
+                                    </p>
                                 </div>
-                                <div class="col-sm-8">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Alice Liddel</h5>
-                                        <h6 style="color: gray;">abcd</h6>
-                                        <p>
-                                            <span *ngFor="let item of [0,1,2,3,4]">
-                                                <span class="fa fa-star" style="color: gold;"></span>
-                                            </span>
-                                        </p>
-                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="card">
+                        <div class="row no-gutters">
+                            <div class="col-sm-4" style="background: #868e96;height: 120px;">
+                                <img src="assets/images/book/3.png" class="card-img-top h-100" alt="...">
+                            </div>
+                            <div class="col-sm-8">
+                                <div class="card-body">
+                                    <h5 class="card-title">Alice Liddel</h5>
+                                    <h6 style="color: gray;">abcd</h6>
+                                    <p>
+                                        <span *ngFor="let item of [0,1,2,3,4]">
+                                            <span class="fa fa-star" style="color: gold;"></span>
+                                        </span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="card">
+                        <div class="row no-gutters">
+                            <div class="col-sm-4" style="background: #868e96;height: 120px;">
+                                <img src="assets/images/book/3.png" class="card-img-top h-100" alt="...">
+                            </div>
+                            <div class="col-sm-8">
+                                <div class="card-body">
+                                    <h5 class="card-title">Alice Liddel</h5>
+                                    <h6 style="color: gray;">abcd</h6>
+                                    <p>
+                                        <span *ngFor="let item of [0,1,2,3,4]">
+                                            <span class="fa fa-star" style="color: gold;"></span>
+                                        </span>
+                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -260,80 +220,59 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-12" style="background-color:#EEF7FF">
+    </div>
+    <div class="col-md-12" style="background-color:#EEF7FF">
         <div class="container-fluid card1 card5">
-                <h1>Our Top Authors</h1>
-                <h2>Here are some of the Top Authors that are available in book library</h2>
-                <div style="text-align: center">
-                    <span style = "width: 12%;border-bottom: 1px solid;"></span>
-                    <span class="fa fa-book" aria-hidden="true" style="background-color: #F8F9FF;font-size:25px;margin: 0 12px;"></span>
-                    <span style = "width: 12%;border-bottom: 1px solid;"></span>
-                </div>
-                <ngb-tabset justify="center" style="font-size: 1.5rem;">
-                    <ngb-tab title="Books">
-                        <ng-template ngbTabContent>
-                            <br>
-                            <div class="row col-md-12" style="justify-content: center">
-                                <div class="card" style="padding: 5px 35px 5px 35px;background-color: initial;">
-                                        <img src="assets/images/book/3.png" style="height: 200px;">
-                                        <div style="background-color:black;text-align: center;color: white;">
-                                            <h5 class="card-title">Card title</h5>
-                                        </div>
-                                    </div>
-                                <div class="card" style="padding: 5px 35px 5px 35px;background-color: initial;">
-                                    <img src="assets/images/book/3.png" style="height: 200px;">
-                                    <div  style="background-color:black;text-align: center;color: white;">
-                                        <h5 class="card-title">Card title</h5>
-                                    </div>
-                                </div>
-                                <div class="card" style="padding: 5px 35px 5px 35px;background-color: initial;">
-                                    <img src="assets/images/book/3.png" style="height: 200px;">
-                                    <div  style="background-color:black;text-align: center;color: white;">
-                                        <h5 class="card-title">Card title</h5>
-                                    </div>
-                                </div>
-                                <div class="card" style="padding: 5px 35px 5px 35px;background-color: initial;">
-                                    <img src="assets/images/book/3.png" style="height: 200px;">
-                                    <div  style="background-color:black;text-align: center;color: white;">
-                                        <h5 class="card-title">Card title</h5>
-                                    </div>
-                                </div>
-                            </div>
-                            <div style="text-align: center">
-                                <input #m [checked]="obj.r1 == m.value"  name="r1" value="1" type="radio">&nbsp;
-                                <input #m [checked]="obj.r2 == m.value"  name="r2" value="0" type="radio">&nbsp;
-                                <input #m [checked]="obj.r3 == m.value"  name="r3" value="0" type="radio">&nbsp;
-                                <input #m [checked]="obj.r4 == m.value"  name="r4" value="0" type="radio">&nbsp;
-                            </div>
-                        </ng-template>
-                    </ngb-tab>
-                    <ngb-tab title="Journals">
-                        <ng-template ngbTabContent>
-                            <br>
-                            <span style="font-size: 20px;font-weight: bold;">Best Seller</span>
-                            <span style="float: right;color: darkgray;font-weight: bold;">See All</span>
-                        </ng-template>
-                    </ngb-tab>
-                </ngb-tabset>
+            <h1>Our Top Authors</h1>
+            <h2>Here are some of the Top Authors that are available in book library</h2>
+            <div style="text-align: center">
+                <span style = "width: 12%;border-bottom: 1px solid;"></span>
+                <span class="fa fa-book" aria-hidden="true" style="background-color: #F8F9FF;font-size:25px;margin: 0 12px;"></span>
+                <span style = "width: 12%;border-bottom: 1px solid;"></span>
             </div>
+            <ngb-tabset justify="center" style="font-size: 1.5rem;">
+                <ngb-tab title="Books">
+                    <ng-template ngbTabContent>
+                        <ngx-slick-carousel class="carousel" 
+                        #slickModal="slick-carousel" 
+                        [config]="slideAuthorsConfig" 
+                        (init)="slickInit($event)"
+                        (breakpoint)="breakpoint($event)"
+                        (afterChange)="afterChange($event)"
+                        (beforeChange)="beforeChange($event)">
+                        <div ngxSlickItem *ngFor="let slide of slideAuthors" class="slide" style="padding: 5px 50px;background-color: initial;">
+                            <img src="{{ slide.img }}" alt="" width="100%">
+                            <div  style="background-color:black;text-align: center;color: white;">
+                                <h5 class="card-title">Card title</h5>
+                            </div>
+                        </div>
+                        </ngx-slick-carousel>
+                    </ng-template>
+                </ngb-tab>
+                <ngb-tab title="Journals">
+                    <ng-template ngbTabContent>
+                    </ng-template>
+                </ngb-tab>
+            </ngb-tabset>
         </div>
-        <p style="text-align:center">
-            <br>
-                <img src="assets/images/googleplay.png" width="200px">
-                <img src="assets/images/appstore.png" width="200px">
-            <br>
-        </p>
-        <footer class="bg-light text-center text-lg-start">
-          <!-- Copyright -->
-          <div class="text-center" style="background-color: #5663ff;">
-            © 2020 Copyright:
-            <a class="text-dark" href="https://mdbootstrap.com/">MDBootstrap.com</a>
-            <span style="margin-left: 100px">
-                <img src="assets/images/google.png" width= "30px;">&nbsp; 
-                <img src="assets/images/facebook.png" width= "40px;"> &nbsp; 
-                <img src="assets/images/twitter.png" width= "30px;">&nbsp;  
-            </span>
-          </div>
-          <!-- Copyright -->
-        </footer>
+    </div>
+    <p style="text-align:center">
+        <br>
+            <img src="assets/images/googleplay.png" width="200px">
+            <img src="assets/images/appstore.png" width="200px">
+        <br>
+    </p>
+    <footer class="bg-light text-center text-lg-start">
+        <!-- Copyright -->
+        <div class="text-center" style="background-color: #5663ff;">
+        © 2020 Copyright:
+        <a class="text-dark" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+        <span style="margin-left: 100px">
+            <img src="assets/images/google.png" width= "30px;">&nbsp; 
+            <img src="assets/images/facebook.png" width= "40px;"> &nbsp; 
+            <img src="assets/images/twitter.png" width= "30px;">&nbsp;  
+        </span>
         </div>
+        <!-- Copyright -->
+    </footer>
+</div>

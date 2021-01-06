@@ -14,6 +14,8 @@ import {TabsModule} from "ngx-bootstrap/tabs";
 import { HeaderComponent } from './header/header.component';
 import { BookDetailComponent } from './book-detail/book-detail.component';
 import { BookListComponent } from './book-list/book-list.component';
+// Import your library
+import { SlickCarouselModule } from 'ngx-slick-carousel';
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,7 +24,7 @@ import { BookListComponent } from './book-list/book-list.component';
     Home1Component,
     HeaderComponent,
     BookDetailComponent,
-    BookListComponent
+    BookListComponent,
   ],
   imports: [
     BrowserModule,
@@ -30,7 +32,8 @@ import { BookListComponent } from './book-list/book-list.component';
     NgbModule,
     FormsModule,
     FontAwesomeModule,
-    TabsModule.forRoot()
+    TabsModule.forRoot(),
+    SlickCarouselModule
   ],
   providers: [
     IntercomService
