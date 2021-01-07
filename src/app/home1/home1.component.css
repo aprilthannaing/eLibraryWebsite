@@ -1,3 +1,7 @@
+ngb-rating {
+  font-size: 1.5rem;
+  color:gold;
+}
 .card5 .card-body{
     color : #F8F9FF
   }
@@ -229,7 +233,7 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  height: 600px;
+  height: 650px;
   filter: blur(2px); 
   -webkit-filter: blur(2px);
 }

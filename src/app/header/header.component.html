@@ -35,28 +35,11 @@
                 <a href="#" title = "Library Homepage">
                     <img src="assets/images/e.png">
                 </a>
-
-                <div style="margin-left: 160px;">
-                    <a href="book-list" title = "Myanmar Books">
-                    <span>Myanmar Books</span>
-                    </a>
-                    <a href="#" title = "Ministries"  style="margin-left: 20px;">
-                        <span>Ministries</span>
-                    </a>
-                    <a  href="#" title = "Organization" style="margin-left: 20px;">
-                        <span>Organization</span>
-                    </a>
-                    <a href="#" title = "English Books" style="margin-left: 20px;">
-                        <span>English Books</span>
-                    </a>
-                    <a href="#" title = "Peroidicals" style="margin-left: 20px;">
-                        <span>Peroidicals</span>
-                    </a>
-                    <a href="#" title = "Infopage" style="margin-left: 20px;">
-                        <span>Infopage</span>
+                <div style="margin-left: 90px;" *ngFor="let cat of categories">
+                    <a (click)="goBookbyCategory(cat.boId)" title = {{cat.engName}}>
+                    <span>{{cat.engName}}</span>
                     </a>
                 </div>
-
             </div>
             <div style="font-size: 1.10em;font-weight: 700;" class="card1">Pyidaungsu Hluttaw</div>
             <div style="font-size: 1em;font-weight: 700;" class="card1">E-library System</div>

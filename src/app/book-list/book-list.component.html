@@ -35,7 +35,7 @@
                                     <h6>Short story of Jue</h6>
                                     <h4>Author :  Jue</h4>
                                     <h3>{{book.authors.name}}</h3>
-                                    <h6><button class="btn-success" style="border-radius: 50px;">Noval</button></h6>
+                                    <h6><button class="btn-success" style="border-radius: 50px;" *ngFor="let subCategory of book.subCategory">{{subCategory.myanmarName}}</button></h6>
                                         <h5 style="font-size: 1.2rem;">
                                             <i class="far fa-calendar-alt"></i>&nbsp;
                                             <!-- <span>{{book.publishedDate}}</span> -->
@@ -43,7 +43,7 @@
                                         </h5>
                                         <h5 style="font-size: 1.2rem;">
                                             <i class="fas fa-male" style="font-size: 2rem;"></i>&nbsp;
-                                            <span>Views-10234</span> 
+                                            <span>Views-0</span> 
                                         </h5>
                                         <h5 style="font-size: 1.2rem;">
                                             <i class="fas fa-book"></i> &nbsp;  
