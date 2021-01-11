@@ -1,23 +1,15 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
+import { Router, ActivatedRoute } from '@angular/router';
+import { IntercomService } from '../framework/intercom.service';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 @Component({
   selector: 'app-home1',
   templateUrl: './home1.component.html',
   styleUrls: ['./home1.component.css']
 })
 export class Home1Component implements OnInit {
-  textMyan: any = ['သင်စာအုပ်ရှာဖွေနေပါသလား...?','လွှတ်တော်များဆိုင်ရာ စာကြည့်တိုက်',];
-  textEng: any = ['Are you serarching a book..?','Parliamentary Library'];
-  textData: any = [];
   obj: any ;
-  slides = [
-    {img: "assets/images/book/3.png"},
-    {img: "assets/images/book/3.png"},
-    {img: "assets/images/book/3.png"},
-    {img: "assets/images/book/3.png"},
-    {img: "assets/images/book/3.png"},
-    {img: "assets/images/book/3.png"}
-  ];
   slideConfig = {
     "slidesToShow": 5,
     "slidesToScroll": 1,
@@ -27,17 +19,12 @@ export class Home1Component implements OnInit {
     "infinite": false
   };
 
-  slideAuthors = [
-    {img: "assets/images/book/1.png"},
-    {img: "assets/images/book/2.png"},
-    {img: "assets/images/book/3.png"},
-    {img: "assets/images/book/2.png"},
-    {img: "assets/images/book/3.png"},
-    {img: "assets/images/book/1.png"},
-    {img: "assets/images/book/3.png"},
+  local_author = [
+    {Id: 0,boId: "",name: "",sort: "",profilePicture: "",authorType: ""}
   ];
-<<<<<<< HEAD
-=======
+  international_author = [
+    {Id: 0,boId: "",name: "",sort: "",profilePicture: "",authorType: ""}
+  ];
   recommend_book:any;
   popular_book:any = [];
   popular_book_temp:any = [];
@@ -45,7 +32,6 @@ export class Home1Component implements OnInit {
   latest_book:any = [];
   currentRate = 0;
 
->>>>>>> 3a33b037a34f5eb9d22d939a2cb04b3fa18cadd6
   slideAuthorsConfig = {
     "slidesToShow": 4,
     "slidesToScroll": 4,
@@ -54,9 +40,6 @@ export class Home1Component implements OnInit {
     "nextArrow": false,
     "prevArrow": false,
   };
-<<<<<<< HEAD
-  constructor() { 
-=======
   constructor(
     private router: Router,
     private http: HttpClient,
@@ -64,10 +47,10 @@ export class Home1Component implements OnInit {
     private ics: IntercomService
   ) { 
     this.goHome();
-    this.changelanguage();
->>>>>>> 3a33b037a34f5eb9d22d939a2cb04b3fa18cadd6
   }
-
+  onImgError(event){
+    event.target.src = 'assets/images/notfound.jpg'
+   }
   ngOnInit(): void {
   }
 
@@ -87,8 +70,6 @@ export class Home1Component implements OnInit {
     console.log('beforeChange');
   }
 
-<<<<<<< HEAD
-=======
   goHome() {
     const url = this.ics.apiRoute + '/home';
     const json = {"user_id":"USR1"}
@@ -193,16 +174,4 @@ export class Home1Component implements OnInit {
     this.router.navigate(['/book-list','read',value.boId]); 
     this.ics.titleLink = "Author/" + value.name
   }
-  changelanguage() {
-    if (this.ics.language == 'eng') {
-      for (let j = 0; j < this.textEng.length; j++) {
-        this.textData[j] = this.textEng[j];
-      }
-    } else {
-      for (let j = 0; j < this.textMyan.length; j++) {
-        this.textData[j] = this.textMyan[j];
-      }
-    }
-  }
->>>>>>> 3a33b037a34f5eb9d22d939a2cb04b3fa18cadd6
 }
