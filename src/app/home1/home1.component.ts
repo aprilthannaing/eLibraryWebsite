@@ -1,8 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
-import { Router, ActivatedRoute } from '@angular/router';
-import { IntercomService } from '../framework/intercom.service';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 @Component({
   selector: 'app-home1',
   templateUrl: './home1.component.html',
@@ -27,17 +24,15 @@ export class Home1Component implements OnInit {
     "infinite": false
   };
 
-  local_author = [
-    {Id: 0,boId: "",name: "",sort: "",profilePicture: "",authorType: ""}
+  slideAuthors = [
+    {img: "assets/images/book/1.png"},
+    {img: "assets/images/book/2.png"},
+    {img: "assets/images/book/3.png"},
+    {img: "assets/images/book/2.png"},
+    {img: "assets/images/book/3.png"},
+    {img: "assets/images/book/1.png"},
+    {img: "assets/images/book/3.png"},
   ];
-  international_author = [
-    {Id: 0,boId: "",name: "",sort: "",profilePicture: "",authorType: ""}
-  ];
-  recommend_book:any;
-  popular_book:any = [];
-  latest_book:any = [];
-  currentRate = 0;
-
   slideAuthorsConfig = {
     "slidesToShow": 4,
     "slidesToScroll": 4,
@@ -46,17 +41,9 @@ export class Home1Component implements OnInit {
     "nextArrow": false,
     "prevArrow": false,
   };
-  constructor(
-    private router: Router,
-    private http: HttpClient,
-    private route: ActivatedRoute,
-    private ics: IntercomService
-  ) { 
-    this.goHome();
+  constructor() { 
   }
-  onImgError(event){
-    event.target.src = 'assets/images/notfound.jpg'
-   }
+
   ngOnInit(): void {
   }
 
@@ -76,88 +63,4 @@ export class Home1Component implements OnInit {
     console.log('beforeChange');
   }
 
-  goHome() {
-    const url = this.ics.apiRoute + '/home';
-    const json = {"user_id":"USR1"}
-    try {
-        this.http.post(url,json,{headers: new HttpHeaders().set('token', this.ics._profile.token)}).subscribe(
-            (data:any) => {
-              if(data.status){
-                  //Local Author
-                  this.local_author = data.local_author
-                  for(let i=0;i <this.local_author.length; i++){
-                    if(this.local_author[i].profilePicture != ""){
-                      let profilepicture ="assets/elibrary" + this.local_author[i].profilePicture;
-                      profilepicture.replace("\/","/");
-                      this.local_author[i].profilePicture =  profilepicture;
-                    }else{
-                      this.local_author[i].profilePicture = "assets/images/notfound.jpg";
-                    }
-                  }
-                    //International Author
-                    this.international_author = data.international_author
-                  for(let i=0;i <this.international_author.length; i++){
-                    if(this.international_author[i].profilePicture != ""){
-                      let profilepicture ="assets/elibrary" + this.international_author[i].profilePicture;
-                      profilepicture.replace("\/","/");
-                      this.international_author[i].profilePicture =  profilepicture;
-                    }else{
-                      this.international_author[i].profilePicture = "assets/images/notfound.jpg";
-                    }
-                  }
-
-                  //Recommanded Book 
-                  this.recommend_book = data.recommend_book
-                  for(let i=0;i <this.recommend_book.length; i++){
-                    if(this.recommend_book[i].coverPhoto != ""){
-                      let coverPhoto ="assets/elibrary" + this.recommend_book[i].coverPhoto;
-                      coverPhoto.replace("\/","/");
-                      this.recommend_book[i].coverPhoto =  coverPhoto;
-                    }else{
-                      this.recommend_book[i].coverPhoto = "assets/images/notfound.jpg";
-                    }
-                  }
-                  //popular_book Book 
-                  let popular_book = data.popular_book
-                  for(let i=0; i < 2; i++){
-                    this.popular_book[i] = popular_book[i];
-                    if(this.popular_book[i].coverPhoto != ""){
-                      let coverPhoto ="assets/elibrary" + this.popular_book[i].coverPhoto;
-                      coverPhoto.replace("\/","/");
-                      this.popular_book[i].coverPhoto =  coverPhoto;
-                    }else{
-                      this.popular_book[i].coverPhoto = "assets/images/notfound.jpg";
-                    }
-                  }
-
-                  //latest_book Book 
-                  let latest_book = data.latest_book
-                  for(let i=0; i < 3; i++){
-                    this.latest_book[i] = latest_book[i];
-                    if(this.latest_book[i].coverPhoto != ""){
-                      let coverPhoto ="assets/elibrary" + this.latest_book[i].coverPhoto;
-                      coverPhoto.replace("\/","/");
-                      this.latest_book[i].coverPhoto =  coverPhoto;
-                    }else{
-                      this.latest_book[i].coverPhoto = "assets/images/notfound.jpg";
-                    }
-                  }
-              }
-            },
-            error => {
-                if (error.name == "HttpErrorResponse") {
-                    alert("Connection Timed Out!");
-                }
-                else {
-  
-                }
-            }, () => { });
-    } catch (e) {
-        alert(e);
-    }
-  }
-  goRecommendBook(value){
-    this.router.navigate(['/book-detail']); 
-    this.ics.bookDetail = value;
-  }
 }

@@ -1,7 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
-import { IntercomService } from '../framework/intercom.service';
 
 @Component({
   selector: 'app-book-detail',
@@ -9,15 +6,8 @@ import { IntercomService } from '../framework/intercom.service';
   styleUrls: ['./book-detail.component.css']
 })
 export class BookDetailComponent implements OnInit {
-  bookDetail:any;
-  constructor(
-    private router: Router,
-    private http: HttpClient,
-    private route: ActivatedRoute,
-    private ics: IntercomService
-  ) {
-    this.bookDetail = this.ics.bookDetail;
-   }
+
+  constructor() { }
 
   ngOnInit(): void {
   }

@@ -3,13 +3,13 @@
 <div class="container-fluid card1">
     <div class="card">
         <div class="row no-gutters">
-            <div class="col-sm-2" style="padding: 30px 30px 30px 30px;background-color: lightgray;border-radius: 15px;height: 300px;">
-                <img src="{{ bookDetail.coverPhoto }}" class="card-img-top h-100" alt="..." style="border-radius: 15px;">
+            <div class="col-sm-2" style="padding: 30px 30px 30px 30px;background-color: lightgray;border-radius: 15px;">
+                <img src="assets/images/book/3.png" class="card-img-top h-100" alt="..." style="border-radius: 15px;">
             </div>
             <div class="col-sm-10">
                 <div class="card-body">
-                    <h4 class="card-title">{{bookDetail.title}}</h4>
-                    <p class="card-text"*ngFor="let author of bookDetail.authors">{{author.name}}</p>
+                    <h4 class="card-title">Alice Liddel</h4>
+                    <p class="card-text">Alice is a freelance web designer and developer based in London. She is specialized in HTML5, CSS3, JavaScript, Bootstrap, etc.</p>
                 </div>
             </div>
         </div>
@@ -27,7 +27,7 @@
                     <div >
                         <div class="card-body">
                             <h6 class="card-title">Pages</h6>
-                            <p class="card-text" style="font-size: 35px;line-height: 12px;">{{bookDetail.currentPage}}</p>
+                            <p class="card-text" style="font-size: 35px;line-height: 12px;">256</p>
                         </div>
                     </div>
                 </div>
@@ -42,8 +42,7 @@
                     <div >
                         <div class="card-body">
                             <h6 class="card-title">Book Size</h6>
-                            <p class="card-text">{{bookDetail.size}}</p>
-                            <!-- <p class="card-text">5.2 * 0.5x <br>8.2 inches</p> -->
+                            <p class="card-text">5.2 * 0.5x <br>8.2 inches</p>
                         </div>
                     </div>
                 </div>
@@ -58,7 +57,7 @@
                     <div >
                         <div class="card-body">
                             <h6 class="card-title">Number of books</h6>
-                            <p class="card-text">published<br>{{bookDetail.edition}}</p>
+                            <p class="card-text">published<br>24</p>
                         </div>
                     </div>
                 </div>

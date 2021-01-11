@@ -1,21 +1,43 @@
 import { Injectable } from '@angular/core';
-import { Subject} from 'rxjs';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class IntercomService {
-  apiRoute: string = "http://192.168.3.56:8080/elibrary";
-  bookDetail: any;
   _profile = {
-    "token": "7584491bd16084688c1c1f74498177d9",
+    "email": "",
     "userName": "",
     "logoText": "eLibrary",
     "logoLink": "/home",
     "menus": [],
     "rightMenus": [],
-};
+    "token": "",
+    "verifyCode" : "",
+  };
+
+  iv = 'AODVNUASDNVVAOVF';
+  key = 'mykey@91mykey@91';
+  apiRoute: string = "http://localhost:8082";
   private _rpbeanSource = new Subject<any>();
   rpbean$ = this._rpbeanSource.asObservable();
+  private _mybean: any;
+  sendBean(x: any) {
+    this._mybean = x;
+    this._rpbeanSource.next(x);
+  }
+
+  encrypt(stringToEncrypt) {
+    var forge = require('node-forge');
+    var plaintext = stringToEncrypt;
+    var cipher = forge.cipher.createCipher('AES-CBC', this.key);
+    cipher.start({ iv: this.iv });
+    cipher.update(forge.util.createBuffer(plaintext));
+    cipher.finish();
+    var encrypted = cipher.output;
+    var encodedB64 = forge.util.encode64(encrypted.data);
+    return encodedB64;
+  }
+
   constructor() { }
 }

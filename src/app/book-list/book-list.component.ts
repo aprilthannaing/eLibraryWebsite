@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Router, ActivatedRoute } from '@angular/router';
-import { IntercomService } from '../framework/intercom.service';
 
 
 @Component({
@@ -14,40 +12,24 @@ export class BookListComponent implements OnInit {
   bookCount = 0;
   bookList = [];
   defaultImage = "assets/images/image_not_found.PNG";
-  sub: any;
-  categoryId = "";
-  authorId = "";
-  constructor(
-    private router: Router,
-    private http: HttpClient,
-    private route: ActivatedRoute,
-    private ics: IntercomService    ) { }
+  
+  constructor(private http:HttpClient) { }
 
   ngOnInit(): void {
-      this.route.params.subscribe(params => {
-      let cmd = params['cmd'];
-      if (cmd != null && cmd != "" && cmd == "read") {
-       let id = params['id'];
-       if(id.includes("CATEGORY"))
-        this.categoryId = id;
-       if(id.includes("author"))
-        this.authorId = id;
-      }
-  });
     this.showBookCount();
   }
 
   showBookCount(){
      
     const json = {
-     "categoryId": this.categoryId,
+     "categoryId": "CATEGORY10002",
      "user_id": "USR2",
-     "author_id": this.authorId
+     "author_id": "Author10001"
      }
      const header: HttpHeaders = new HttpHeaders({
-       token: this.ics._profile.token
+       token: "7584491bd16084688c1c1f74498177d9"
      });
-     const url: string = this.ics.apiRoute + "/home/book";
+     const url: string = "http://192.168.3.56:8080/elibrary" + "/home/book";
      this.http.post(url, json, {
       headers: header
     }).subscribe(
