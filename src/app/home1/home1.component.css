@@ -10,7 +10,8 @@ ngb-rating {
   }
   .card5 h1 {
     text-align: center;
-    font-size: 2.7em;
+    font-size: 1.92em;
+    line-height: 1.5;
   }
   .card5 h2 {
     text-align: center;
@@ -61,8 +62,9 @@ ngb-rating {
     display: block;
     margin: 10px auto 8px auto;
     text-align: center;
-    font-size: 2.8em;
+    font-size: 1.92em;;
     color: #F8F9FF;
+    line-height: 1.5;
   }
   .card4 h2 {
     display: block;
@@ -75,11 +77,10 @@ ngb-rating {
   .card3 h1 {
     display: block;
     margin: 0 auto 25px auto;
-    /* text-align: center; */
     font-weight: 700;
     font-size: 1.92em;
-    /* letter-spacing: -0.055em; */
     color: #F8F9FF;
+    line-height: 1.6;
   }
 
   .card3 h2 {

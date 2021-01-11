@@ -9,23 +9,26 @@
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <a  href="#" title = "Library Homepage">
                             <i class="fa fa-envelope" aria-hidden="true" style="font-size: 1.10em;font-weight: 900"></i>
-                        <span>&nbsp; Contact Us </span>
+                        <span>&nbsp; {{ 'HEAD.006' | translate }} </span>
                     </a>
                 </div>
                 <div class="on-the-right" >
-                    <a  href="#" title = "Library Homepage">
+                    <!-- <a [routerLink]="[]" title = "Library Homepage" (click)= "changelanguage()">
                         <i class="fa fa-language" aria-hidden="true" style="font-size: 1.10em;font-weight: 900"></i>
-                        <span>&nbsp; Language </span>
-                    </a>
+                        <span>&nbsp; {{textData[0]}} </span>
+                    </a> -->
+                    <select #langSelect (change)="translate.use(langSelect.value)">
+                        <option *ngFor="let lang of translate.getLangs()" [value]="lang" [selected]="lang === translate.currentLang">{{ lang }}</option>
+                    </select>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <a  href="#" title = "Library Homepage" class="right">
-                        <span>&nbsp; My Account </span>&nbsp;
+                        <span>&nbsp; {{ 'HEAD.002' | translate }} </span>&nbsp;
                         <img src="assets/images/user-icon.png" style=' border-radius: 50%;width: 5%;'>
                     </a>
                     &nbsp;&nbsp;&nbsp;&nbsp;
                     <a  href="#" title = "Library Homepage">
                         <i class="fas fa-sign-out-alt" aria-hidden="true" style="font-size: 1.10em;font-weight: 900"></i>
-                        <span>&nbsp; LogOut </span>
+                        <span>&nbsp; {{ 'HEAD.003' | translate }}</span>
                     </a>
                 </div>
             </div>
@@ -35,13 +38,13 @@
                 <a href="#" title = "Library Homepage">
                     <img src="assets/images/e.png">
                 </a>
-                <div style="margin-left: 90px;" *ngFor="let cat of categories">
-                    <a (click)="goBookbyCategory(cat.boId)" title = {{cat.engName}}>
+                <div translate style="margin-left: 50px;" *ngFor="let cat of categories">
+                    <a (click)="goBookbyCategory(cat)" title = "{{cat.engName}}">
                     <span>{{cat.engName}}</span>
                     </a>
                 </div>
             </div>
-            <div style="font-size: 1.10em;font-weight: 700;" class="card1">Pyidaungsu Hluttaw</div>
-            <div style="font-size: 1em;font-weight: 700;" class="card1">E-library System</div>
+            <div style="font-size: 1.10em;font-weight: 700;" class="card1">{{ 'HEAD.005' | translate }}</div>
+            <div style="font-size: 1em;font-weight: 700;" class="card1">{{ 'HEAD.004' | translate }}</div>
         </div>
     </header>

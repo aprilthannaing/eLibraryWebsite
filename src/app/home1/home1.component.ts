@@ -9,6 +9,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   styleUrls: ['./home1.component.css']
 })
 export class Home1Component implements OnInit {
+  textMyan: any = ['သင်စာအုပ်ရှာဖွေနေပါသလား...?','လွှတ်တော်များဆိုင်ရာ စာကြည့်တိုက်',];
+  textEng: any = ['Are you serarching a book..?','Parliamentary Library'];
+  textData: any = [];
   obj: any ;
   slides = [
     {img: "assets/images/book/3.png"},
@@ -35,6 +38,8 @@ export class Home1Component implements OnInit {
   ];
   recommend_book:any;
   popular_book:any = [];
+  popular_book_temp:any = [];
+  latest_book_temp:any = [];
   latest_book:any = [];
   currentRate = 0;
 
@@ -53,6 +58,7 @@ export class Home1Component implements OnInit {
     private ics: IntercomService
   ) { 
     this.goHome();
+    this.changelanguage();
   }
   onImgError(event){
     event.target.src = 'assets/images/notfound.jpg'
@@ -118,9 +124,9 @@ export class Home1Component implements OnInit {
                     }
                   }
                   //popular_book Book 
-                  let popular_book = data.popular_book
+                  this.popular_book_temp = data.popular_book
                   for(let i=0; i < 2; i++){
-                    this.popular_book[i] = popular_book[i];
+                    this.popular_book[i] = this.popular_book_temp[i];
                     if(this.popular_book[i].coverPhoto != ""){
                       let coverPhoto ="assets/elibrary" + this.popular_book[i].coverPhoto;
                       coverPhoto.replace("\/","/");
@@ -131,9 +137,9 @@ export class Home1Component implements OnInit {
                   }
 
                   //latest_book Book 
-                  let latest_book = data.latest_book
+                  this.latest_book_temp = data.latest_book
                   for(let i=0; i < 3; i++){
-                    this.latest_book[i] = latest_book[i];
+                    this.latest_book[i] = this.latest_book_temp[i];
                     if(this.latest_book[i].coverPhoto != ""){
                       let coverPhoto ="assets/elibrary" + this.latest_book[i].coverPhoto;
                       coverPhoto.replace("\/","/");
@@ -159,5 +165,36 @@ export class Home1Component implements OnInit {
   goRecommendBook(value){
     this.router.navigate(['/book-detail']); 
     this.ics.bookDetail = value;
+  }
+  goPopularBooks(){
+    this.router.navigate(['/book-list','new','popularBooks']); 
+    this.ics.bookList = this.popular_book_temp;
+  }
+  goLatestBooks(){
+    this.router.navigate(['/book-list','new','latestBooks']); 
+    this.ics.bookList = this.latest_book_temp;
+  }
+  goPopularBook(value){
+    this.router.navigate(['/book-detail']); 
+    this.ics.bookDetail = value;
+  }
+  goRecommendBooks(){
+    this.router.navigate(['/book-list','new','recommendBooks']); 
+    this.ics.bookList = this.recommend_book;
+  }
+  goBookByAuthors(value){
+    this.router.navigate(['/book-list','read',value.boId]); 
+    this.ics.titleLink = "Author/" + value.name
+  }
+  changelanguage() {
+    if (this.ics.language == 'eng') {
+      for (let j = 0; j < this.textEng.length; j++) {
+        this.textData[j] = this.textEng[j];
+      }
+    } else {
+      for (let j = 0; j < this.textMyan.length; j++) {
+        this.textData[j] = this.textMyan[j];
+      }
+    }
   }
 }

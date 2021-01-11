@@ -5,15 +5,19 @@ import { Subject} from 'rxjs';
   providedIn: 'root'
 })
 export class IntercomService {
-  apiRoute: string = "http://192.168.3.56:8080/elibrary";
+  apiRoute: string = "http://localhost:8082";
   bookDetail: any;
+  bookList: any;
+  titleLink: any;
+  language= "eng";
+
   _profile = {
     "token": "7584491bd16084688c1c1f74498177d9",
     "userName": "",
     "logoText": "eLibrary",
     "logoLink": "/home",
     "menus": [],
-    "rightMenus": [],
+    "rightMenus": []
 };
   private _rpbeanSource = new Subject<any>();
   rpbean$ = this._rpbeanSource.asObservable();
