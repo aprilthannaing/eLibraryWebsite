@@ -5,6 +5,12 @@ import { Subject } from 'rxjs';
   providedIn: 'root'
 })
 export class IntercomService {
+  apiRoute: string = "http://localhost:8082";
+  bookDetail: any;
+  bookList: any;
+  titleLink: any;
+  language = "eng";
+
   _profile = {
     "email": "",
     "userName": "",
@@ -12,13 +18,13 @@ export class IntercomService {
     "logoLink": "/home",
     "menus": [],
     "rightMenus": [],
+    "verifyCode": "",
     "token": "",
-    "verifyCode" : "",
   };
+
 
   iv = 'AODVNUASDNVVAOVF';
   key = 'mykey@91mykey@91';
-  apiRoute: string = "http://localhost:8082";
   private _rpbeanSource = new Subject<any>();
   rpbean$ = this._rpbeanSource.asObservable();
   private _mybean: any;

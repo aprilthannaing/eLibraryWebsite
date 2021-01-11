@@ -1,41 +1,46 @@
-<app-header></app-header>
+<!-- <app-header></app-header> -->
 <div class="container-fluid card1">
-    <h2 style="text-align: center;">Myanmar Book List</h2>
-    <p style="text-align: center;">Home / Myanmar Books / Jue &nbsp;&nbsp;<button class="btn-success" style="border-radius: 50px;">{{bookCount}}</button></p>
+    <h2 style="text-align: center;">{{title}}</h2>
+    <p style="text-align: center;">Home / {{titleLink}} &nbsp;&nbsp;<button class="btn-success" style="border-radius: 50px;">{{bookCount}}</button></p>
     <div class="card" style="background-color: #EEF7FF;border-radius: 0px">
         <h4 style="margin: 40px;">In book section,We have (<b>{{bookCount}}</b>) books totals to read online freely.Please checkout and let us known
                 of readers have any advice.
             </h4>
     </div>
-    <h4 style="margin: 40px 0;text-align: right;">Page No.
-    <select>
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-    </select>
-    </h4>
-    
-    <div class="row">
+    <br>
+    <div class="pull-right" style="padding-bottom: 30px;">
+        <div class="input-group">
+            <h5>Page No.</h5>
+            <select [(ngModel)]="page" (change)="changePage()" class="form-control input-sm" [ngModelOptions]="{standalone: true}">
+                <option *ngFor="let item of pageArray" [value]="item">{{item}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="row col-md-12">
         <div *ngFor="let book of bookList" class="col col-6">
             <div class="card" style="border: 1px solid rgba(0,0,0,.125);">
                 <div class="card-title" id="bookTitle" style="background-color:lightgray;border-radius: 0">
-                    <h6 class="d-inline-block text-truncate" style="color: red;margin: 40px;width: 400px;">&nbsp; {{book.title}}</h6>
+                    <h4 style="color: red;margin: 40px">&nbsp; {{book.title}}</h4>
                     <!-- class="d-inline-block text-truncate" -->
                 </div>
                 <div class="card-body">
                     <div class="card">
                         <div class="row no-gutters">
-
                             <div class="col-sm-5">
-                                <img src="http//localhost:8080/elibrary/{{book.coverPhoto}}" (error) ="changeSource($event)" class="card-img-top h-100" alt="Cover Photo" style="border-radius: 15px;padding: 20px;">
-
+                                <img src="{{book.coverPhoto}}"  class="card-img-top"  style="border-radius: 15px;padding: 20px;">
                             </div>
                             <div class="col-sm-7">
                                 <div class="card-body">
+<<<<<<< HEAD
                                     <h6>Short story of Jue</h6>
                                     <h4>Author :  Jue</h4>
                                     <h3>{{book.authors.name}}</h3>
                                     <h6><button class="btn-success" style="border-radius: 50px;">Noval</button></h6>
+=======
+                                    <!-- <h6>Short story of Jue</h6> -->
+                                    <h4 *ngFor="let author of book.authors">Author :  {{author.name}}</h4>
+                                    <h6><button class="btn-success" style="border-radius: 50px;">{{book.subCategory.myanmarName}}</button></h6>
+>>>>>>> 3a33b037a34f5eb9d22d939a2cb04b3fa18cadd6
                                         <h5 style="font-size: 1.2rem;">
                                             <i class="far fa-calendar-alt"></i>&nbsp;
                                             <!-- <span>{{book.publishedDate}}</span> -->
@@ -50,9 +55,9 @@
                                             <span>{{book.size}}&nbsp; MB</span> 
                                         </h5>
                                         <p style="text-align:center;">
-                                            <a href="#" class="btn btn-ls" style="color: blue;border-color: blue;border-radius: 10px;"><i class="fas fa-download"></i>&nbsp; Details</a>
+                                            <a  class="btn btn-ls" style="color: blue;border-color: blue;border-radius: 10px;" (click)="goBookDetails(book)"><i class="fas fa-download"></i>&nbsp; Details</a>
                                             &nbsp;&nbsp;
-                                            <a href="#" class="btn btn-ls" style="color: blue;border-color: blue;border-radius: 10px;"><i class="fas fa-book-open"></i>&nbsp; Read</a>
+                                            <a  class="btn btn-ls" style="color: blue;border-color: blue;border-radius: 10px;"><i class="fas fa-book-open"></i>&nbsp; Read</a>
                                         </p>
                                 </div>
                             </div>

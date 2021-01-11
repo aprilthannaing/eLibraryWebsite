@@ -1,0 +1,28 @@
+{
+    "HOME": {
+      "001": "Are you serarching a book..?",
+      "002": "Parliamentary Library",
+      "003": "Recommended For You",
+      "004": "Popular Books",
+      "005": "Latest Books",
+      "006": "Our Top Authors",
+      "007": "Show all",
+      "008": "See More",
+      "009": "Local",
+      "010": "International",
+      "011": "Welcome to the library",
+      "012": "Welcome to the Most Popular Library Today",
+      "013": "Here are some of recommended books that are available in Books Library",
+      "014": "Here are some of the Top Authors that are available in book library"
+    },
+    "HEAD": {
+      "001": "Language",
+      "002": "My Account",
+      "003": "Log Out",
+      "004": "Parliamentary Library",
+      "005":"Pyidaungsu Hluttaw",
+      "006": "Contact Us",
+      "007": "Parliamentary Library"
+    }
+  }
+  

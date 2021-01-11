@@ -17,6 +17,7 @@ import { BookDetailComponent } from './book-detail/book-detail.component';
 import { BookListComponent } from './book-list/book-list.component';
 // Import your library
 import { SlickCarouselModule } from 'ngx-slick-carousel';
+<<<<<<< HEAD
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatBadgeModule} from '@angular/material/badge';
 import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
@@ -59,6 +60,15 @@ import { ForgetpasswordComponent } from './forgetpassword/forgetpassword.compone
 import { Header2Component } from './header2/header2.component';
 import { Forgetpassword2Component } from './forgetpassword2/forgetpassword2.component';
 
+=======
+import { HttpClientModule, HttpClient } from '@angular/common/http';
+import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+
+export function HttpLoaderFactory(httpClient: HttpClient) {
+  return new TranslateHttpLoader(httpClient);
+}
+>>>>>>> 3a33b037a34f5eb9d22d939a2cb04b3fa18cadd6
 @NgModule({
   declarations: [
     AppComponent,
@@ -81,6 +91,7 @@ import { Forgetpassword2Component } from './forgetpassword2/forgetpassword2.comp
     FontAwesomeModule,
     TabsModule.forRoot(),
     SlickCarouselModule,
+<<<<<<< HEAD
     HttpClientModule,  
     MatAutocompleteModule,
     MatBadgeModule,
@@ -118,6 +129,16 @@ import { Forgetpassword2Component } from './forgetpassword2/forgetpassword2.comp
     MatTooltipModule,
     MatTreeModule,
     BrowserAnimationsModule, 
+=======
+    HttpClientModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    })
+>>>>>>> 3a33b037a34f5eb9d22d939a2cb04b3fa18cadd6
   ],
   providers: [
     IntercomService, DatePipe
