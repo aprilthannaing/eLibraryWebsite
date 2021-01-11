@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-
 import { Router, ActivatedRoute } from '@angular/router';
 import { IntercomService } from '../framework/intercom.service';
 import { TranslateService } from '@ngx-translate/core';
@@ -11,7 +10,6 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-
   categories:any = [];
   browserLang : any;
   constructor(
@@ -30,26 +28,7 @@ export class HeaderComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    this.getCategories();
   }
-
-  getCategories(){
-    const header: HttpHeaders = new HttpHeaders({
-      token: "7584491bd16084688c1c1f74498177d9"
-    });
-    const url = "http://192.168.3.56:8080/elibrary" + "/category/all";
-    this.http.request('get',url, {
-      headers: header
-    }).subscribe(
-      (data: any) => {
-       this.categories = data.categories;
-       console.log(this.categories)
-
-      },
-      error => {
-        console.warn("error: ", error);
-      });
-    }
 
   goCategory() {
     const url = this.ics.apiRoute + '/category/all';
@@ -73,7 +52,7 @@ export class HeaderComponent implements OnInit {
     }
   }
   goBookbyCategory(value){
-    this.router.navigate(['/book-list','read',value.boId]); 
+    this.router.navigate(['/category-list','read',value.boId]); 
     this.ics.titleLink = value.engName;
   }
 }

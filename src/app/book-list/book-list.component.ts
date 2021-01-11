@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Router, ActivatedRoute } from '@angular/router';
+import { IntercomService } from '../framework/intercom.service';
 
 
 @Component({
@@ -15,13 +17,6 @@ export class BookListComponent implements OnInit {
   bookCount = 0;
   bookList = [];
   defaultImage = "assets/images/image_not_found.PNG";
-<<<<<<< HEAD
-  
-  constructor(private http:HttpClient) { }
-
-  ngOnInit(): void {
-    this.showBookCount();
-=======
   sub: any;
   categoryId = "";
   authorId = "";
@@ -91,33 +86,22 @@ export class BookListComponent implements OnInit {
           this.showBook();
       }
   });
->>>>>>> 3a33b037a34f5eb9d22d939a2cb04b3fa18cadd6
   }
 
   showBook(){
      
     const json = {
-<<<<<<< HEAD
-     "categoryId": "CATEGORY10002",
-     "user_id": "USR2",
-     "author_id": "Author10001"
-=======
      "category_id": this.categoryId,
      "user_id": "USR2",
      "author_id": this.authorId,
      "page" : this.page,
      "title":"",
      "sub_category_id":"",
->>>>>>> 3a33b037a34f5eb9d22d939a2cb04b3fa18cadd6
      }
      const header: HttpHeaders = new HttpHeaders({
-       token: "7584491bd16084688c1c1f74498177d9"
+       token: this.ics._profile.token
      });
-<<<<<<< HEAD
-     const url: string = "http://192.168.3.56:8080/elibrary" + "/home/book";
-=======
      const url: string = this.ics.apiRoute + "/book";
->>>>>>> 3a33b037a34f5eb9d22d939a2cb04b3fa18cadd6
      this.http.post(url, json, {
       headers: header
     }).subscribe(
@@ -133,8 +117,11 @@ export class BookListComponent implements OnInit {
           for(let i=0;i <this.bookList.length; i++){
             if(this.bookList[i].coverPhoto != ""){
                 let coverPhoto ="assets/elibrary" + this.bookList[i].coverPhoto;
+                let pdfPath = "assets/elibrary/WaterMarkFile" + this.bookList[i].path;
                 coverPhoto.replace("\/","/");
+                pdfPath.replace("\/","/");
                 this.bookList[i].coverPhoto =  coverPhoto;
+                this.bookList[i].pdfPath = pdfPath;
             }else{
                 this.bookList[i].coverPhoto = "assets/images/notfound.jpg";
             }

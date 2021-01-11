@@ -1,5 +1,4 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { Router, ActivatedRoute } from '@angular/router';
 import { IntercomService } from '../framework/intercom.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
