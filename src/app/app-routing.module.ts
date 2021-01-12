@@ -12,7 +12,7 @@ import { HeaderComponent } from './header/header.component';
 
 
 const routes: Routes = [
-  { path: '', redirectTo: 'app', pathMatch: 'full' },
+  // { path: '', redirectTo: 'app', pathMatch: 'full' },
   { path: 'home1', component: Home1Component },
   { path: 'home', component: HomeComponent },
   { path: 'book-detail', component: BookDetailComponent },
