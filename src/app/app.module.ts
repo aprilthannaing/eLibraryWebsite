@@ -52,7 +52,6 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatTreeModule} from '@angular/material/tree';
 
 import { DatePipe } from '@angular/common';
-import { LoginComponent } from './login/login.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ForgetpasswordComponent } from './forgetpassword/forgetpassword.component';
 import { Forgetpassword2Component } from './forgetpassword2/forgetpassword2.component';
@@ -72,7 +71,6 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     HeaderComponent,
     BookDetailComponent,
     BookListComponent,
-    LoginComponent,
     ForgetpasswordComponent,
     Forgetpassword2Component,
   ],

@@ -24,6 +24,8 @@ export class Forgetpassword2Component implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    console.log("new password!!", this.newpwd)
+    console.log("confirm password!!", this.confirmpwd)
     this.clear();
   }
 
@@ -37,6 +39,7 @@ export class Forgetpassword2Component implements OnInit {
     if (this.newpwd != this.confirmpwd) {
       this._result = "Your new password and confirm password must be same!";
       this.clear();
+      return;
     }
 
     this.loading = true;
@@ -52,7 +55,7 @@ export class Forgetpassword2Component implements OnInit {
       (data: any) => {
         console.log("data: ", data)
         if (data.status)
-          this.router.navigate([''])
+          this.router.navigate(['app'])
         else this._result = data.message;
         this.loading = false;
       },

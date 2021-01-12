@@ -47,7 +47,7 @@ export class AppComponent {
     this.router.navigate(['forgetpassword'])
 
     this.header1 = false;
-    this.header2 = true;
+    this.header2 = false;
     this.login1 = false;
     const url = this.ics.apiRoute + '/user/verifyEmail';
     let json = { "email": this.email }
