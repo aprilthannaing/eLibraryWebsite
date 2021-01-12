@@ -1,58 +1,55 @@
 <div>
     <!-- <app-header></app-header> -->
     <div class="background" style="height: 500px;"></div>
-    <div class="container-fluid card1 card2">
-        <!--style="height: 400px;"background-color: rgba(0,0,0, 0.4);-->
+    <div class="container-fluid card1 card2"><!--style="height: 400px;"background-color: rgba(0,0,0, 0.4);-->
         <div class="card3">
             <h2>{{ 'HOME.001' | translate }}</h2>
             <h1>{{ 'HOME.002' | translate }}</h1>
-            <input type="text" placeholder="Search Book,Title,Author" id="search" autocomplete="off"
-                class="border">&nbsp;&nbsp;
+            <input type="text" placeholder="Search Book,Title,Author" id="search" autocomplete="off" class="border">&nbsp;&nbsp;
             <input type="date" id="search" autocomplete="off" class="border">&nbsp;&nbsp;
             <button class="buttonMe" type="button">SEARCH</button>
-        </div>
+        </div> 
     </div>
     <div class="col-md-12 card5" style="background-color:#EEF7FF">
         <h1>{{ 'HOME.011' | translate }}</h1>
         <h2>{{ 'HOME.012' | translate }}</h2>
         <div style="text-align: center">
-            <span style="width: 12%;border-bottom: 1px solid;"></span>
-            <span class="fa fa-book" aria-hidden="true"
-                style="background-color: #F8F9FF;font-size:25px;margin: 0 12px;"></span>
-            <span style="width: 12%;border-bottom: 1px solid;"></span>
+            <span style = "width: 12%;border-bottom: 1px solid;"></span>
+            <span class="fa fa-book" aria-hidden="true" style="background-color: #F8F9FF;font-size:25px;margin: 0 12px;"></span>
+            <span style = "width: 12%;border-bottom: 1px solid;"></span>
         </div>
     </div>
     <div class="col-md-12">
         <div class="background1"></div>
-
         <div class="container-fluid card1 card4" style="height: 650px;background-color: rgba(0,0,0, 0.5);">
             <h1>{{ 'HOME.003' | translate }}</h1>
             <h2>{{ 'HOME.013' | translate }}</h2>
             <div style="text-align: center">
                 <span class="outer-line"></span>
-                <span class="fa fa-book" aria-hidden="true"
-                    style="background-color: #F8F9FF;font-size:25px;margin: 0 12px;"></span>
+                <span class="fa fa-book" aria-hidden="true" style="background-color: #F8F9FF;font-size:25px;margin: 0 12px;"></span>
                 <span class="outer-line"></span>
             </div>
             <div class="card" style="background-color:unset">
-                <span
-                    style="text-align: right;color: #F8F9FF;font-size: 1.4em;font-weight: 600;letter-spacing: -0.055em;"
-                    (click)="goRecommendBooks()">{{ 'HOME.007' | translate }}</span>
-                <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideConfig"
-                    (init)="slickInit($event)" (breakpoint)="breakpoint($event)" (afterChange)="afterChange($event)"
-                    (beforeChange)="beforeChange($event)">
-                    <div ngxSlickItem *ngFor="let slide of slides" class="slide"
-                        style="background-color: initial;padding: 5px 35px;">
-                        <img src="{{ slide.img }}" alt="" width="100%">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">abcd</p>
-                            <span *ngFor="let item of [0,1,2,3,4]">
-                                <span class="fa fa-star" style="color: gold;"></span>
-                            </span>
-
-                        </div>
+                <span style="text-align: right;color: #F8F9FF;font-size: 1.4em;font-weight: 600;letter-spacing: -0.055em;" (click)="goRecommendBooks()">{{ 'HOME.007' | translate }}</span>
+                <ngx-slick-carousel class="carousel" 
+                #slickModal="slick-carousel" 
+                [config]="slideConfig" 
+                (init)="slickInit($event)"
+                (breakpoint)="breakpoint($event)"
+                (afterChange)="afterChange($event)"
+                (beforeChange)="beforeChange($event)">
+                <div ngxSlickItem *ngFor="let slide of recommend_book" (click)="goRecommendBook(slide)" class="slide" style="background-color: initial;padding: 20px;">
+                    <img src="{{ slide.coverPhoto }}" alt="" width="100%" height= "220px;">
+                    <div class="card-body">
+                        <h5 class="card-title">{{slide.title}}</h5>
+                        <p class="card-text" *ngFor="let author of slide.authors">{{author.name}}</p>
+                        <ngb-rating [max]="5" [(rate)]="slide.averageRating"></ngb-rating>
+                        <!-- <span *ngFor="let item of [0,1,2,3,4]">
+                            <span class="fa fa-star" style="color: gold;"></span>
+                        </span> -->
+                        
                     </div>
+                </div>
                 </ngx-slick-carousel>
             </div>
         </div>
@@ -62,218 +59,118 @@
         <div class="container-fluid card1">
             <div class="row col-md-12">
                 <div class="col-md-8">
-                    <div class="card">
-
-                        <p style="font-size: 1.8em;">{{ 'HOME.004' | translate }}</p>
-                        <div class="card" *ngFor="let slide of popular_book" (click)="goPopularBook(slide)">
-                            <div class="row no-gutters">
-                                <div class="col-sm-2" style="background: #868e96;">
-                                    <img src="assets/images/book/3.png" class="card-img-top h-100" alt="...">
-                                </div>
-                                <div class="col-sm-10">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Alice Liddel</h5>
-                                        <h6 style="color: gray;">abcd</h6>
-                                        <p>
-                                            <span *ngFor="let item of [0,1,2,3,4]">
-                                                <span class="fa fa-star" style="color: gold;"></span>
-                                            </span>
-                                        </p>
-                                        <p class="card-text">Alice is a freelance web designer and developer based in
-                                            London. She is specialized in HTML5, CSS3, JavaScript, Bootstrap, etc.</p>
-                                    </div>
+                    <p style="font-size: 1.8em;">{{ 'HOME.004' | translate }}</p>
+                    <div class="card" *ngFor="let slide of popular_book" (click)="goPopularBook(slide)">
+                        <div class="row no-gutters">
+                            <div class="col-sm-2"style="background: #868e96;">
+                                <img src="{{ slide.coverPhoto }}" class="card-img-top h-100" alt="...">
+                            </div>
+                            <div class="col-sm-10">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{slide.title}}</h5>
+                                    <h6 style="color: gray;" *ngFor="let author of slide.authors">{{author.name}}</h6>
+                                    <ngb-rating [max]="5" [(rate)]="slide.averageRating"></ngb-rating>
+                                    <!-- <p class="card-text">Alice is a freelance web designer and developer based in London. She is specialized in HTML5, CSS3, JavaScript, Bootstrap, etc.</p> -->
                                 </div>
                             </div>
                         </div>
                         <br>
-                        <div class="card">
-                            <div class="row no-gutters">
-                                <div class="col-sm-2" style="background: #868e96;">
-                                    <img src="assets/images/book/3.png" class="card-img-top h-100" alt="...">
-                                </div>
-                                <div class="col-sm-10">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Alice Liddel</h5>
-                                        <h6 style="color: gray;">abcd</h6>
-                                        <p>
-                                            <span *ngFor="let item of [0,1,2,3,4]">
-                                                <span class="fa fa-star" style="color: gold;"></span>
-                                            </span>
-                                        </p>
-                                        <p class="card-text">Alice is a freelance web designer and developer based in
-                                            London. She is specialized in HTML5, CSS3, JavaScript, Bootstrap, etc.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <p style="text-align:center;">
-                            <a class="btn btn-lg" style="color: blue;border-color: blue;"
-                                (click)="goPopularBooks()">{{ 'HOME.008' | translate }} >></a>
+                    </div>
+                    <p style="text-align:center;">
+                        <a class="btn btn-lg" style="color: blue;border-color: blue;" (click)="goPopularBooks()">{{ 'HOME.008' | translate }} >></a>
+                    </p>
+                </div>
+                <div class="col-md-4">
+                    <div class="row">
+                        <p  style="font-size: 1.8em;">{{ 'HOME.005' | translate }}</p>
+                        <p style="margin-left: 160px;">
+                            <a class="btn btn-lg" style="color: blue;border-color: blue;" (click)="goLatestBooks()">{{ 'HOME.008' | translate }} >></a>
                         </p>
                     </div>
-                    <div class="col-md-4">
-
-                        <div class="row">
-                            <p style="font-size: 1.8em;">{{ 'HOME.005' | translate }}</p>
-                            <p style="margin-left: 160px;">
-                                <a class="btn btn-lg" style="color: blue;border-color: blue;"
-                                    (click)="goLatestBooks()">{{ 'HOME.008' | translate }} >></a>
-                            </p>
-                        </div>
-                        <div class="card" *ngFor="let slide of latest_book">
-                            <div class="row no-gutters">
-                                <div class="col-sm-4" style="background: #868e96;height: 120px;">
-                                    <img src="assets/images/book/3.png" class="card-img-top h-100" alt="...">
-                                </div>
-                                <div class="col-sm-8">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Alice Liddel</h5>
-                                        <h6 style="color: gray;">abcd</h6>
-                                        <p>
-                                            <span *ngFor="let item of [0,1,2,3,4]">
-                                                <span class="fa fa-star" style="color: gold;"></span>
-                                            </span>
-                                        </p>
-                                    </div>
+                    <div class="card" *ngFor="let slide of latest_book">
+                        <div class="row no-gutters">
+                            <div class="col-sm-4" style="background: #868e96;">
+                                <img src="{{ slide.coverPhoto }}" class="card-img-top h-100" alt="...">
+                            </div>
+                            <div class="col-sm-8">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{slide.title}}</h5>
+                                    <h6 style="color: gray;" *ngFor="let author of slide.authors">{{author.name}}</h6>
+                                    <ngb-rating [max]="5" [(rate)]="slide.averageRating"></ngb-rating>
                                 </div>
                             </div>
                         </div>
                         <br>
-                        <div class="card">
-                            <div class="row no-gutters">
-                                <div class="col-sm-4" style="background: #868e96;height: 120px;">
-                                    <img src="assets/images/book/3.png" class="card-img-top h-100" alt="...">
-                                </div>
-                                <div class="col-sm-8">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Alice Liddel</h5>
-                                        <h6 style="color: gray;">abcd</h6>
-                                        <p>
-                                            <span *ngFor="let item of [0,1,2,3,4]">
-                                                <span class="fa fa-star" style="color: gold;"></span>
-                                            </span>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <br>
-                        <div class="card">
-                            <div class="row no-gutters">
-                                <div class="col-sm-4" style="background: #868e96;height: 120px;">
-                                    <img src="assets/images/book/3.png" class="card-img-top h-100" alt="...">
-                                </div>
-                                <div class="col-sm-8">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Alice Liddel</h5>
-                                        <h6 style="color: gray;">abcd</h6>
-                                        <p>
-                                            <span *ngFor="let item of [0,1,2,3,4]">
-                                                <span class="fa fa-star" style="color: gold;"></span>
-                                            </span>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <br>
-                        <div class="card">
-                            <div class="row no-gutters">
-                                <div class="col-sm-4" style="background: #868e96;height: 120px;">
-                                    <img src="assets/images/book/3.png" class="card-img-top h-100" alt="...">
-                                </div>
-                                <div class="col-sm-8">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Alice Liddel</h5>
-                                        <h6 style="color: gray;">abcd</h6>
-                                        <p>
-                                            <span *ngFor="let item of [0,1,2,3,4]">
-                                                <span class="fa fa-star" style="color: gold;"></span>
-                                            </span>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <br>
-                        <div class="card">
-                            <div class="row no-gutters">
-                                <div class="col-sm-4" style="background: #868e96;height: 120px;">
-                                    <img src="assets/images/book/3.png" class="card-img-top h-100" alt="...">
-                                </div>
-                                <div class="col-sm-8">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Alice Liddel</h5>
-                                        <h6 style="color: gray;">abcd</h6>
-                                        <p>
-                                            <span *ngFor="let item of [0,1,2,3,4]">
-                                                <span class="fa fa-star" style="color: gold;"></span>
-                                            </span>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-md-12" style="background-color:#EEF7FF">
-            <div class="container-fluid card1 card5">
-                <h1>{{ 'HOME.006' | translate }}</h1>
-                <h2>{{ 'HOME.014' | translate }}</h2>
-                <div style="text-align: center">
-                    <span style="width: 12%;border-bottom: 1px solid;"></span>
-                    <span class="fa fa-book" aria-hidden="true"
-                        style="background-color: #F8F9FF;font-size:25px;margin: 0 12px;"></span>
-                    <span style="width: 12%;border-bottom: 1px solid;"></span>
-                </div>
-                <ngb-tabset justify="center" style="font-size: 1.5rem;">
-
-                    <ngb-tab title="{{ 'HOME.009' | translate }}">
-                        <ng-template ngbTabContent>
-                            <ngx-slick-carousel class="carousel" #slickModal="slick-carousel"
-                                [config]="slideAuthorsConfig" (init)="slickInit($event)"
-                                (breakpoint)="breakpoint($event)" (afterChange)="afterChange($event)"
-                                (beforeChange)="beforeChange($event)">
-
-                                <div ngxSlickItem *ngFor="let slide of local_author" class="slide"
-                                    style="padding: 20px;background-color: initial;" (click)="goBookByAuthors(slide)">
-                                    <div *ngIf="slide.authorType == 'LOCAL'">
+    </div>
+    <div class="col-md-12" style="background-color:#EEF7FF">
+        <div class="container-fluid card1 card5">
+            <h1>{{ 'HOME.006' | translate }}</h1>
+            <h2>{{ 'HOME.014' | translate }}</h2>
+            <div style="text-align: center">
+                <span style = "width: 12%;border-bottom: 1px solid;"></span>
+                <span class="fa fa-book" aria-hidden="true" style="background-color: #F8F9FF;font-size:25px;margin: 0 12px;"></span>
+                <span style = "width: 12%;border-bottom: 1px solid;"></span>
+            </div>
+            <ngb-tabset justify="center" style="font-size: 1.5rem;">
+                <ngb-tab title="{{ 'HOME.009' | translate }}">
+                    <ng-template ngbTabContent>
+                        <ngx-slick-carousel class="carousel" 
+                        #slickModal="slick-carousel" 
+                        [config]="slideAuthorsConfig" 
+                        (init)="slickInit($event)"
+                        (breakpoint)="breakpoint($event)"
+                        (afterChange)="afterChange($event)"
+                        (beforeChange)="beforeChange($event)">
+                            <div ngxSlickItem *ngFor="let slide of local_author" class="slide" style="padding: 20px;background-color: initial;" (click)="goBookByAuthors(slide)">
+                                <div *ngIf="slide.authorType == 'LOCAL'">
+                                    <img src="{{ slide.profilePicture }}" alt="" width="100%">
+                                    <h6 class="card-title" style="padding: 15px;background-color:black;text-align: center;color: white;">{{slide.name}}</h6>
+                                </div>
+                            </div>
+                        </ngx-slick-carousel>
+                    </ng-template>
+                </ngb-tab>
+                <ngb-tab title="{{ 'HOME.010' | translate }}">
+                    <ng-template ngbTabContent>
+                            <ngx-slick-carousel class="carousel" 
+                            #slickModal="slick-carousel" 
+                            [config]="slideAuthorsConfig" 
+                            (init)="slickInit($event)"
+                            (breakpoint)="breakpoint($event)"
+                            (afterChange)="afterChange($event)"
+                            (beforeChange)="beforeChange($event)">
+                                <div ngxSlickItem *ngFor="let slide of international_author" class="slide" style="padding: 20px;background-color: initial;">
+                                    <div *ngIf="slide.authorType == 'INTERNATIONAL'" >
                                         <img src="{{ slide.profilePicture }}" alt="" width="100%">
-                                        <h6 class="card-title"
-                                            style="padding: 15px;background-color:black;text-align: center;color: white;">
-                                            {{slide.name}}</h6>
+                                        <h6 class="card-title" style="padding: 15px;background-color:black;text-align: center;color: white;">{{slide.name}}</h6>
                                     </div>
                                 </div>
-            </div>
-            </ngx-slick-carousel>
-            </ng-template>
-            </ngb-tab>
-
-            <ngb-tab title="{{ 'HOME.010' | translate }}">
-                <ng-template ngbTabContent>
-                </ng-template>
-            </ngb-tab>
+                            </ngx-slick-carousel>
+                        </ng-template>
+                </ngb-tab>
             </ngb-tabset>
         </div>
     </div>
     <p style="text-align:center">
         <br>
-        <img src="assets/images/googleplay.png" width="200px">
-        <img src="assets/images/appstore.png" width="200px">
+            <img src="assets/images/googleplay.png" width="200px">
+            <img src="assets/images/appstore.png" width="200px">
         <br>
     </p>
     <footer class="bg-light text-center text-lg-start">
         <!-- Copyright -->
         <div class="text-center" style="background-color: #5663ff;">
-            © 2020 Copyright:
-            <a class="text-dark" href="https://mdbootstrap.com/">MDBootstrap.com</a>
-            <span style="margin-left: 100px">
-                <img src="assets/images/google.png" width="30px;">&nbsp;
-                <img src="assets/images/facebook.png" width="40px;"> &nbsp;
-                <img src="assets/images/twitter.png" width="30px;">&nbsp;
-            </span>
+        © 2020 Copyright:
+        <a class="text-dark" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+        <span style="margin-left: 100px">
+            <img src="assets/images/google.png" width= "30px;">&nbsp; 
+            <img src="assets/images/facebook.png" width= "40px;"> &nbsp; 
+            <img src="assets/images/twitter.png" width= "30px;">&nbsp;  
+        </span>
         </div>
         <!-- Copyright -->
     </footer>

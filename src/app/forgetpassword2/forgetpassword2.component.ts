@@ -24,6 +24,7 @@ export class Forgetpassword2Component implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.clear();
   }
 
   clear() {
@@ -51,7 +52,7 @@ export class Forgetpassword2Component implements OnInit {
       (data: any) => {
         console.log("data: ", data)
         if (data.status)
-          this.router.navigate(['login'])
+          this.router.navigate([''])
         else this._result = data.message;
         this.loading = false;
       },

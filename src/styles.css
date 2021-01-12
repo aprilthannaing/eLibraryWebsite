@@ -1,5 +1,14 @@
 
+.login-nav-header {
+  z-index: 35;
+  border-bottom: 2px solid #5663ff;
+  background: #5663ff;
+  position: relative;
+}
 
+.img {
+  margin-left: 20%;
+}
   
   .create {
     text-decoration: underline;

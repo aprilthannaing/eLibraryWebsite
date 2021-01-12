@@ -10,8 +10,8 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  categories:any = [];
-  browserLang : any;
+  categories: any = [];
+  browserLang: any;
   constructor(
     private router: Router,
     private http: HttpClient,
@@ -23,9 +23,9 @@ export class HeaderComponent implements OnInit {
     translate.addLangs(['en', 'myan']);
     translate.setDefaultLang('en');
 
-     this.browserLang = translate.getBrowserLang();
+    this.browserLang = translate.getBrowserLang();
     translate.use(this.browserLang.match(/en|myan/) ? this.browserLang : 'en');
-   }
+  }
 
   ngOnInit(): void {
   }
@@ -33,26 +33,27 @@ export class HeaderComponent implements OnInit {
   goCategory() {
     const url = this.ics.apiRoute + '/category/all';
     try {
-        this.http.get(url,{headers: new HttpHeaders().set('token', this.ics._profile.token)}).subscribe(
-            (data:any) => {
-              if(data.status){
-                 this.categories = data.categories
-              }
-            },
-            error => {
-                if (error.name == "HttpErrorResponse") {
-                    alert("Connection Timed Out!");
-                }
-                else {
-  
-                }
-            }, () => { });
+      this.http.get(url, { headers: new HttpHeaders().set('token', this.ics._profile.token) }).subscribe(
+        (data: any) => {
+          if (data.status) {
+            this.categories = data.categories
+          }
+        },
+        error => {
+          if (error.name == "HttpErrorResponse") {
+            alert("Connection Timed Out!");
+          }
+          else {
+
+          }
+        }, () => { });
     } catch (e) {
-        alert(e);
+      alert(e);
     }
   }
-  goBookbyCategory(value){
-    this.router.navigate(['/category-list','read',value.boId]); 
+
+  goBookbyCategory(value) {
+    this.router.navigate(['/category-list', 'read', value.boId]);
     this.ics.titleLink = value.engName;
   }
 }

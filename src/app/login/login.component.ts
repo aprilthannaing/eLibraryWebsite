@@ -4,8 +4,6 @@ import { IntercomService } from '../framework/intercom.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatDialogConfig } from '@angular/material/dialog';
 
-
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',

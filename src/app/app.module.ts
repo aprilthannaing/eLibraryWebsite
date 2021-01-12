@@ -1,12 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { AppRoutingModule } from './app-routing.module';
 import { MenuComponent } from './menu/menu.component';
 import { IntercomService } from './framework/intercom.service';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { Home1Component } from './home1/home1.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -17,7 +16,6 @@ import { BookDetailComponent } from './book-detail/book-detail.component';
 import { BookListComponent } from './book-list/book-list.component';
 // Import your library
 import { SlickCarouselModule } from 'ngx-slick-carousel';
-<<<<<<< HEAD
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatBadgeModule} from '@angular/material/badge';
 import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
@@ -57,18 +55,14 @@ import { DatePipe } from '@angular/common';
 import { LoginComponent } from './login/login.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ForgetpasswordComponent } from './forgetpassword/forgetpassword.component';
-import { Header2Component } from './header2/header2.component';
 import { Forgetpassword2Component } from './forgetpassword2/forgetpassword2.component';
 
-=======
-import { HttpClientModule, HttpClient } from '@angular/common/http';
 import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient);
 }
->>>>>>> 3a33b037a34f5eb9d22d939a2cb04b3fa18cadd6
 @NgModule({
   declarations: [
     AppComponent,
@@ -80,7 +74,6 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     BookListComponent,
     LoginComponent,
     ForgetpasswordComponent,
-    Header2Component,
     Forgetpassword2Component,
   ],
   imports: [
@@ -91,7 +84,6 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     FontAwesomeModule,
     TabsModule.forRoot(),
     SlickCarouselModule,
-<<<<<<< HEAD
     HttpClientModule,  
     MatAutocompleteModule,
     MatBadgeModule,
@@ -129,7 +121,6 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     MatTooltipModule,
     MatTreeModule,
     BrowserAnimationsModule, 
-=======
     HttpClientModule,
     TranslateModule.forRoot({
       loader: {
@@ -138,7 +129,6 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
         deps: [HttpClient]
       }
     })
->>>>>>> 3a33b037a34f5eb9d22d939a2cb04b3fa18cadd6
   ],
   providers: [
     IntercomService, DatePipe
