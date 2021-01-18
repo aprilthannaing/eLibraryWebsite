@@ -1,0 +1,29 @@
+.navbar-nav>li>a {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.navbar-brand {
+    height: unset;
+    padding: 10px 15px;
+    font-size: 20px;
+    color: white;
+}
+
+.navbar-text {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.navbar-toggle {
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+.langSelect{
+    background: #4c56d4;
+    border-radius: 20px;
+    padding: 3px 10px;
+    color: #fff;
+    border: 1px solid #8bbaf9;
+	outline:none
+}

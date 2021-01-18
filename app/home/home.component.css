@@ -1,0 +1,29 @@
+/* textbox with button */
+.input-container{
+    width: 25%;
+    border: 1px solid #a9a9a9;
+    display: inline-block;
+  }
+  .input-container input:focus, .input-container input:active {
+    outline: none;
+  }
+  .input-container input {
+    width: 70%;
+    border: none;
+    height: 40px;
+  }
+  .input-container button {
+    float: right;
+    width: 20%;
+    height: 40px;
+    background-color: #4c4bfa;
+  }
+
+  #discover-card{
+    width: fit-content;
+    border-top-style: outset;
+    box-sizing: border-box;
+    border-top-right-radius: 15px;
+    border-top-left-radius: 15px;
+  }
+  
