@@ -1,0 +1,76 @@
+<div class="container-fluid card1" style="margin-top: 2%;">
+
+    <div class="card" style="background-color: #EEF7FF;">
+        <div style="margin: 20px;">
+            <h4>What did you think?</h4>
+            <p>
+                <span *ngFor="let item of [0,1,2,3,4]">
+                    <span class="fa fa-star" style="color: gold;font-size: 1.23rem;"></span>
+                </span>
+            </p>
+
+            <div align="center" *ngIf="_result != ''">
+                <span class="label" style="font-size: 1.23rem;color:green;font-family: poppins">{{_result}}
+                </span>
+            </div>
+
+            <div align="center" *ngIf="_error != ''">
+                <span class="label" style="font-size: 1.23rem;color:red;font-family: poppins">{{_error}}
+                </span>
+            </div>
+
+            <div *ngIf="loading" class="lds-default" style="margin-left: 33%;margin-top: 9%;">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <p>Write a review(optional)</p>        
+
+            <div class="container">
+                <div class="comment">
+                    <textarea class="textinput" placeholder="Tell others whate you thought of the book"
+                        [(ngModel)]="message"></textarea>
+                </div>
+            </div>
+            <button class="button3" (click)="feedback()">Send</button>
+        </div>
+
+    </div>
+
+</div>
+
+<div class="container-fluid card1" style="margin-top: 2%;">
+    <h2>Reviews</h2>
+    <div *ngFor="let item of feedbacks" class="card"
+        style="border: 1px solid rgba(0,0,0,.125);border-top: 0;border-left: 0;border-right: 0;">
+        <div class="row" style="padding: 1.25rem;">
+            <div class="col-sm-2">
+                <h6 class="card-title">{{item.userId.name}}</h6>
+                <p>
+                    <span *ngFor="let item of [0,1,2,3,4]">
+                        <span class="fa fa-star" style="color: gold;font-size: 0.9rem;"></span>
+                    </span>
+                </p>
+            </div>
+            <div class="col-sm-5">
+                <p class="card-text">{{item.message}}</p>
+            </div>
+            <div class="col-sm-5">
+                <p class="card-text">{{item.replyId.message}}</p>
+            </div>
+        </div>
+    </div>
+    <br>
+    <!-- <p style="text-align:center;">
+        <a href="#" class="btn btn-lg" style="color: blue;border-color: blue;border-radius: 10px;">Load More</a>
+    </p> -->
+</div>

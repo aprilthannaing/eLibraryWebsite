@@ -11,10 +11,8 @@ import { Home1Component } from './home1/home1.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {TabsModule} from "ngx-bootstrap/tabs";
 import { HeaderComponent } from './header/header.component';
-import { HttpClient, HttpHeaders, HttpClientModule } from '@angular/common/http';
 import { BookDetailComponent } from './book-detail/book-detail.component';
 import { BookListComponent } from './book-list/book-list.component';
-// Import your library
 import { SlickCarouselModule } from 'ngx-slick-carousel';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatBadgeModule} from '@angular/material/badge';
@@ -58,9 +56,16 @@ import { Forgetpassword2Component } from './forgetpassword2/forgetpassword2.comp
 
 import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
-
+import { CategoryListComponent } from './category-list/category-list.component';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { FeedbackComponent } from './feedback/feedback.component';
+import { FooterComponent } from './footer/footer.component';
+import { CommonModule } from '@angular/common';
+import { UserProfileComponent } from './user-profile/user-profile.component';  
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import { PdfViewerModule } from 'ng2-pdf-viewer';
 export function HttpLoaderFactory(httpClient: HttpClient) {
-  return new TranslateHttpLoader(httpClient);
+  return new TranslateHttpLoader(httpClient,'./assets/i18n/', '.json');
 }
 @NgModule({
   declarations: [
@@ -73,8 +78,16 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     BookListComponent,
     ForgetpasswordComponent,
     Forgetpassword2Component,
+    CategoryListComponent,
+    FeedbackComponent,
+    FooterComponent,
+    UserProfileComponent
   ],
   imports: [
+    MDBBootstrapModule.forRoot(),
+    PdfViewerModule,
+    CommonModule,
+    MatDialogModule,
     BrowserModule,
     AppRoutingModule,
     NgbModule,
@@ -119,7 +132,6 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     MatTooltipModule,
     MatTreeModule,
     BrowserAnimationsModule, 
-    HttpClientModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -129,7 +141,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     })
   ],
   providers: [
-    IntercomService, DatePipe
+    IntercomService
   ],
   bootstrap: [AppComponent]
 })

@@ -1,5 +1,5 @@
 <!-- <app-header></app-header> -->
-<div class="container-fluid card1">
+<div class="container-fluid card1" *ngIf ="pdfView != 1">
     <h2 style="text-align: center;">{{title}}</h2>
     <p style="text-align: center;">Home / {{titleLink}} &nbsp;&nbsp;<button class="btn-success" style="border-radius: 50px;">{{bookCount}}</button></p>
     <div class="card" style="background-color: #EEF7FF;border-radius: 0px">
@@ -8,7 +8,7 @@
             </h4>
     </div>
     <br>
-    <div class="pull-right" style="padding-bottom: 30px;">
+    <div class="pull-right" style="padding-bottom: 30px;" *ngIf="titleLink!='latestBooks' && titleLink!='popularBooks'">
         <div class="input-group">
             <h5>Page No.</h5>
             <select [(ngModel)]="page" (change)="changePage()" class="form-control input-sm" [ngModelOptions]="{standalone: true}">
@@ -50,7 +50,7 @@
                                         <p style="text-align:center;">
                                             <a  class="btn btn-ls" style="color: blue;border-color: blue;border-radius: 10px;" (click)="goBookDetails(book)"><i class="fas fa-download"></i>&nbsp; Details</a>
                                             &nbsp;&nbsp;
-                                            <a  class="btn btn-ls" style="color: blue;border-color: blue;border-radius: 10px;"><i class="fas fa-book-open"></i>&nbsp; Read</a>
+                                            <a  class="btn btn-ls" style="color: blue;border-color: blue;border-radius: 10px;" (click)="goBookRead(book)"><i class="fas fa-book-open"></i>&nbsp; Read</a>
                                         </p>
                                 </div>
                             </div>
@@ -63,6 +63,161 @@
     </div>
     <br>
 </div>
+<!-- <div  class="container-fluid" *ngIf="pdfView == 1">
+    <iframe [src]='getUrl()' align="middle" width="100%" height="800">
+       <p>Your browser does not support iframes.</p>
+    </iframe> 
+</div> -->
+<div class="pdf-viewer-wrap" *ngIf="pdfView == 1">
+
+        <div class="pdf-viewer-controls-wrap">
+            <div class="btn-group">
+                <button (click)="goBack()" title="go back" style="border:none;background-color:white"> 
+                        <i class="fas fa-arrow-left"></i>
+                </button>
+                <h2>PDF Viewer Controls</h2>
+            </div>
+          <div class="pdf-viewer-controls">
+            <div class="pdfv-control" *ngIf="renderText">
+              Search:
+              <input #queryInp id="pdfQueryInput" type="text" placeholder="Search..." [value]="pdfQuery"
+                (input)="searchQueryChanged($event.target.value)" (keyup.enter)="searchQueryChanged(queryInp.value)">
+            </div>
+            <div class="pdfv-control">
+              <mat-slide-toggle (click)="originalSize = !originalSize">Orginal Size</mat-slide-toggle>
+            </div>
+            <div class="pdfv-control">
+              <mat-slide-toggle (click)="fitToPage = !fitToPage">Fit Page</mat-slide-toggle>
+            </div>
+            <div class="pdfv-control">
+              <mat-slide-toggle (click)="showAll = !showAll">Show All Page</mat-slide-toggle>
+            </div>
+            <div class="pdfv-control">
+                <mat-slide-toggle [(ngModel)]="stickToPage">
+                    Stick to page
+                </mat-slide-toggle>
+                </div>
+            
+                <div *ngIf="stickToPage" class="mb">
+                <button (click)="incrementPage(-1)" mat-button type="button">
+                    Previous
+                </button>
+            
+                <mat-form-field class="page-number">
+                    <input matInput type="number" placeholder="Page" [(ngModel)]="pagePDF" pattern="-?[0-9]*(\.[0-9]+)?">
+                    <mat-error>Input is not a number!</mat-error>
+                </mat-form-field>
+            
+                <span *ngIf="pdf">of {{ totalPages}}</span>
+                <button (click)="incrementPage(1)" mat-button type="button">
+                    Next
+                </button>
+            </div>
+            <div class="pdfv-control">
+              <mat-slide-toggle (click)="autoresize = !autoresize">Auto Resize</mat-slide-toggle>
+            </div>
+            <!-- <div class="pdfv-control">
+              <mat-slide-toggle (click)="showBorders = !showBorders">[show-borders]="{{showBorders}}"</mat-slide-toggle>
+            </div> -->
+            <div class="pdfv-control">
+              <mat-slide-toggle (click)="renderText = !renderText">Render text Layer</mat-slide-toggle>
+            </div>
+            <!-- <div class="pdfv-control">
+              Render Text Mode
+              <select name="renderTextMode" [(ngModel)]="renderTextMode">
+                <option [value]="o" *ngFor="let o of renderTextModes">{{o}}</option>
+              </select>
+            </div> -->
+            
+            <!-- <div class="pdfv-control">
+              <button (click)="zoomOut()">-</button>  <button (click)="zoomIn()">+</button> 
+              zoom (*{{zoom}})
+            </div> -->
+            <div class="pdfv-control">
+                <button (click)="incrementZoom(-0.1)" mat-button type="button">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    <line x1="8" y1="11" x2="14" y2="11"></line>
+                    </svg>
+                </button>
+            
+                <mat-form-field class="page-number">
+                    <input matInput type="number" placeholder="Zoom" [(ngModel)]="zoom" pattern="-?[0-9]*(\.[0-9]+)?">
+                    <mat-error>Input is not a number!</mat-error>
+                </mat-form-field>
+            
+                <button (click)="incrementZoom(0.1)" mat-button type="button">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    <line x1="11" y1="8" x2="11" y2="14"></line>
+                    <line x1="8" y1="11" x2="14" y2="11"></line>
+                    </svg>
+                </button>
+                </div>
+            <!-- <div class="pdfv-control">
+              zoom-scale
+              <select name="zoomScales" [(ngModel)]="zoomScale">
+                <option [value]="o" *ngFor="let o of zoomScales">{{o}}</option>
+              </select>
+            </div> -->
+            <div class="pdfv-control" *ngIf="!originalSize">
+                <mat-form-field >
+                    <mat-label>Select an option</mat-label>
+                        <mat-select [(ngModel)]="zoomScale">
+                            <mat-option [value]="o" *ngFor="let o of zoomScales">{{o}}</mat-option>
+                        </mat-select>
+                </mat-form-field>
+            </div>
+            <!-- <div class="pdfv-control">
+              <button (click)="rotateDoc()"></button> 
+              Rotation (*{{rotation}}°)
+            </div> -->
+            <div class="pdfv-control">
+                <button (click)="rotate(-90)" mat-button type="button" matTooltip="Rotate left" [matTooltipPosition]="'above'">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" transform="scale(-1,1)">
+                        <polyline points="23 4 23 10 17 10"></polyline>
+                        <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path>
+                    </svg>
+                    </button>
+            
+                    <mat-form-field class="page-number">
+                    <input matInput type="number" placeholder="Rotation" [ngModel]="rotation" disabled>
+                    <mat-error>Input is not a number!</mat-error>
+                    </mat-form-field>
+            
+                    <button (click)="rotate(90)" mat-button type="button" matTooltip="Rotate right" [matTooltipPosition]="'above'">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="23 4 23 10 17 10"></polyline>
+                        <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path>
+                    </svg>
+                </button>
+            </div>
+            <div class="pdfv-control">
+                <div class="btn-group">
+                    <button (click)="downloadPdf()" class="btn-primary"> 
+                        <i class="fas fa-download"></i>&nbsp; DownLoad
+                    </button>  
+                </div>
+            </div>
+          </div>
+        </div>
+      
+        <div class="pdf-viewer-viewer-window">
+          <pdf-viewer [src]="pdfSrc" [page]='pagePDF' [render-text]="renderText"[rotation]="rotation"
+            [zoom]="zoom" [zoom-scale]="zoomScale" [original-size]="originalSize" [fit-to-page]="fitToPage"
+            [show-all]="showAll" [autoresize]="autoresize" [stick-to-page]="stickToPage"
+            (after-load-complete)="callBackFn($event)" (page-rendered)="pageRendered($event)"
+            (text-layer-rendered)="textLayerRendered($event)" (error)="onError($event)" (on-progress)="onProgress($event)">
+          </pdf-viewer><!--[show-borders]="showBorders"  [render-text-mode]="renderTextMode" -->
+        </div>
+      
+      </div>
 <br><br><br>
 <footer class="bg-light text-center text-lg-start">
     <!-- Copyright -->
@@ -70,7 +225,7 @@
         © 2020 Copyright:
         <a class="text-dark" href="https://mdbootstrap.com/">MDBootstrap.com</a>
         <span style="margin-left: 100px">
-            <img src="assets/images/google.png" width= "30px;">&nbsp; 
+            <img src="assets/images/googleplay.png" width= "30px;">&nbsp; 
             <img src="assets/images/facebook.png" width= "40px;"> &nbsp; 
             <img src="assets/images/twitter.png" width= "30px;">&nbsp;  
         </span>

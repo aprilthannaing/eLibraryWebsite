@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Component, Input } from '@angular/core';
+import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { IntercomService } from './framework/intercom.service';
 import { TranslateService } from '@ngx-translate/core';
@@ -10,7 +10,9 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+ @Input() currentlySelected: boolean;
   showmenu: boolean = true;
+  selectedRow;
   header1 = false;
   header2 = true;
   login1 = true;
@@ -20,7 +22,8 @@ export class AppComponent {
   password: string = "";
   loading = false;
   _result: string = "";
-
+  replyCount = "10";
+mySubscription;
   constructor(
     private router: Router,
     private http: HttpClient,
@@ -28,7 +31,13 @@ export class AppComponent {
     private ics: IntercomService,
     public translate: TranslateService
   ) {
-    this.goCategory();
+    this.mySubscription = this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+         if(this.ics._profile.token== "")
+          this.router.navigate(['']);
+          this.goCategory();
+      }
+    }); 
     translate.addLangs(['en', 'myan']);
     translate.setDefaultLang('en');
 
@@ -36,11 +45,36 @@ export class AppComponent {
     translate.use(this.browserLang.match(/en|myan/) ? this.browserLang : 'en');
 
   }
+ngOnDestroy(){
+    if (this.mySubscription) {
+      this.mySubscription.unsubscribe();
+    }
+  }
+  ngOnInit(): void {   
+  }
 
-  ngOnInit(): void {
-    console.log("header 1  !!!", this.header1)
-    console.log("header 2 !!!", this.header2)
-    console.log("login 1  !!!", this.login1)
+  feedback(){
+    this.router.navigate(["feedback"]);
+    this.replyCount = "";   
+  }
+
+  getNotiCount() {
+    const json = {
+      user_id: this.ics._profile.userId,
+    }
+
+    const url: string = this.ics.apiRoute + "/home/notiCount";
+    console.log("request: ", json)
+    console.log("url: ", url)
+
+    this.http.post(url, json, { headers: new HttpHeaders().set('token', this.ics._profile.token) }).subscribe(
+      (data: any) => {
+        this.replyCount = data.notiCount;
+        console.log("noti count: ", data)
+      },
+      error => {
+        console.warn("error !!!!!!!:", error);
+      });
   }
 
   verifyEmail() {
@@ -54,7 +88,7 @@ export class AppComponent {
 
     this.http.post(url, json).subscribe(
       (data: any) => {
-        console.log("data !!!!!!!!!", data)
+       // console.log("data !!!!!!!!!", data)
         this.ics._profile.token = data.token;
         this.loading = false;
       },
@@ -108,17 +142,25 @@ export class AppComponent {
     this.http.post(url, json).subscribe(
       (data: any) => {
         if (data.status) {
-          this.ics._profile.token = data.token
+          console.log("user : ", data)
+          this.ics.user = data.data;
+          this.ics._profile.token = data.token;
+          this.ics._profile.userId = data.data.id;
           this.login1 = false;
           this.header2 = false;
           this.header1 = true;
           this.router.navigate(['/home1']);
+          this.getNotiCount();
+          this.ics.getHomeData();
 
         } else {
           this._result = data.message;
           //this.loginDialog(data.message);
         }
         this.loading = false;
+
+        console.log("profile: ", this.ics._profile)
+
 
       },
       error => {
@@ -148,8 +190,14 @@ export class AppComponent {
       alert(e);
     }
   }
-  goBookbyCategory(value) {
+  goBookbyCategory(value,index) {
+    this.selectedRow = index;
     this.router.navigate(['/category-list', 'read', value.boId]);
     this.ics.titleLink = value.engName;
   }
+  goHome(){
+    this.selectedRow = this.categories.length+1;
+    this.router.navigate(['/home1']);
+  }
+  
 }

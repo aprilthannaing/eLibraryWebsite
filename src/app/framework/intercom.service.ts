@@ -1,18 +1,29 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class IntercomService {
-  apiRoute: string = "http://localhost:8082";
+  apiRoute: string = "http://136.228.165.174:8080/elibrary";
+  apiRoute1: string = "http://136.228.165.174:8080";
   bookDetail: any;
   bookList: any;
   titleLink: any;
+  books = [];
   language = "eng";
+  recommendBooks = [];
 
   _profile = {
+    "userId": "",
     "email": "",
+    "phno":"",
+    "type":"",
+    "hluttaw":"",
+    "department":"",
+    "position":"",
     "userName": "",
     "logoText": "eLibrary",
     "logoLink": "/home",
@@ -22,6 +33,7 @@ export class IntercomService {
     "token": "",
   };
 
+  user: any;
 
   iv = 'AODVNUASDNVVAOVF';
   key = 'mykey@91mykey@91';
@@ -45,5 +57,28 @@ export class IntercomService {
     return encodedB64;
   }
 
-  constructor() { }
+  constructor(
+    private http: HttpClient,
+  ) { }
+
+  getHomeData() {
+    const json = {
+      user_id: this._profile.userId,
+    }
+
+    const url: string = this.apiRoute + "/home";
+    console.log("request: ", json)
+    console.log("url: ", url)
+
+    this.http.post(url, json, { headers: new HttpHeaders().set('token', this._profile.token) }).subscribe(
+      (data: any) => {
+        this.recommendBooks = data.recommend_book;
+       // console.log("data !!!!!!!:", this.recommendBooks);
+
+      },
+      error => {
+        console.warn("error !!!!!!!:", error);
+
+      });
+  }
 }

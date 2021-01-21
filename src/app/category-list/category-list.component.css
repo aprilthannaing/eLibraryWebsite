@@ -1,18 +1,15 @@
+
 ngb-rating {
-  font-size: 1.5rem;
-  color:gold;
-}
-.card5 .card-body{
-    color : #F8F9FF
+    font-size: 1.5rem;
+    color:gold;
   }
-  .card4 .card-body{
+  .card5 .card-body{
     color : #F8F9FF
   }
   .card5 h1 {
     text-align: center;
     font-size: 1.92em;
     line-height: 1.5;
-    padding-top: 30px;
   }
   .card5 h2 {
     text-align: center;
@@ -25,12 +22,6 @@ ngb-rating {
     /* left: 50%;
     transform: translate(-50%, -50%); */
   }
-  .card4 {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
   .card1 {
     padding: 0px 120px 0px 120px;
   }
@@ -42,7 +33,7 @@ ngb-rating {
     /* padding: 0 26px; */
     width: 100%;
     height: 100%;
-    background-image:url("/Parliamentary_Library/assets/images/showcase.jpg");
+    background-image: url('/Parliamentary_Library/assets/images/showcase.jpg') !important;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -51,20 +42,20 @@ ngb-rating {
     filter: blur(2px); 
     -webkit-filter: blur(2px);
   }
-  .card4 h1 {
-    display: block;
-    margin: 30px auto 8px auto;
+  .card6 h1{
     text-align: center;
-    font-size: 1.92em;
+    font-size: 1.92em;;
     color: #F8F9FF;
     line-height: 1.5;
   }
-  .card4 h2 {
-    display: block;
+  .card6 h2 {
     margin: 0 auto 0 auto;
     text-align: center;
     font-size: 1.4em;
     color: #F8F9FF;
+  }
+  .card6 .card-body{
+    color : #F8F9FF
   }
   .card3 h1 {
     display: block;
@@ -153,6 +144,7 @@ ngb-rating {
     max-width: 360px;
     height: 60px;
   }
+  
   .border {
     border: 1px solid #5e5e5f!important;
   }
@@ -161,6 +153,7 @@ ngb-rating {
     height: 100%;
     border-radius: 11px;
     border: none;
+    padding: 0 35px 0 35px;
     color: #dedede;
     font-size: 15px;
     outline: none;
@@ -189,16 +182,17 @@ ngb-rating {
 }
 
 .background1 {
-  /* top: 0;
+  top: 0;
   left: 0;
   margin: 0 auto;
   width: 100%;
-  height: 100%; */
-  background-image:url('/Parliamentary_Library/assets/images/hl.jpg');
+  height: 100%;
+  /* background-image:url('http://localhost:4200/assets/images/hl.jpg'); */
+  background-color: #3E3F68;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  height: 550px;
+  height: 650px;
   filter: blur(2px); 
   -webkit-filter: blur(2px);
 }
@@ -222,17 +216,9 @@ span.arrow-right{
 span {
   display: inline-block;
   vertical-align: middle;
-  padding-right: 20px;
 }
 
 .outer-line {
   width: 14%;
   border-bottom: 2px solid #F8F9FF;
-}
-/* Tab */
-
-.bookMe{
-  font-size: 25px;
-  padding-right: 0px;
-  margin: 0 14px;
 }

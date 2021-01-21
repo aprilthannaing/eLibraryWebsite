@@ -1,5 +1,5 @@
 .card1 {
-    padding: 0px 120px 0px 120px;
+    padding: 5px 120px 0px 120px;
   }
   .circle {
     width: 80px;
@@ -9,6 +9,72 @@
   .card-body{
     padding-bottom: 0px;
   }
-h2{
-    margin: 25px 0;
+
+  h2 {
+    font-size:1.5vw;
+    font-family: poppins;
+     font-weight: 300;
+     margin: 2% 0% 3% 17%;
+  }
+
+  .ssbimg {
+    padding: 0px 15px 0px 0px;
+    border-radius: 10px;
+    background-color: #cecccc;
+  }
+
+  .row{
+    justify-content: center;
+    position: relative;
+  }
+
+  .unchecked {
+    color: #ccc;
+}
+
+  .bg {
+  height: 150px;
+  width: 100%;
+}
+
+.cover{
+  padding: 40px 20px 40px 20px;
+  border-radius: 10px;
+  background-color: #f1f1f1;
+
+}
+
+.profile{
+  border-radius: 100%;
+  width: 13%;
+  height: auto;
+}
+
+.profile2{
+  border-radius: 100%;
+  width: 8%;
+  height: auto;
+}
+
+
+.div3{
+  width: 100%;
+  padding: 0% 50% 0% 2%;
+}
+
+
+@media only screen and (max-width: 767px) {
+  .book-detail {            
+      color: black;
+  }    
+}
+
+@media only screen and (min-width: 767px) {
+  .book-detail {            
+      color: white;
+  }
+}
+
+i:hover {
+  color: blue;
 }

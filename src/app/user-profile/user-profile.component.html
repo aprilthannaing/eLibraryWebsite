@@ -1,0 +1,156 @@
+<div *ngIf="loading" class="lds-default" style="margin:25% 0% 0% 57%;">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+</div>
+
+<div class="box">
+   
+  
+    <div class="wrapper">
+       
+        <nav id="sidebar">
+
+            <div class="row">
+                <div class="col-md-3">
+                    <span class="header">User Profile</span>
+                    <ul class="list-unstyled components" style="padding: 14% 0% 0% 0%;">
+                        <li class="menu">
+                            <a (click)="userInfo()"> <i class="fa fa-user-o" aria-hidden="true"></i>
+                                <span class="text">User Info</span>
+                            </a>
+                        </li>
+                        <li class="menu">
+                            <a (click)="goBookList('favourite')">
+                                <i class="fa fa-heart-o" aria-hidden="true"></i>
+                                <span class="text">Favourites</span>
+                            </a>
+                        </li>
+                        <li class="menu">
+                            <a (click)="goBookList('bookmark')">
+                                <i class="fa fa-bookmark-o" aria-hidden="true"></i>
+                                <span class="text">Bookmarks</span>
+                            </a>
+                        </li>
+                        <li class="menu">
+                            <a (click)="changePasswordMenu()">
+                                <i class="fa fa-key" aria-hidden="true"></i>
+                                <span class="text">Change Password</span>
+                            </a>
+                        </li>
+
+                    </ul>
+                </div>
+                <div class="col-md-1 vl"></div>
+                <div class="col-md-8">
+                    <div class="photo">
+                        <img src="assets/images/author1.png" class="img-fluid" alt="Responsive image"
+                            style="border-radius: 50%;margin-bottom: 20%;">
+                        <span class="text">{{user.name}}</span>
+
+                    </div>
+
+                    <div *ngIf="!changePasswordStatus">
+                      
+
+                        <div class="row" style="margin: 5% 0% 0% 0%">
+                            <div class="col-md-5" style="margin-right:3%">
+                                <span class="text2">Email Address</span>
+
+                                <div class="textBox">
+                                    <span class="text3">{{user.email}}</span>
+                                </div>
+                            </div>
+
+                            <div class="col-md-5">
+                                <span class="text2">Hluttaw</span>
+
+                                <div class="textBox">
+                                    <span class="text3">{{user.hluttaw}}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="margin: 5% 0% 0% 0%">
+                            <div class="col-md-5" style="margin-right:3%">
+                                <span class="text2">Phone No.</span>
+
+                                <div class="textBox">
+                                    <span class="text3">{{user.phoneNo}}</span>
+                                </div>
+                            </div>
+
+                            <div class="col-md-5">
+                                <span class="text2">Department</span>
+
+                                <div class="textBox">
+                                    <span class="text3">{{user.department}}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="margin: 5% 0% 0% 0%">
+                            <div class="col-md-5" style="margin-right:3%">
+                                <span class="text2">Type</span>
+
+                                <div class="textBox">
+                                    <span class="text3">{{user.type}}</span>
+                                </div>
+                            </div>
+
+                            <div class="col-md-5">
+                                <span class="text2">Position</span>
+
+                                <div class="textBox">
+                                    <span class="text3">{{user.position}}</span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div *ngIf="changePasswordStatus">
+                       
+                        <div class="password">
+                            <div>
+                                <span *ngIf="success !=null" class="label" style="color: green;font-family: poppins">{{success}}
+                                </span>
+                            </div>
+                            <div>
+                                <span *ngIf="_result !=null" class="label" style="color: red;font-family: poppins">{{_result}}
+                                </span>
+                            </div>
+                            <div class="inputWithIcon" style="margin-bottom: 3%;">
+                                <input type="password" style="font-family:  poppins" placeholder="   Enter old Password"
+                                    [(ngModel)]="oldPassword">
+                                <i style="font-size: 20px;margin-left: 3%;" class="fa fa-lock" aria-hidden="true"></i>
+                            </div>
+
+                            <div class="inputWithIcon">
+                                <input type="password" style="font-family:  poppins"
+                                    placeholder="   Enter New Password" [(ngModel)]="newPassword">
+                                <i style="font-size: 20px;margin-left: 3%;" class="fa fa-lock" aria-hidden="true"></i>
+                            </div>
+                          
+                            <button class="button" (click)="changePassword()">SUBMIT</button>
+
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </nav>
+
+    </div>
+
+
+
+</div>
+ 

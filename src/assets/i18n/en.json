@@ -13,7 +13,9 @@
       "011": "Welcome to the library",
       "012": "Welcome to the Most Popular Library Today",
       "013": "Here are some of recommended books that are available in Books Library",
-      "014": "Here are some of the Top Authors that are available in book library"
+      "014": "Here are some of the Top Authors that are available in Book library",
+      "015": "Here are some of latest books that are available in Books Library ",
+      "016": "Categories"
     },
     "HEAD": {
       "001": "Language",
