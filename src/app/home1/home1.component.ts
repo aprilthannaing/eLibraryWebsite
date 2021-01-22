@@ -226,10 +226,18 @@ export class Home1Component implements OnInit {
   goSearch() {
     const url = this.ics.apiRoute + '/search/book';
     for(let i=0; i< this.international_author.length;i++){
-      if(this.international_author[i].name == this.search){
+      if(this.international_author[i].name.includes(this.search)){
         this.author_id = this.international_author[i].boId;
       }
     }
+    if(this.author_id == ""){
+      for(let i=0; i< this.local_author.length;i++){
+        if(this.local_author[i].name.includes(this.search)){
+          this.author_id = this.local_author[i].boId;
+        }
+      }
+    }
+    
     const json =
     { "page": this.page,
       "user_id": this.ics._profile.userId,
@@ -250,8 +258,12 @@ export class Home1Component implements OnInit {
      }).subscribe(
         (data: any) => {
               if(data.status){
-                this.router.navigate(['/book-list','new','bookList']); 
-                this.ics.books = data;
+                if(data.books.length > 0){
+                  this.router.navigate(['/book-list','new','bookList']); 
+                  this.ics.books = data;
+                }else{
+                  
+                }
               }
             },
             error => {

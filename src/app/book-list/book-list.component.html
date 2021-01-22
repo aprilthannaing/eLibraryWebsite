@@ -84,13 +84,13 @@
                 (input)="searchQueryChanged($event.target.value)" (keyup.enter)="searchQueryChanged(queryInp.value)">
             </div>
             <div class="pdfv-control">
-              <mat-slide-toggle (click)="originalSize = !originalSize">Orginal Size</mat-slide-toggle>
+              <mat-slide-toggle [checked]="originalSize" (change)="toggleoriginalSize($event)">Orginal Size</mat-slide-toggle>
             </div>
             <div class="pdfv-control">
-              <mat-slide-toggle (click)="fitToPage = !fitToPage">Fit Page</mat-slide-toggle>
+              <mat-slide-toggle [checked]="fitToPage" (change)="togglefitToPage($event)">Fit Page</mat-slide-toggle>
             </div>
             <div class="pdfv-control">
-              <mat-slide-toggle (click)="showAll = !showAll">Show All Page</mat-slide-toggle>
+              <mat-slide-toggle [checked]="showAll" (change)="toggleshowAll($event)">Show All Page</mat-slide-toggle>
             </div>
             <div class="pdfv-control">
                 <mat-slide-toggle [(ngModel)]="stickToPage">
@@ -114,25 +114,14 @@
                 </button>
             </div>
             <div class="pdfv-control">
-              <mat-slide-toggle (click)="autoresize = !autoresize">Auto Resize</mat-slide-toggle>
+              <mat-slide-toggle [checked]="autoresize" (change)="toggleautoresize($event)">Auto Resize</mat-slide-toggle>
             </div>
             <!-- <div class="pdfv-control">
               <mat-slide-toggle (click)="showBorders = !showBorders">[show-borders]="{{showBorders}}"</mat-slide-toggle>
             </div> -->
             <div class="pdfv-control">
-              <mat-slide-toggle (click)="renderText = !renderText">Render text Layer</mat-slide-toggle>
+              <mat-slide-toggle [checked]="renderText" (change)="togglerenderText($event)" >Render text Layer</mat-slide-toggle>
             </div>
-            <!-- <div class="pdfv-control">
-              Render Text Mode
-              <select name="renderTextMode" [(ngModel)]="renderTextMode">
-                <option [value]="o" *ngFor="let o of renderTextModes">{{o}}</option>
-              </select>
-            </div> -->
-            
-            <!-- <div class="pdfv-control">
-              <button (click)="zoomOut()">-</button>  <button (click)="zoomIn()">+</button> 
-              zoom (*{{zoom}})
-            </div> -->
             <div class="pdfv-control">
                 <button (click)="incrementZoom(-0.1)" mat-button type="button">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
@@ -158,12 +147,6 @@
                     </svg>
                 </button>
                 </div>
-            <!-- <div class="pdfv-control">
-              zoom-scale
-              <select name="zoomScales" [(ngModel)]="zoomScale">
-                <option [value]="o" *ngFor="let o of zoomScales">{{o}}</option>
-              </select>
-            </div> -->
             <div class="pdfv-control" *ngIf="!originalSize">
                 <mat-form-field >
                     <mat-label>Select an option</mat-label>
@@ -172,10 +155,6 @@
                         </mat-select>
                 </mat-form-field>
             </div>
-            <!-- <div class="pdfv-control">
-              <button (click)="rotateDoc()"></button> 
-              Rotation (*{{rotation}}°)
-            </div> -->
             <div class="pdfv-control">
                 <button (click)="rotate(-90)" mat-button type="button" matTooltip="Rotate left" [matTooltipPosition]="'above'">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
@@ -198,7 +177,7 @@
                     </svg>
                 </button>
             </div>
-            <div class="pdfv-control">
+            <div class="pdfv-control" *ngIf = "downloadApproval=='true'">
                 <div class="btn-group">
                     <button (click)="downloadPdf()" class="btn-primary"> 
                         <i class="fas fa-download"></i>&nbsp; DownLoad

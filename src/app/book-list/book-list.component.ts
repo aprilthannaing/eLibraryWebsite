@@ -4,6 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { IntercomService } from '../framework/intercom.service';
 import { PdfViewerComponent } from 'ng2-pdf-viewer';
 import { DomSanitizer } from '@angular/platform-browser';
+import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 declare var jQuery: any;
 declare var require: any
 const FileSaver = require('file-saver');
@@ -247,14 +248,14 @@ export class BookListComponent implements OnInit {
     this.showBook();
   }
   //PDF Viewer
-  
+  downloadApproval = "";
   PDFtitle = 'angular-pdf-viewer-app';
   @ViewChild(PdfViewerComponent) private pdfComponent: PdfViewerComponent;
   pagePDF = 1;
-  renderText = true;
+  renderText = false;
   originalSize = false;
   fitToPage = false;
-  showAll = true;
+  showAll = false;
   autoresize = false;
   //showBorders = true;
   renderTextModes = [0, 1, 2];
@@ -273,15 +274,6 @@ export class BookListComponent implements OnInit {
   incrementPage(amount: number) {
     this.pagePDF += amount;
   }
-  // zoomIn() {
-  //   this.zoom += 0.05;
-  // }
-
-  // zoomOut() {
-  //   if (this.zoom > 0.05)
-  //     this.zoom -= 0.05;
-  // }
-
   rotateDoc() {
     this.rotation += 90;
   }
@@ -306,7 +298,6 @@ export class BookListComponent implements OnInit {
   callBackFn(event) {
     this.pdf = event;
     console.log('callBackFn', event);
-    // Setting total number of pages
     this.totalPages = event._pdfInfo.numPages
   }
   pageRendered(event) {
@@ -322,19 +313,39 @@ export class BookListComponent implements OnInit {
     console.log('onProgress', event);
   }
   goBookRead(book){
+    this.downloadApproval = book.downloadApproval;
     this.pdfView = 1;
-    //this.pdfSrc = book.path;
-    this.pdfSrc = 'http://localhost:4200/assets/elibrary/WaterMarkFile/wartermark1.pdf'//'localhost:4200/assets/elibrary' + book.path;
+    this.pdfSrc = book.path;
+    //this.pdfSrc = 'http://localhost:4200/assets/elibrary/WaterMarkFile/wartermark1.pdf'//'localhost:4200/assets/elibrary' + book.path;
   }
   // getUrl()
   // {
   //   return this.sanitizer.bypassSecurityTrustResourceUrl(this.pdfSrc);
   // }
   downloadPdf() {
-    const pdfName = 'your_pdf_file';
-    FileSaver.saveAs(this.pdfSrc, pdfName);
+    if(this.downloadApproval == "true"){
+      const pdfName = 'your_pdf_file';
+      FileSaver.saveAs(this.pdfSrc, pdfName);
+    }else
+      alert("This file can't be download!")
   }
   goBack(){
     this.pdfView = 0;
+  }
+  toggleshowAll(event: MatSlideToggleChange) {
+    this.showAll = event.checked;
+  }
+  togglefitToPage(event: MatSlideToggleChange) {
+    this.fitToPage = event.checked;
+  }
+  toggleoriginalSize(event: MatSlideToggleChange) {
+    this.originalSize = event.checked;
+  }
+  toggleautoresize(event: MatSlideToggleChange) {
+    //work in page-height
+    this.autoresize = event.checked;
+  }
+  togglerenderText(event: MatSlideToggleChange) {
+    this.renderText = event.checked;
   }
 }

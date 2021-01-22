@@ -78,3 +78,38 @@
 i:hover {
   color: blue;
 }
+
+ /* PDF */
+ .pdf-viewer-wrap {
+  display: flex;
+  height: 95vh;
+  border: 5px solid #cccccc;
+}
+.pdf-viewer-controls-wrap {
+  border: 5px solid #cccccc;
+  width: 20%;
+  text-align: center;
+  overflow-y: scroll;
+}
+.pdfv-control {
+  background: #f3f3f3;
+  padding: 10px;
+  border-bottom: 1px solid #cccc;
+}
+.pdfv-control button {
+  /* background: #9dff00; */
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.pdf-viewer-controls {
+  overflow: auto;
+}
+
+.pdf-viewer-viewer-window {
+  border: 5px solid #cccccc;
+  width: 80%;
+  overflow: auto;
+}

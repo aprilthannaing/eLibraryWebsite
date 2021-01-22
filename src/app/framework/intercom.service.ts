@@ -9,6 +9,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class IntercomService {
   apiRoute: string = "http://136.228.165.174:8080/elibrary";
   apiRoute1: string = "http://136.228.165.174:8080";
+  //apiRoute: string = "http://localhost:8082"
+  //apiRoute1: string = "http://localhost:8082";
   bookDetail: any;
   bookList: any;
   titleLink: any;
