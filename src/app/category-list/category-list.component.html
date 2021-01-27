@@ -27,7 +27,7 @@
         <mat-tab-group class="card1">
             <mat-tab *ngFor="let subcat of sub_category">
                 <ng-template mat-tab-label>
-                    <span (click)= "showBookByCategory(subcat.boId)">{{ subcat.myanmarName }}</span>
+                    <span mat-line style="padding: 15px 0 15px 0;" (click)= "showBookByCategory(subcat.boId)">{{ subcat.myanmarName }}</span>
                 </ng-template>
                 <div class="row tab-body"  *ngIf="subcat!= ''">
                     <div *ngFor="let book of books" (click)= "goBook(book)" class="row col-md-3" style="background-color: initial;padding: 4px 50px;">
@@ -57,7 +57,9 @@
                 <span class="outer-line"></span>
             </div>
             <div class="card1" style="background-color:unset">
-                <a routerLink="[]" style="display: inherit;padding-right: 20px;text-align: right;color: #F8F9FF;font-size: 1.4em;font-weight: 600;letter-spacing: -0.055em;" (click)="goLatestBooks()">{{ 'HOME.007' | translate }}</a>
+                <div style="padding-right: 18px;text-align: right;font-size: 1.4em;font-weight: 600;letter-spacing: -0.055em;">
+                    <a routerLink="[]" style="color: #F8F9FF;" (click)="goLatestBooks()">{{ 'HOME.007' | translate }}</a>
+                </div>
                 <ngx-slick-carousel class="carousel" 
                 #slickModal="slick-carousel" 
                 [config]="slideConfig" 
@@ -98,14 +100,4 @@
                 </div>
         </ngx-slick-carousel>
     </div>
-    <footer class="bg-light text-center text-lg-start">
-        <div class="text-center" style="background-color: #5663ff;">
-        © 2020 Copyright:
-        <a class="text-dark" href="https://mdbootstrap.com/">MDBootstrap.com</a>
-        <span style="margin-left: 100px">
-            <img src="assets/images/googleplay.png" width= "30px;">&nbsp; 
-            <img src="assets/images/facebook.png" width= "40px;"> &nbsp; 
-            <img src="assets/images/twitter.png" width= "30px;">&nbsp;  
-        </span>
-        </div>
-    </footer>
+    <app-footer></app-footer>

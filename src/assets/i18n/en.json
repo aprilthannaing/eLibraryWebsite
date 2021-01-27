@@ -1,7 +1,7 @@
 {
     "HOME": {
       "001": "Are you serarching a book..?",
-      "002": "Parliamentary Library",
+      "002": "Hluttaw Library",
       "003": "Recommended For You",
       "004": "Popular Books",
       "005": "Latest Books",
@@ -21,10 +21,10 @@
       "001": "Language",
       "002": "My Account",
       "003": "Log Out",
-      "004": "Parliamentary Library",
+      "004": "Hluttaw Library",
       "005":"Pyidaungsu Hluttaw",
       "006": "Contact Us",
-      "007": "Parliamentary Library"
+      "007": "Hluttaw Library"
     }
   }
   

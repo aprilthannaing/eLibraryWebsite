@@ -8,12 +8,12 @@ ngb-rating {
   }
   .card5 h1 {
     text-align: center;
-    font-size: 1.92em;
-    line-height: 1.5;
+    font-size: 30px;
+    padding-top: 30px
   }
   .card5 h2 {
     text-align: center;
-    font-size: 1.4em;
+    font-size: 20px;
     color: gray;
   }
   .card2 {
@@ -33,7 +33,7 @@ ngb-rating {
     /* padding: 0 26px; */
     width: 100%;
     height: 100%;
-    background-image: url('/Parliamentary_Library/assets/images/showcase.jpg') !important;
+    background-image: url('/Hluttaw_Library/assets/images/showcase.jpg') !important;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -44,14 +44,13 @@ ngb-rating {
   }
   .card6 h1{
     text-align: center;
-    font-size: 1.92em;;
+    font-size: 30px;
     color: #F8F9FF;
-    line-height: 1.5;
+    padding-top: 30px;
   }
   .card6 h2 {
-    margin: 0 auto 0 auto;
     text-align: center;
-    font-size: 1.4em;
+    font-size: 20px;
     color: #F8F9FF;
   }
   .card6 .card-body{

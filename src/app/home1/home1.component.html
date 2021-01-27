@@ -4,10 +4,10 @@
         <h2>{{ 'HOME.001' | translate }}</h2>
         <h1>{{ 'HOME.002' | translate }}</h1>
         <div class="row col-md-12">
-                <input type="text" placeholder="Search Book,Title,Author" id="search"  [(ngModel)]="search" class="col-md-4 border" style="margin-top: 0;">
+                <input type="text" placeholder="Search Book,Title,Author" id="search"  [(ngModel)]="search" class="col-md-4 border uni" style="margin-top: 0;">
                 <div class="col-md-8">
                 <input type="month" id="search"  class="border col-md-3" [max]="endDate" [(ngModel)]="startDate">&nbsp;
-                <input type="month" id="search"  class="border col-md-3" [min]="startDate" [(ngModel)]="endDate">
+                <input type="month" id="search"  class="border col-md-3" [min]="startDate" [(ngModel)]="endDate">&nbsp;
                 <button class="buttonMe" type="button" class="buttonMe col-md-2"  (click)= "goSearch()">SEARCH</button>
             </div>
         </div>
@@ -45,7 +45,9 @@
                 <span class="outer-line"></span>
             </div>
             <div class="card" style="background-color:unset">
-                <a routerLink="[]" style="padding-right: 18px;text-align: right;color: #F8F9FF;font-size: 1.4em;font-weight: 600;letter-spacing: -0.055em;" (click)="goRecommendBooks()">{{ 'HOME.007' | translate }}</a>
+                <div style="padding-right: 18px;text-align: right;font-size: 1.4em;font-weight: 600;letter-spacing: -0.055em;">
+                    <a routerLink="[]"  (click)="goRecommendBooks()" style="color: #F8F9FF;">{{ 'HOME.007' | translate }}</a>
+                </div>
                 <ngx-slick-carousel class="carousel" 
                 #slickModal="slick-carousel" 
                 [config]="slideConfig" 
@@ -69,9 +71,9 @@
     <div class="col-md-12">
         <div class="container-fluid card1">
             <div class="row col-md-12">
-                <div class="col-md-8">
-                    <p style="font-size: 1.8em;padding: 20px 0;font-weight: 600;">{{ 'HOME.004' | translate }}</p>
-                    <div class="card" *ngFor="let slide of popular_book" (click)="goPopularBook(slide)">
+                <div class="col-md-7">
+                    <p style="font-size: 30px;padding: 20px 0;font-weight: 600;line-height: 1.2">{{ 'HOME.004' | translate }}</p>
+                    <div class="card" *ngFor="let slide of popular_book" (click)="goPopularBook(slide)" style="cursor:pointer">
                         <div class="row no-gutters">
                             <div class="col-sm-2">
                                 <img src="{{ slide.coverPhoto }}" class="card-img-top" alt="...">
@@ -92,14 +94,14 @@
                     </p>
                 </div>
     <!-- Latest Book -->
-                <div class="col-md-4">
+                <div class="col-md-5">
                     <div style="display: flex;padding: 20px 0;">
-                        <p style="font-size: 1.8em;font-weight: 600;display: inline-block;">{{ 'HOME.005' | translate }}</p>
+                        <p style="font-size: 30px;font-weight: 600;display: inline-block;line-height: 1.2">{{ 'HOME.005' | translate }}</p>
                         <p>
-                            <a class="btn btn-lg" style="color: blue;font-size: 13px;padding: 0 0 0 20px;" (click)="goLatestBooks()">{{ 'HOME.008' | translate }} >></a>
+                            <a class="btn btn-lg" style="color: blue;font-size: 13px;" (click)="goLatestBooks()">{{ 'HOME.008' | translate }} >></a>
                         </p>
                     </div>
-                    <div class="card" *ngFor="let slide of latest_book" (click)="goLatestBook(slide)">
+                    <div class="card" *ngFor="let slide of latest_book" (click)="goLatestBook(slide)" style="cursor:pointer">
                         <div class="row no-gutters">
                             <div class="col-sm-4">
                                 <img src="{{ slide.coverPhoto }}" class="card-img-top" alt="...">
@@ -128,7 +130,7 @@
                 <span class="fa fa-book bookMe" aria-hidden="true"></span>
                 <span style = "width: 12%;border-bottom: 1px solid;"></span>
             </div>
-            <ngb-tabset justify="center" style="font-size: 1.5rem;">
+            <ngb-tabset justify="center" style="font-size: 1.5rem;" style="cursor:pointer">
                 <ngb-tab title="{{ 'HOME.009' | translate }}">
                     <ng-template ngbTabContent>
                         <ngx-slick-carousel class="carousel" 
@@ -170,20 +172,8 @@
     </div>
     <p style="text-align:center">
         <br>
-            <img src="assets/images/googleplay.png" width="200px">
+            <img href="https://drive.google.com/file/d/1oAf8juZEXNoDfa4tBkjNQMCuxP_8ZzO_/view?usp=sharing" src="assets/images/googleplay.png" width="200px">
             <img src="assets/images/appstore.png" width="200px">
         <br>
     </p>
-    <footer class="bg-light text-center text-lg-start">
-        <!-- Copyright -->
-        <div class="text-center" style="background-color: #5663ff;">
-        © 2020 Copyright:
-        <a class="text-dark" href="https://mdbootstrap.com/">MDBootstrap.com</a>
-        <span style="margin-left: 100px">
-            <img src="assets/images/googleplay.png" width= "30px;">&nbsp; 
-            <img src="assets/images/facebook.png" width= "40px;"> &nbsp; 
-            <img src="assets/images/twitter.png" width= "30px;">&nbsp;  
-        </span>
-        </div>
-        <!-- Copyright -->
-    </footer>
+    <app-footer></app-footer>

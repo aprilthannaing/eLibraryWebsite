@@ -1,7 +1,17 @@
 
+
+site-header[lang="en"]{
+  font-family: 'Lato', sans-serif !important;
+}
+site-header[lang="myan"]{
+  font-family: Unicode !important;
+}
 .mat-tab-group.mat-primary .mat-ink-bar, .mat-tab-nav-bar.mat-primary .mat-ink-bar{
   background: #3f51b5;
 } 
+.mat-tab-group .mat-tab-header .mat-tab-labels .mat-ripple {
+  width: 100% !important;
+}
 .login-nav-header {
   z-index: 35;
   border-bottom: 2px solid #5663ff;

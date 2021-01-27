@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { HomeComponent } from './home/home.component';
 import { Home1Component } from './home1/home1.component';
 import { BookDetailComponent } from './book-detail/book-detail.component';
 import { BookListComponent } from './book-list/book-list.component';
@@ -11,11 +10,12 @@ import { CategoryListComponent } from './category-list/category-list.component';
 import { FeedbackComponent } from './feedback/feedback.component';
 import { FooterComponent } from './footer/footer.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { AppComponent } from './app.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '', pathMatch: 'full' },
+  { path: 'login', redirectTo: 'login', pathMatch: 'full' },
+  { path: 'login', component: AppComponent },
   { path: 'home1', component: Home1Component },
-  { path: 'home', component: HomeComponent },
   { path: 'book-detail', component: BookDetailComponent },
   { path: 'book-detail/:cmd/:id', component: BookDetailComponent },
   { path: 'book-list', component: BookListComponent },

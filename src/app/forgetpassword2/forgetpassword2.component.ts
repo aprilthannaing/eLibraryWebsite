@@ -55,7 +55,7 @@ export class Forgetpassword2Component implements OnInit {
       (data: any) => {
         console.log("data: ", data)
         if (data.status)
-          this.router.navigate(['app'])
+          this.router.navigate(['login'])
         else this._result = data.message;
         this.loading = false;
       },

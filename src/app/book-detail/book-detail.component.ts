@@ -143,10 +143,10 @@ export class BookDetailComponent implements OnInit {
   onProgress(event) {
     console.log('onProgress', event);
   }
-  goBookRead(book){
-    this.downloadApproval = book.downloadApproval;
+  goBookRead(){
+    this.downloadApproval = this.bookDetail.downloadApproval;
     this.pdfView = 1;
-    this.pdfSrc = book.path;
+    this.pdfSrc = this.ics.apiRoute1 + this.bookDetail.path;
     //this.pdfSrc = 'http://localhost:4200/assets/elibrary/WaterMarkFile/wartermark1.pdf'//'localhost:4200/assets/elibrary' + book.path;
   }
   // getUrl()

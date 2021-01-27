@@ -2,7 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home.component';
 import { AppRoutingModule } from './app-routing.module';
 import { MenuComponent } from './menu/menu.component';
 import { IntercomService } from './framework/intercom.service';
@@ -70,7 +69,6 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
     MenuComponent,
     Home1Component,
     HeaderComponent,
@@ -81,7 +79,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     CategoryListComponent,
     FeedbackComponent,
     FooterComponent,
-    UserProfileComponent
+    UserProfileComponent,
   ],
   imports: [
     MDBBootstrapModule.forRoot(),

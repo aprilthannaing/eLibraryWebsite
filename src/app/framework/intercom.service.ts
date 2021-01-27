@@ -11,11 +11,13 @@ export class IntercomService {
   apiRoute1: string = "http://136.228.165.174:8080";
   //apiRoute: string = "http://localhost:8082"
   //apiRoute1: string = "http://localhost:8082";
+  appStoreLink = "";
+  palyStoreLink = "";
   bookDetail: any;
   bookList: any;
   titleLink: any;
   books = [];
-  language = "eng";
+  language = "myan";
   recommendBooks = [];
 
   _profile = {

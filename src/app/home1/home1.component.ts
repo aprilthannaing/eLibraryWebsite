@@ -8,6 +8,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   styleUrls: ['./home1.component.css']
 })
 export class Home1Component implements OnInit {
+  playStoreLink = "";
+  appStoreLink = "";
   search = "";
   startDate = "";
   endDate = "";
@@ -60,6 +62,8 @@ export class Home1Component implements OnInit {
     private ics: IntercomService
   ) { 
     this.goHome();
+    this.playStoreLink = this.ics.palyStoreLink;
+    this.appStoreLink = this.ics.appStoreLink;
   }
   onImgError(event){
     event.target.src = 'assets/images/notfound.jpg'

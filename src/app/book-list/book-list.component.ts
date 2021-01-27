@@ -61,14 +61,16 @@ export class BookListComponent implements OnInit {
             this.bookList = this.ics.bookList;
             this.bookCount = this.bookList.length;
             for(let i=0;i <this.bookList.length; i++){
-              if(this.bookList[i].coverPhoto != ""){
-                if(!this.bookList[i].coverPhoto.includes("assets")){
-                  let coverPhoto =this.ics.apiRoute1 + this.bookList[i].coverPhoto;
-                  coverPhoto.replace("\/","/");
-                  this.bookList[i].coverPhoto =  coverPhoto;
-                }
-              }else if(!this.bookList[i].coverPhoto.includes("assets"))
-                  this.bookList[i].coverPhoto = "assets/images/notfound.jpg";
+              if(!this.bookList[i].coverPhoto.includes("http")){
+                if(this.bookList[i].coverPhoto != ""){
+                  if(!this.bookList[i].coverPhoto.includes("assets")){
+                    let coverPhoto =this.ics.apiRoute1 + this.bookList[i].coverPhoto;
+                    coverPhoto.replace("\/","/");
+                    this.bookList[i].coverPhoto =  coverPhoto;
+                  }
+                }else if(!this.bookList[i].coverPhoto.includes("assets"))
+                      this.bookList[i].coverPhoto = "assets/images/notfound.jpg";
+              }
             this.bookList[i].title = this.add3Dots(this.bookList[i].title,100 );
           }
         }
@@ -315,7 +317,7 @@ export class BookListComponent implements OnInit {
   goBookRead(book){
     this.downloadApproval = book.downloadApproval;
     this.pdfView = 1;
-    this.pdfSrc = book.path;
+    this.pdfSrc = this.ics.apiRoute1 + book.path;
     //this.pdfSrc = 'http://localhost:4200/assets/elibrary/WaterMarkFile/wartermark1.pdf'//'localhost:4200/assets/elibrary' + book.path;
   }
   // getUrl()

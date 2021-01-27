@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, HostListener } from '@angular/core';
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { IntercomService } from './framework/intercom.service';
@@ -23,6 +23,7 @@ export class AppComponent {
   loading = false;
   _result: string = "";
   replyCount = "10";
+  lang = "";
 mySubscription;
   constructor(
     private router: Router,
@@ -38,11 +39,10 @@ mySubscription;
           this.goCategory();
       }
     }); 
-    translate.addLangs(['en', 'myan']);
-    translate.setDefaultLang('en');
-
-    this.browserLang = translate.getBrowserLang();
-    translate.use(this.browserLang.match(/en|myan/) ? this.browserLang : 'en');
+    translate.addLangs(['myan', 'en']);
+    translate.setDefaultLang('myan');
+    //this.browserLang = translate.getBrowserLang();
+    //translate.use(this.browserLang.match(/en|myan/) ? this.browserLang : 'en');
 
   }
 ngOnDestroy(){
@@ -52,7 +52,20 @@ ngOnDestroy(){
   }
   ngOnInit(): void {   
   }
-
+  @HostListener('window:popstate', ['$event'])
+  onPopState(event) {
+    if (this.router.url == '/home1') {
+      let url = this.ics.apiRoute + '/user/signout'
+      let json = {"userid": this.ics._profile.userId}
+        this.http.post(url,json,{headers: new HttpHeaders().set('token', this.ics._profile.token)}).subscribe(
+          data  => {
+            this.header1 = false;
+            console.log("Logging Out!!!!!!!!!!!!!!!!!!!!!");
+          },
+          error => {}, () => { });
+    }
+  }
+  
   feedback(){
     this.router.navigate(["feedback"]);
     this.replyCount = "";   
@@ -199,5 +212,26 @@ ngOnDestroy(){
     this.selectedRow = this.categories.length+1;
     this.router.navigate(['/home1']);
   }
-  
+  logout(){
+    this.router.navigate(['/login']);
+    this.header1 = false;
+    this.header2 = true;
+    this.login1 = true;
+    this.ics._profile = {
+      "userId": "",
+      "email": "",
+      "phno":"",
+      "type":"",
+      "hluttaw":"",
+      "department":"",
+      "position":"",
+      "userName": "",
+      "logoText": "eLibrary",
+      "logoLink": "/home",
+      "menus": [],
+      "rightMenus": [],
+      "verifyCode": "",
+      "token": "",
+    };
+  }
 }

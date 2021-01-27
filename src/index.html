@@ -1,8 +1,8 @@
 <!doctype html>
-<html lang="en">
+<html lang="">
 <head>
   <meta charset="utf-8">
-  <title>Parliamentary Library</title>
+  <title>Hluttaw Library</title>
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
@@ -19,7 +19,24 @@
       body{
         font-family: 'Lato', sans-serif;
       }
-      h1,h2,h3,h4,div,p{
+      @font-face {
+			font-family: Unicode;
+			src: url("Pyidaungsu-2.2_Regular.ttf");
+		  }
+
+      .uni {
+        font-family: Unicode !important;
+      }
+      /* html[lang="en"]{
+        font-family: 'Lato', sans-serif !important;
+      }
+      html[lang="myan"]{
+        font-family: Unicode !important;
+      } */
+      /* :lang(myan){	
+        font-family: Unicode;
+      } */
+      h1,h2,h3,h4,div,p {
         font-family: 'Lato', sans-serif;
       }
    
