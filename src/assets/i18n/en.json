@@ -25,6 +25,14 @@
       "005":"Pyidaungsu Hluttaw",
       "006": "Contact Us",
       "007": "Hluttaw Library"
+    },
+    "Category": {
+      "CATEGORY10001": "English1",
+      "CATEGORY10002": "English2",
+      "CATEGORY10003": "English3",
+      "CATEGORY10004": "English4",
+      "CATEGORY10005": "English5",
+      "CATEGORY10006": "English6"
     }
   }
   

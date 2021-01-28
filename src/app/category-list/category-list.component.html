@@ -2,7 +2,13 @@
  <div class="background"></div>
     <div class="col-md-12 card2 card3" style="padding-left: 120px;"><!--style="height: 400px;"background-color: rgba(0,0,0, 0.4);-->
         <h2>{{ 'HOME.001' | translate }}</h2>
-        <h1>{{ 'HOME.002' | translate }}</h1>
+        <h1 *ngIf="categoryId == 'CATEGORY10001'">{{ 'Category.CATEGORY10001' | translate }}</h1>
+        <h1 *ngIf="categoryId == 'CATEGORY10002'">{{ 'Category.CATEGORY10002' | translate }}</h1>
+        <h1 *ngIf="categoryId == 'CATEGORY10003'">{{ 'Category.CATEGORY10003' | translate }}</h1>
+        <h1 *ngIf="categoryId == 'CATEGORY10004'">{{ 'Category.CATEGORY10004' | translate }}</h1>
+        <h1 *ngIf="categoryId == 'CATEGORY10005'">{{ 'Category.CATEGORY10005' | translate }}</h1>
+        <h1 *ngIf="categoryId == 'CATEGORY10006'">{{ 'Category.CATEGORY10006' | translate }}</h1>
+
         <div class="row col-md-12">
                 <input type="text" placeholder="Search Book,Title,Author" id="search"  [(ngModel)]="search" class="col-md-4 border" style="margin-top: 0;">
                 <div class="col-md-8">

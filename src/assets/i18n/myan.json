@@ -25,6 +25,14 @@
       "005": "ပြည်ထောင်စုလွှတ်တော်",
       "006": "ဆက်သွယ်ရန်",
       "007": "လွှတ်တော်များဆိုင်ရာ စာကြည့်တိုက်"
+    },
+    "Category": {
+      "CATEGORY10001": "Myanmar1",
+      "CATEGORY10002": "Myanmar2",
+      "CATEGORY10003": "Myanmar3",
+      "CATEGORY10004": "Myanmar4",
+      "CATEGORY10005": "Myanmar5",
+      "CATEGORY10006": "Myanmar6"
     }
   }
   
