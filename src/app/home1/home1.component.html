@@ -15,11 +15,23 @@
     <!-- advertisements -->
     <div class="col-md-12 card1 card5" style="background-color:#EEF7FF">
         <h1>{{ 'HOME.011' | translate }}</h1>
+       
         <h2>{{ 'HOME.012' | translate }}</h2>
-        <div style="text-align: center">
+        <div class="text-center welcom-library">
             <span style = "width: 12%;border-bottom: 1px solid;"></span>
             <span class="fa fa-book bookMe" aria-hidden="true"></span>
             <span style = "width: 12%;border-bottom: 1px solid;"></span>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem expedita dolorem, reprehenderit, corporis sequi laboriosam odit in sed distinctio, ducimus voluptate? Sunt repudiandae sint error reiciendis labore temporibus aliquid quam.
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem expedita dolorem, reprehenderit, corporis sequi laboriosam odit in sed distinctio, ducimus voluptate? Sunt repudiandae sint error reiciendis labore temporibus aliquid quam.
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem expedita dolorem, reprehenderit, corporis sequi laboriosam odit in sed distinctio, ducimus voluptate? Sunt repudiandae sint error reiciendis labore temporibus aliquid quam.
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem expedita dolorem, reprehenderit, corporis sequi laboriosam odit in sed distinctio, ducimus voluptate? Sunt repudiandae sint error reiciendis labore temporibus aliquid quam.
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem expedita dolorem, reprehenderit, corporis sequi laboriosam odit in sed distinctio, ducimus voluptate? Sunt repudiandae sint error reiciendis labore temporibus aliquid quam.
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem expedita dolorem, reprehenderit, corporis sequi laboriosam odit in sed distinctio, ducimus voluptate? Sunt repudiandae sint error reiciendis labore temporibus aliquid quam.
+            </p>
+        </div>
+        <div style="text-align: center">
+           
             <ngx-slick-carousel class="carousel" 
             #slickModal="slick-carousel" 
             [config]="slideAdvertisementConfig" 
@@ -36,8 +48,9 @@
     <!-- recommend book -->
     <div class="col-md-12">
         <div class="background1"></div>
-        <div class="container-fluid card1 card4" style="height: 550px;background-color: rgba(0,0,0, 0.5);">
+        <div class="container-fluid card1 card4" style="height: 550px;background: rgb(0 0 0 / 74%);">
             <h1>{{ 'HOME.003' | translate }}</h1>
+           
             <h2>{{ 'HOME.013' | translate }}</h2>
             <div style="text-align: center">
                 <span class="outer-line"></span>
@@ -72,11 +85,11 @@
         <div class="container-fluid card1">
             <div class="row col-md-12">
                 <div class="col-md-7">
-                    <p style="font-size: 30px;padding: 20px 0;font-weight: 600;line-height: 1.2">{{ 'HOME.004' | translate }}</p>
+                    <p style="font-size: 20px;padding: 50px 0 20px 0;font-weight: 600;line-height: 1.2">{{ 'HOME.004' | translate }}</p>
                     <div class="card" *ngFor="let slide of popular_book" (click)="goPopularBook(slide)" style="cursor:pointer">
                         <div class="row no-gutters">
                             <div class="col-sm-2">
-                                <img src="{{ slide.coverPhoto }}" class="card-img-top" alt="...">
+                                <img src="{{ slide.coverPhoto }}" class="card-img-top image-wrap" alt="...">
                             </div>
                             <div class="col-sm-10">
                                 <div class="card-body">
@@ -95,8 +108,8 @@
                 </div>
     <!-- Latest Book -->
                 <div class="col-md-5">
-                    <div style="display: flex;padding: 20px 0;">
-                        <p style="font-size: 30px;font-weight: 600;display: inline-block;line-height: 1.2">{{ 'HOME.005' | translate }}</p>
+                    <div style="display: flex;padding: 50px 0 20px 0;">
+                        <p style="font-size: 20px;font-weight: 600;display: inline-block;line-height: 1.2">{{ 'HOME.005' | translate }}</p>
                         <p>
                             <a class="btn btn-lg" style="color: blue;font-size: 13px;" (click)="goLatestBooks()">{{ 'HOME.008' | translate }} >></a>
                         </p>
@@ -104,7 +117,7 @@
                     <div class="card" *ngFor="let slide of latest_book" (click)="goLatestBook(slide)" style="cursor:pointer">
                         <div class="row no-gutters">
                             <div class="col-sm-4">
-                                <img src="{{ slide.coverPhoto }}" class="card-img-top" alt="...">
+                                <img src="{{ slide.coverPhoto }}" class="card-img-top image-wrap" alt="...">
                             </div>
                             <div class="col-sm-8">
                                 <div class="card-body">

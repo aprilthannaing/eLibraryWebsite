@@ -26,7 +26,7 @@ export class Home1Component implements OnInit {
     "infinite": false
   };
   slideAuthorsConfig = {
-    "slidesToShow": 5,
+    "slidesToShow": 6,
     "slidesToScroll": 4,
     "dots": true,
     "infinite": false,
