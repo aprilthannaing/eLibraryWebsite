@@ -91,7 +91,6 @@ ngOnDestroy(){
   }
 
   verifyEmail() {
-    this.router.navigate(['forgetpassword'])
 
     this.header1 = false;
     this.header2 = false;
@@ -102,6 +101,7 @@ ngOnDestroy(){
     this.http.post(url, json).subscribe(
       (data: any) => {
        // console.log("data !!!!!!!!!", data)
+       this.router.navigate(['forgetpassword'])
         this.ics._profile.token = data.token;
         this.loading = false;
       },
