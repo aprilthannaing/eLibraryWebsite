@@ -232,12 +232,12 @@ input[type="text"] {
 }
 
 #divbox {
-  margin-top: 7%;
+  margin-top: 40px;
   border-radius: 25px;
   margin-left: 27.5%;
   width: 43%;
-  padding: 20px;
-  box-shadow:0px 0px 16px #d7d4fffa;
+  padding:50px 20px;
+  box-shadow:0px 0px 16px #79b1defa;
 }
 
 /* slick-carousel-custom-navigation */
@@ -547,5 +547,11 @@ mdb-navbar
   .navbar a,select{
     float: none;
     display: block;
+  }
+}
+
+@media screen and (max-width: 767px) {
+ .hidden-md{
+    display: none;
   }
 }
