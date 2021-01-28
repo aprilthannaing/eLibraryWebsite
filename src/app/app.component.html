@@ -1,8 +1,8 @@
 <header class="site-header" *ngIf="header1">
-    <div class="navbar hidden-md">
+    <div class="navbar hidden-md top-nav">
         <div style="text-align: left;">
-            <a href="#"><i class="fa fa-phone" style="font-size: 1.10em;font-weight: 900"></i> (+959)123456789</a> 
-            <a href="#"><i class="fa fa-envelope" style="font-size: 1.10em;font-weight: 900"></i> {{ 'HEAD.006' | translate }}</a> 
+            <a href="#"><i class="fa fa-phone" style="font-size: 1.10em;"></i> (+959)123456789</a> 
+            <a href="#"><i class="fa fa-envelope" style="font-size: 1.10em;"></i> {{ 'HEAD.006' | translate }}</a> 
         </div>
             <div style="text-align: right;">
         <select #langSelect class="langSelect" (change)="translate.use(langSelect.value)">
@@ -11,13 +11,13 @@
         </select>
         <a [routerLink]="['/profile']" title="Library Homepage" class="right"> 
 			<span>&nbsp; {{ 'HEAD.002' | translate }} </span>&nbsp;
-			<img src="assets/images/user-icon.png" style=' border-radius: 50%;width: 3%;'>
+			<img src="assets/images/user-icon.png" style=' border-radius: 50%;width: 18px;margin-top:-5px'>
 		</a>
 		<a (click)="feedback()" title="Feedback">
 			<i class="fa fa-envelope-o" aria-hidden="true"
-                style="font-size: 1.10em;font-weight: 900;color: white;"></i>&nbsp; 
+                style="font-size: 1.10em;color: white;"></i>&nbsp; 
             <span class="badge list"
-			style="font-size: 0.8em;background-color:white;margin-bottom: 2%;border-radius: 20px;">{{replyCount}}</span>
+			style="font-size: 0.8em;background-color:white;border-radius: 20px;">{{replyCount}}</span>
 		</a>
 		
         <a (click)="logout()" title="Log Out" style="color:white"> <i class="fas fa-sign-out-alt" aria-hidden="true" style="color: white;font-size: 1.10em;font-weight: 900"></i>
@@ -28,21 +28,21 @@
 
 <!--Navbar-->
     <mdb-navbar SideClass="card1 navbar navbar-expand-lg navbar-dark" [containerInside]="false">
-    <mdb-navbar-brand>
-        <a class="navbar-brand" (click)="goHome()">
-        <img src="assets/images/e.png" width="100px">
-        </a>
-    </mdb-navbar-brand>
-    <links>
-        <ul class="navbar-nav mr-auto" >
-        <li class="nav-item"  *ngFor="let cat of categories;let i = index"><!--style= "padding: 0 15px;"-->
-            <a 
-            (click)="goBookbyCategory(cat, i)" [class.active]="i == selectedRow"
-            style="color:#212529;font-weight: 500;font-size: 15px;text-transform: capitalize;"
-            class="nav-link waves-light" mdbWavesEffect >{{cat.myanmarName}}</a><!--lang="{{lang}}"-->
-        </li>
-        </ul>
-    </links>
+        <mdb-navbar-brand>
+            <a class="navbar-brand" (click)="goHome()">
+            <img src="assets/images/e.png" width="110px" class="main-logo">
+            </a>
+        </mdb-navbar-brand>
+        <links style="display: initial;">
+            <ul class="navbar-nav mr-auto" >
+            <li class="nav-item"  *ngFor="let cat of categories;let i = index"><!--style= "padding: 0 15px;"-->
+                <a 
+                (click)="goBookbyCategory(cat, i)" [class.active]="i == selectedRow"
+                style="color:#212529;font-weight: 500;font-size: 15px;text-transform: capitalize;"
+                class="nav-link waves-light" mdbWavesEffect >{{cat.myanmarName}}</a><!--lang="{{lang}}"-->
+            </li>
+            </ul>
+        </links>
     </mdb-navbar>
 </header>
 <div class="login" *ngIf="header2 ">
@@ -59,7 +59,7 @@
     </div>
 
     <div *ngIf="login1">
-        <div id="divbox">
+        <div id="divbox" class="col-md-6">
             <div >
                
               <div class="row">

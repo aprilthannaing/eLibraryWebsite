@@ -1,95 +1,95 @@
     <!-- Search Box -->
-    <div class="background"></div>
-    <div class="col-md-12 card2 card3" style="padding-left: 120px;"><!--style="height: 400px;"background-color: rgba(0,0,0, 0.4);-->
-        <h2>{{ 'HOME.001' | translate }}</h2>
-        <h1>{{ 'HOME.002' | translate }}</h1>
-        <div class="row col-md-12">
-                <input type="text" placeholder="Search Book,Title,Author" id="search"  [(ngModel)]="search" class="col-md-4 border uni" style="margin-top: 0;">
-                <div class="col-md-8">
-                <input type="month" id="search"  class="border col-md-3" [max]="endDate" [(ngModel)]="startDate">&nbsp;
-                <input type="month" id="search"  class="border col-md-3" [min]="startDate" [(ngModel)]="endDate">&nbsp;
-                <button class="buttonMe" type="button" class="buttonMe col-md-2"  (click)= "goSearch()">SEARCH</button>
+    <div class="background">
+        <div class="container card2 card3" ><!--style="height: 400px;"background-color: rgba(0,0,0, 0.4);-->
+            <h2>{{ 'HOME.001' | translate }}</h2>
+            <h1>{{ 'HOME.002' | translate }}</h1>
+            <div class="row">
+                    <div class="col-md-4"> <input type="text" placeholder="Search Book,Title,Author" id="search"  [(ngModel)]="search" class=" border uni" style="margin-top: 0;"></div>
+                    <div class="col-md-3"> <input type="month" id="search"  class="border" [max]="endDate" [(ngModel)]="startDate"></div>
+                    <div class="col-md-3"><input type="month" id="search"  class="border" [min]="startDate" [(ngModel)]="endDate"></div>
+                    <div class="col-md-2"><button class="buttonMe" type="button" class="buttonMe"  (click)= "goSearch()">SEARCH</button></div>
             </div>
         </div>
     </div>
+   
     <!-- advertisements -->
-    <div class="col-md-12 card1 card5" style="background-color:#EEF7FF">
-        <h1>{{ 'HOME.011' | translate }}</h1>
-       
-        <h2>{{ 'HOME.012' | translate }}</h2>
-        <div class="text-center welcom-library">
-            <span style = "width: 12%;border-bottom: 1px solid;"></span>
-            <span class="fa fa-book bookMe" aria-hidden="true"></span>
-            <span style = "width: 12%;border-bottom: 1px solid;"></span>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem expedita dolorem, reprehenderit, corporis sequi laboriosam odit in sed distinctio, ducimus voluptate? Sunt repudiandae sint error reiciendis labore temporibus aliquid quam.
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem expedita dolorem, reprehenderit, corporis sequi laboriosam odit in sed distinctio, ducimus voluptate? Sunt repudiandae sint error reiciendis labore temporibus aliquid quam.
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem expedita dolorem, reprehenderit, corporis sequi laboriosam odit in sed distinctio, ducimus voluptate? Sunt repudiandae sint error reiciendis labore temporibus aliquid quam.
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem expedita dolorem, reprehenderit, corporis sequi laboriosam odit in sed distinctio, ducimus voluptate? Sunt repudiandae sint error reiciendis labore temporibus aliquid quam.
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem expedita dolorem, reprehenderit, corporis sequi laboriosam odit in sed distinctio, ducimus voluptate? Sunt repudiandae sint error reiciendis labore temporibus aliquid quam.
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem expedita dolorem, reprehenderit, corporis sequi laboriosam odit in sed distinctio, ducimus voluptate? Sunt repudiandae sint error reiciendis labore temporibus aliquid quam.
-            </p>
-        </div>
-        <div style="text-align: center">
-           
-            <ngx-slick-carousel class="carousel" 
-            #slickModal="slick-carousel" 
-            [config]="slideAdvertisementConfig" 
-            (init)="slickInit($event)"
-            (breakpoint)="breakpoint($event)"
-            (afterChange)="afterChange($event)"
-            (beforeChange)="beforeChange($event)">
-                <div ngxSlickItem *ngFor="let slide of advertisements" class="slide" style="padding: 20px;background-color: initial;">
-                    <img src="{{ slide.name}}" alt="" width="100%" height="200px">
-                </div>
-            </ngx-slick-carousel>
-        </div>
-    </div>
-    <!-- recommend book -->
-    <div class="col-md-12">
-        <div class="background1"></div>
-        <div class="container-fluid card1 card4" style="height: 550px;background: rgb(0 0 0 / 74%);">
-            <h1>{{ 'HOME.003' | translate }}</h1>
-           
-            <h2>{{ 'HOME.013' | translate }}</h2>
-            <div style="text-align: center">
-                <span class="outer-line"></span>
-                <span class="fa fa-book bookMe" aria-hidden="true"  style="color: #fff;"></span>
-                <span class="outer-line"></span>
+    <div class="card5" style="background-color:#EEF7FF">
+       <div class="container">
+            <h1>{{ 'HOME.011' | translate }}</h1>
+        
+            <h2>{{ 'HOME.012' | translate }}</h2>
+            <div class="text-center welcom-library">
+                <span style = "width: 12%;border-bottom: 1px solid;"></span>
+                <span class="fa fa-book bookMe" aria-hidden="true"></span>
+                <span style = "width: 12%;border-bottom: 1px solid;"></span>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem expedita dolorem, reprehenderit, corporis sequi laboriosam odit in sed distinctio, ducimus voluptate? Sunt repudiandae sint error reiciendis labore temporibus aliquid quam.
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem expedita dolorem, reprehenderit, corporis sequi laboriosam odit in sed distinctio, ducimus voluptate? Sunt repudiandae sint error reiciendis labore temporibus aliquid quam.
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem expedita dolorem, reprehenderit, corporis sequi laboriosam odit in sed distinctio, ducimus voluptate? Sunt repudiandae sint error reiciendis labore temporibus aliquid quam.
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem expedita dolorem, reprehenderit, corporis sequi laboriosam odit in sed distinctio, ducimus voluptate? Sunt repudiandae sint error reiciendis labore temporibus aliquid quam.
+                   
+                </p>
             </div>
-            <div class="card" style="background-color:unset">
-                <div style="padding-right: 18px;text-align: right;font-size: 1.4em;font-weight: 600;letter-spacing: -0.055em;">
-                    <a routerLink="[]"  (click)="goRecommendBooks()" style="color: #F8F9FF;">{{ 'HOME.007' | translate }}</a>
-                </div>
+            <div style="text-align: center">
+            
                 <ngx-slick-carousel class="carousel" 
                 #slickModal="slick-carousel" 
-                [config]="slideConfig" 
+                [config]="slideAdvertisementConfig" 
                 (init)="slickInit($event)"
                 (breakpoint)="breakpoint($event)"
                 (afterChange)="afterChange($event)"
                 (beforeChange)="beforeChange($event)">
-                <div ngxSlickItem *ngFor="let slide of recommend_book" (click)="goRecommendBook(slide)" class="slide" style="background-color: initial;padding: 20px;">
-                    <img src="{{ slide.coverPhoto }}" alt="" class="card-img-top" height= "200px;">
-                    <div class="card-body">
-                        <h5 class="card-title">{{slide.title1}}</h5>
-                        <h6 *ngFor="let author of slide.authors">{{author.name}}</h6>
-                        <ngb-rating [max]="5" [(rate)]="slide.averageRating"></ngb-rating>
+                    <div ngxSlickItem *ngFor="let slide of advertisements" class="slide">
+                        <img src="{{ slide.name}}" alt="" width="100%" height="200px">
                     </div>
-                </div>
                 </ngx-slick-carousel>
             </div>
+       </div>
+    </div>
+    <!-- recommend book -->
+    <div>
+        <div class="background1">
+           <div class="container">
+                <div class=" recommend-slide" >
+                    <h1 class="text-center">{{ 'HOME.003' | translate }}</h1>
+                
+                    <h2  class="text-center">{{ 'HOME.013' | translate }}</h2>
+                    <div style="text-align: center">
+                        <span class="outer-line"></span>
+                        <span class="fa fa-book bookMe" aria-hidden="true"  style="color: #fff;"></span>
+                        <span class="outer-line"></span>
+                    </div>
+                    <div class="card" style="background-color:unset">
+                        <div style="padding-right: 18px;text-align: right;font-size: 1.4em;font-weight: 600;letter-spacing: -0.055em;">
+                            <a routerLink="[]"  (click)="goRecommendBooks()" style="color: #F8F9FF;">{{ 'HOME.007' | translate }}</a>
+                        </div>
+                        <ngx-slick-carousel class="carousel" 
+                        #slickModal="slick-carousel" 
+                        [config]="slideConfig" 
+                        (init)="slickInit($event)"
+                        (breakpoint)="breakpoint($event)"
+                        (afterChange)="afterChange($event)"
+                        (beforeChange)="beforeChange($event)">
+                        <div ngxSlickItem *ngFor="let slide of recommend_book" (click)="goRecommendBook(slide)" class="slide" style="background-color: initial;padding: 20px;">
+                            <img src="{{ slide.coverPhoto }}" alt="" class="card-img-top" height= "200px;">
+                            <div class="card-body">
+                                <h5 class="card-title">{{slide.title1}}</h5>
+                                <h6 *ngFor="let author of slide.authors">{{author.name}}</h6>
+                                <ngb-rating [max]="5" [(rate)]="slide.averageRating"></ngb-rating>
+                            </div>
+                        </div>
+                        </ngx-slick-carousel>
+                    </div>
+                </div>
+           </div>
         </div>
+        
     </div>
     <!-- Popular Book -->
-    <div class="col-md-12">
-        <div class="container-fluid card1">
-            <div class="row col-md-12">
+        <div class="container">
+            <div class="row ">
                 <div class="col-md-7">
-<<<<<<< Updated upstream
                     <p style="font-size: 20px;padding: 50px 0 20px 0;font-weight: 600;line-height: 1.2">{{ 'HOME.004' | translate }}</p>
-=======
-                    <p style="font-size: 30px;padding: 20px 0;font-weight: 600;line-height: 1.2">{{ 'HOME.004' | translate }}</p>
->>>>>>> Stashed changes
                     <div class="card" *ngFor="let slide of popular_book" (click)="goPopularBook(slide)" style="cursor:pointer">
                         <div class="row no-gutters">
                             <div class="col-sm-2">
@@ -112,13 +112,9 @@
                 </div>
     <!-- Latest Book -->
                 <div class="col-md-5">
-<<<<<<< Updated upstream
                     <div style="display: flex;padding: 50px 0 20px 0;">
                         <p style="font-size: 20px;font-weight: 600;display: inline-block;line-height: 1.2">{{ 'HOME.005' | translate }}</p>
-=======
-                    <div style="display: flex;padding: 20px 0;">
-                        <p style="font-size: 30px;font-weight: 600;display: inline-block;line-height: 1.2">{{ 'HOME.005' | translate }}</p>
->>>>>>> Stashed changes
+
                         <p>
                             <a class="btn btn-lg" style="color: blue;font-size: 13px;" (click)="goLatestBooks()">{{ 'HOME.008' | translate }} >></a>
                         </p>
@@ -141,7 +137,6 @@
                 </div>
             </div>
         </div>
-    </div>
     <!-- Author -->
     <div class="col-md-12" style="background-color:#EEF7FF">
         <div class="container-fluid card1 card5">

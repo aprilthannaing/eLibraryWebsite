@@ -1,5 +1,5 @@
 <!-- <app-header></app-header> -->
-<div class="container-fluid card1" *ngIf ="pdfView != 1">
+<div class="container" *ngIf ="pdfView != 1">
     <h2 style="text-align: center;">{{title}}</h2>
     <p style="text-align: center;">Home / {{titleLink}} &nbsp;&nbsp;<button class="btn-success" style="border-radius: 50px;">{{bookCount}}</button></p>
     <div class="card" style="background-color: #d3d3d359;border-radius: 0">
@@ -16,8 +16,8 @@
             </select>
         </div>
     </div>
-    <div class="row col-md-12">
-        <div *ngFor="let book of bookList" class="col col-6">
+    <div class="col-md-12 row">
+        <div *ngFor="let book of bookList" class="col-md-6">
             <div class="card" style="border: 1px solid rgba(0,0,0,.125);">
                 <div class="card-title" id="bookTitle" style="background-color:#d3d3d359;border-radius: 10px 10px 0 0">
                     <h4 style="color: #6650a9;margin: 20px">&nbsp; {{book.title}}</h4>

@@ -11,6 +11,15 @@ site-header[lang="myan"]{
 } 
 .mat-tab-group .mat-tab-header .mat-tab-labels .mat-ripple {
   width: 100% !important;
+  opacity: 1;
+}
+.book-type .mat-tab-body-wrapper{
+  padding:20px;
+}
+.book-type .mat-tab-body-wrapper img{
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  box-shadow: 0px 0px 10px #ccc
 }
 .login-nav-header {
   z-index: 35;
@@ -33,7 +42,9 @@ ngx-slick-carousel ul.slick-dots {
 .img {
   margin-left: 20%;
 }
-
+.slick-slide img{
+  border-radius: 10px;
+}
 
 .div2 {
   background-color: #f1f1f1;  
@@ -232,10 +243,10 @@ input[type="text"] {
 }
 
 #divbox {
-  margin-top: 40px;
+  margin: 40px auto 0;
   border-radius: 25px;
-  margin-left: 27.5%;
-  width: 43%;
+
+
   padding:50px 20px;
   box-shadow:0px 0px 16px #79b1defa;
 }
@@ -292,9 +303,15 @@ input[type="text"] {
     box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.5);*/
     overflow-x: hidden;
   }
+  /*card*/
 .card{
   border: none;
   border-radius: 15px;
+}
+.card2 {
+  position: absolute;
+  top: 40%;
+
 }
 .imgstyl{
   border-radius: inherit;
@@ -542,6 +559,13 @@ mdb-navbar
 .active {
   /* background-color: #4CAF50; */
 }
+.recommend-slide{
+  padding:50px 0;
+  
+}
+.recommend-slide h1,.recommend-slide h2,.recommend-slide .card-body{
+  color:#fff;
+}
 
 @media screen and (max-width: 500px) {
   .navbar a,select{
@@ -554,4 +578,14 @@ mdb-navbar
  .hidden-md{
     display: none;
   }
+  #divbox{
+  width:90%;
+  }
+  .card1 {
+    padding: 0px 50px 0px 50px;
+  }
+  .card2{
+    top: 10%;
+  }
+
 }

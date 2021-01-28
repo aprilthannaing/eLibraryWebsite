@@ -18,7 +18,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-12 card5">
+    <div class="col-md-12 card5 book-type">
         <h1>{{ 'HOME.016' | translate }}</h1>
         <div style="text-align: center">
             <span style = "width: 12%;border-bottom: 1px solid;"></span>
@@ -30,14 +30,14 @@
                 <ng-template ngbTabContent></ng-template>
             </ngb-tab>
         </ngb-tabset> -->
-        <mat-tab-group class="card1">
+        <mat-tab-group class="container">
             <mat-tab *ngFor="let subcat of sub_category">
                 <ng-template mat-tab-label>
                     <span mat-line style="padding: 15px 0 15px 0;" (click)= "showBookByCategory(subcat.boId)">{{ subcat.myanmarName }}</span>
                 </ng-template>
                 <div class="row tab-body"  *ngIf="subcat!= ''">
-                    <div *ngFor="let book of books" (click)= "goBook(book)" class="row col-md-3" style="background-color: initial;padding: 4px 50px;">
-                        <img src="{{ book.coverPhoto }}" alt="" width="100%" height= "220px;">
+                    <div *ngFor="let book of books" (click)= "goBook(book)" class=" col-md-3" style="background-color: initial;">
+                        <img src="{{ book.coverPhoto }}" alt="" width="100%" height= "250px;">
                         <div class="card-body" style="color:#212529">
                             <h5 class="card-title" font>{{book.title}}</h5>
                             <h6 class="card-text" *ngFor="let author of book.authors">{{author.name}}</h6>
