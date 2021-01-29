@@ -11,7 +11,7 @@ ngb-rating {
   .card5 h1 {
     text-align: center;
     font-size: 25px;
-    padding-top: 50px;
+
   }
   .card5 h2 {
     text-align: center;
@@ -191,6 +191,10 @@ ngb-rating {
   background-position: center;
   background-repeat: no-repeat;
   position: relative;
+}
+.authors-block{
+  background:#f2f2f2;
+  padding:30px 0;
 }
 .background1::before{
   content:'';

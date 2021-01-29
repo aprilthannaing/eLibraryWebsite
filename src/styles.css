@@ -340,7 +340,20 @@ input[type="text"] {
 .tab-content{
   border-radius: 15px;
 }
-
+.footer-section{
+  padding:10px 0;
+  background:#5663ff;
+}
+.footer-section i{
+  background: #fff;
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  border-radius: 30px;
+  padding: 7px;
+  color: #5663ff;
+  margin-right: 5px;
+}
 footer .footer-bottom{
   background-color:#d0efff
 }

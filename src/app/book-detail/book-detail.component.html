@@ -257,14 +257,16 @@
       
       </div>
     <div class="div2" *ngIf="recommendBooks.length >0 && pdfView != 1">
-        <div class="container-fluid card1">
+        <div class="container recommend-book">
             <h2>Some Similar  Books</h2>
             <div class="row">
                 <div class="col-md-2" *ngFor="let item of recommendBooks">
-                    <div style="height: 80%;margin-bottom: 3%;">
+                    <div style="height: 200px;margin-bottom: 3%;">
                         <img src="{{apiRoute1}}{{item.coverPhoto}}" class="card-img-top h-100 ssbimg">
                     </div>
-
+                    <div class="div2" *ngIf="recommendBooks.length >0 && pdfView != 1">
+            
+                    <p>{{bookDetail.title}}</p>
                     <span class="fa fa-star"></span>
                     <span class="fa fa-star"></span>
                     <span class="fa fa-star"></span>
@@ -275,7 +277,7 @@
                     <button class="atr" (click)="ssbookmark(item.boId)">Add to read</button>
                 </div>
             </div>
-            <br><br>
+           
         </div>
     </div>
     <app-footer></app-footer>

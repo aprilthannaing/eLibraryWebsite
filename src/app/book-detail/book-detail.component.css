@@ -9,13 +9,13 @@
   .card-body{
     padding-bottom: 0px;
   }
-
+/* 
   h2 {
     font-size:1.5vw;
     font-family: poppins;
      font-weight: 300;
      margin: 2% 0% 3% 17%;
-  }
+  } */
 
   .ssbimg {
     padding: 0px 15px 0px 0px;
@@ -114,7 +114,18 @@
   padding: 0% 50% 0% 2%;
 }
 
-
+.recommend-book{
+  padding:30px 0;
+}
+.div2 .recommend-book p{
+  font-size: 12px;
+}
+.div2 .recommend-book span.fa{
+  color:#faa534;
+}
+.div2 .recommend-book span.fa.unchecked{
+  color:#ccc;
+}
 @media only screen and (max-width: 767px) {
   .book-cover{
     position: relative;
