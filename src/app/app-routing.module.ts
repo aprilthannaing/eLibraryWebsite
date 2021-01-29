@@ -11,10 +11,12 @@ import { FeedbackComponent } from './feedback/feedback.component';
 import { FooterComponent } from './footer/footer.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { AppComponent } from './app.component';
+import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
   { path: 'login', redirectTo: 'login', pathMatch: 'full' },
-  { path: 'login', component: AppComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'app', component: AppComponent},
   { path: 'home1', component: Home1Component },
   { path: 'book-detail', component: BookDetailComponent },
   { path: 'book-detail/:cmd/:id', component: BookDetailComponent },

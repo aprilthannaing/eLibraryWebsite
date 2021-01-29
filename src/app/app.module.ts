@@ -63,6 +63,7 @@ import { CommonModule } from '@angular/common';
 import { UserProfileComponent } from './user-profile/user-profile.component';  
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
+import { LoginComponent } from './login/login.component';
 export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient,'./assets/i18n/', '.json');
 }
@@ -80,6 +81,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     FeedbackComponent,
     FooterComponent,
     UserProfileComponent,
+    LoginComponent,
   ],
   imports: [
     MDBBootstrapModule.forRoot(),

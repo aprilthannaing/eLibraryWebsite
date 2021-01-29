@@ -35,6 +35,7 @@ export class IntercomService {
     "rightMenus": [],
     "verifyCode": "",
     "token": "",
+    "replyCount":"",
   };
 
   user: any;

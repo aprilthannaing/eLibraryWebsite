@@ -1,4 +1,4 @@
-<header class="site-header" *ngIf="header1">
+<header class="site-header" *ngIf="header1"><!--*ngIf="header1"-->
     <div class="navbar hidden-md top-nav">
         <div style="text-align: left;">
             <a href="#"><i class="fa fa-phone" style="font-size: 1.10em;"></i> (+959)123456789</a> 
@@ -45,7 +45,7 @@
         </links>
     </mdb-navbar>
 </header>
-<div class="login" *ngIf="header2 ">
+<!-- <div class="login" *ngIf="header2 ">
     <div  >
         <div>
             <div class="login-header">
@@ -95,13 +95,12 @@
                     <div class="inputWithIcon">
                         <input type="password" style="font-family:  poppins" placeholder="   Enter Password"
                             [(ngModel)]="password">
-                        <i style="font-size: 20px;margin-left: 3%;" class="fa fa-lock" aria-hidden="true"></i>
+                        <i style="cursor:pointer;font-size: 20px;margin-left: 3%;" class="fa fa-lock" aria-hidden="true"></i>
                     </div>
 
                     <span style="color: blue;font-size:1vw;font-family: poppins">Remember me</span>
-                    <span style="text-decoration: underline;margin-left: 28%;color: blue;font-size:1vw;font-family: poppins"
-                        (click)="forgetPassword()">Forgot
-                        Password?</span>
+                    <span style="cursor:pointer; text-decoration: underline;margin-left: 28%;color: blue;font-size:1vw;font-family: poppins"
+                        (click)="forgetPassword()">Forgot Password?</span>
                     <button class="button button1" (click)="login()">LOGIN</button>
                 </div>
               </div>
@@ -113,7 +112,6 @@
             <a class="text-dark" href="#"><span >Hluttaw E-Library</span></a>
            
         </div>
-        <!-- <app-footer></app-footer> -->
     </div>
-</div>
+</div> -->
 <router-outlet></router-outlet>

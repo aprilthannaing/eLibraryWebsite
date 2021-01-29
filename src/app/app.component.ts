@@ -34,9 +34,20 @@ mySubscription;
   ) {
     this.mySubscription = this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
-         if(this.ics._profile.token== "")
-          this.router.navigate(['']);
-          this.goCategory();
+         if(event.url == "/forgetpassword"){
+            this.router.navigate(['/forgetpassword']);
+          }else if(event.url == "/login"){
+            this.router.navigate(['/login']);
+          }else{
+            if(this.ics._profile.token== ""){
+              this.router.navigate(['/login']);
+             }else if(!this.header1){
+              this.goCategory();
+              this.getNotiCount();
+              this.header1 = true;
+              this.router.navigate(['/home1']);
+             }
+          }
       }
     }); 
     translate.addLangs(['myan', 'en']);
@@ -55,14 +66,7 @@ ngOnDestroy(){
   @HostListener('window:popstate', ['$event'])
   onPopState(event) {
     if (this.router.url == '/home1') {
-      let url = this.ics.apiRoute + '/user/signout'
-      let json = {"userid": this.ics._profile.userId}
-        this.http.post(url,json,{headers: new HttpHeaders().set('token', this.ics._profile.token)}).subscribe(
-          data  => {
-            this.header1 = false;
-            console.log("Logging Out!!!!!!!!!!!!!!!!!!!!!");
-          },
-          error => {}, () => { });
+        this.logout();
     }
   }
   
@@ -213,13 +217,19 @@ ngOnDestroy(){
     this.router.navigate(['/home1']);
   }
   logout(){
-    this.router.navigate(['/login']);
-    this.header1 = false;
-    this.header2 = true;
-    this.login1 = true;
-    this.ics._profile.userId = "";
-    this.ics._profile.email = "";
-    this.ics._profile.token = "";
+    let url = this.ics.apiRoute + '/user/signout'
+    let json = {"userid": this.ics._profile.userId}
+      this.http.post(url,json,{headers: new HttpHeaders().set('token', this.ics._profile.token)}).subscribe(
+        data  => {
+          this.header1 = false;
+          this.router.navigate(['/login']);
+          this.header1 = false;
+          this.ics._profile.userId = "";
+          this.ics._profile.email = "";
+          this.ics._profile.token = "";
+          this.selectedRow = this.categories.length+1;
+        },
+        error => {}, () => { });
     // this.ics._profile = {
     //   "userId": "",
     //   "email": "",
