@@ -171,7 +171,7 @@ export class Home1Component implements OnInit {
                   }
                   //popular_book Book 
                   this.popular_book_temp = data.popular_book
-                    let j = 2;
+                    let j = 4;
                     if(this.popular_book_temp.length < j)
                       j = this.popular_book_temp.length;
                   for(let i=0; i < j; i++){

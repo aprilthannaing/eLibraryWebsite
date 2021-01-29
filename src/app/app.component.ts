@@ -217,21 +217,24 @@ ngOnDestroy(){
     this.header1 = false;
     this.header2 = true;
     this.login1 = true;
-    this.ics._profile = {
-      "userId": "",
-      "email": "",
-      "phno":"",
-      "type":"",
-      "hluttaw":"",
-      "department":"",
-      "position":"",
-      "userName": "",
-      "logoText": "eLibrary",
-      "logoLink": "/home",
-      "menus": [],
-      "rightMenus": [],
-      "verifyCode": "",
-      "token": "",
-    };
+    this.ics._profile.userId = "";
+    this.ics._profile.email = "";
+    this.ics._profile.token = "";
+    // this.ics._profile = {
+    //   "userId": "",
+    //   "email": "",
+    //   "phno":"",
+    //   "type":"",
+    //   "hluttaw":"",
+    //   "department":"",
+    //   "position":"",
+    //   "userName": "",
+    //   "logoText": "eLibrary",
+    //   "logoLink": "/home",
+    //   "menus": [],
+    //   "rightMenus": [],
+    //   "verifyCode": "",
+    //   "token": "",
+    // };
   }
 }

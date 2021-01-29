@@ -25,12 +25,32 @@ export class CategoryListComponent implements OnInit {
     {Id: 0,boId: "",name: "",sort: "",profilePicture: "",authorType: ""}
   ];
   slideAuthorsConfig = {
-    "slidesToShow": 5,
+    "slidesToShow": 6,
     "slidesToScroll": 4,
     "dots": true,
     "infinite": false,
     "nextArrow": false,
     "prevArrow": false,
+    "responsive":[
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 4
+        }
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 3
+        }
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 2
+        }
+      }
+    ]
   };
   slideConfig = {
     "slidesToShow": 5,
@@ -38,8 +58,29 @@ export class CategoryListComponent implements OnInit {
     "nextArrow": "<div class='nav-btn next-slide'></div>",
     "prevArrow": "<div class='nav-btn prev-slide'></div>",
     "dots": false,
-    "infinite": false
+    "infinite": false,
+    "responsive":[
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3
+        }
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2
+        }
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1
+        }
+      }
+    ]
   };
+  backgoundImg = "";
   constructor(
     private router: Router,
     private http: HttpClient,
@@ -50,6 +91,19 @@ export class CategoryListComponent implements OnInit {
         if (cmd != null && cmd != "" && cmd == "read"){
           let id = params['id'];
           this.categoryId = id;
+         if(this.categoryId == "CATEGORY10001"){
+            this.backgoundImg = '/assets/images/categories/library.jpg';
+          }else  if(this.categoryId == "CATEGORY10002"){
+            this.backgoundImg = '/assets/images/categories/category4.jpg';
+          }else  if(this.categoryId == "CATEGORY10003"){
+            this.backgoundImg = '/assets/images/categories/category6.jpg';
+          }else  if(this.categoryId == "CATEGORY10004"){
+            this.backgoundImg = '/assets/images/categories/category10.jpg';
+          }else  if(this.categoryId == "CATEGORY10005"){
+            this.backgoundImg = '/assets/images/categories/category11.jpg';
+          }else  if(this.categoryId == "CATEGORY10006"){
+            this.backgoundImg = '/assets/images/categories/category3.jpg';
+          }
           this.showBook();
         } 
      });

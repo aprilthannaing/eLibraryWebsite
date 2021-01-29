@@ -32,21 +32,15 @@ ngb-rating {
   }
 
   .background {
-    /* position: absolute; */
     top: 0;
     left: 0;
     margin: 0 auto;
-    /* padding: 0 26px; */
     width: 100%;
     height:80vh;
     background-image:url("/assets/images/showcase.jpg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    /* background-position-y: top; */
-    /* height: 400px; */
-    /* filter: blur(2px); 
-    -webkit-filter: blur(2px); */
     position: relative;
   }
   .card4 h1 {

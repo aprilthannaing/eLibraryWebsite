@@ -47,7 +47,6 @@
        </div>
     </div>
     <!-- recommend book -->
-    <div>
         <div class="background1">
            <div class="container">
                 <div class=" recommend-slide" >
@@ -83,13 +82,17 @@
                 </div>
            </div>
         </div>
-        
-    </div>
     <!-- Popular Book -->
         <div class="container">
             <div class="row ">
                 <div class="col-md-7">
-                    <p style="font-size: 20px;padding: 50px 0 20px 0;font-weight: 600;line-height: 1.2">{{ 'HOME.004' | translate }}</p>
+                        <div style="display: flex;padding: 50px 0 20px 0;">
+                            <p style="font-size: 20px;font-weight: 600;display: inline-block;line-height: 1.2">{{ 'HOME.004' | translate }}</p>
+    
+                            <p>
+                                <a class="btn btn-lg" style="color: blue;font-size: 13px;" (click)="goPopularBooks()">{{ 'HOME.008' | translate }} >></a>
+                            </p>
+                        </div>
                     <div class="card" *ngFor="let slide of popular_book" (click)="goPopularBook(slide)" style="cursor:pointer">
                         <div class="row no-gutters">
                             <div class="col-sm-2">
@@ -106,9 +109,6 @@
                         </div>
                         <br>
                     </div>
-                    <p style="text-align:center;">
-                        <a class="btn btn-md" style="color: blue;border-color: blue;" (click)="goPopularBooks()">{{ 'HOME.008' | translate }} >></a>
-                    </p>
                 </div>
     <!-- Latest Book -->
                 <div class="col-md-5">
@@ -138,8 +138,7 @@
             </div>
         </div>
     <!-- Author -->
-    <div class="col-md-12" style="background-color:#EEF7FF">
-        <div class="container-fluid card1 card5">
+        <div class="container card5">
             <h1>{{ 'HOME.006' | translate }}</h1>
             <h2>{{ 'HOME.014' | translate }}</h2>
             <div style="text-align: center">
@@ -186,7 +185,28 @@
                 </ngb-tab>
             </ngb-tabset>
         </div>
-    </div>
+        <div class="row col-md-12" style="text-align: center;margin: 20px 0;">
+            <div class="col-md-1"></div>
+            <div class="col-md-3">
+                <a href="https://www.moi.gov.mm/nlm/">
+                    <img src="assets/images/News/new.png" width= '80%'>
+                    https://www.moi.gov.mm/nlm/
+                </a>
+            </div>
+            <div class="col-md-3">
+                <a href="https://www.moi.gov.mm/nlm/">
+                    <img src="assets/images/News/km-logo.png" width= '80%' >
+                    https://www.moi.gov.mm/nlm/
+                </a>
+            </div>
+            <div class="col-md-3">
+                <a href="https://www.moi.gov.mm/nlm/">
+                    <img src="assets/images/News/Myanma-Alinn.png" width= '80%' >
+                    https://www.moi.gov.mm/nlm/
+                </a>
+            </div>
+        </div>
+    
     <p style="text-align:center">
         <br>
             <img href="https://drive.google.com/file/d/1oAf8juZEXNoDfa4tBkjNQMCuxP_8ZzO_/view?usp=sharing" src="assets/images/googleplay.png" width="200px">

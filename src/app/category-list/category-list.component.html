@@ -1,6 +1,6 @@
  <!-- Search Box -->
- <div class="background"></div>
-    <div class="col-md-12 card2 card3" style="padding-left: 120px;"><!--style="height: 400px;"background-color: rgba(0,0,0, 0.4);-->
+ <div class="background" style="background-image:url({{backgoundImg}})">
+    <div class="container card2 card3">
         <h2>{{ 'HOME.001' | translate }}</h2>
         <h1 *ngIf="categoryId == 'CATEGORY10001'">{{ 'Category.CATEGORY10001' | translate }}</h1>
         <h1 *ngIf="categoryId == 'CATEGORY10002'">{{ 'Category.CATEGORY10002' | translate }}</h1>
@@ -9,15 +9,14 @@
         <h1 *ngIf="categoryId == 'CATEGORY10005'">{{ 'Category.CATEGORY10005' | translate }}</h1>
         <h1 *ngIf="categoryId == 'CATEGORY10006'">{{ 'Category.CATEGORY10006' | translate }}</h1>
 
-        <div class="row col-md-12">
-                <input type="text" placeholder="Search Book,Title,Author" id="search"  [(ngModel)]="search" class="col-md-4 border" style="margin-top: 0;">
-                <div class="col-md-8">
-                <input type="month" id="search"  class="border col-md-3" [max]="endDate" [(ngModel)]="startDate">&nbsp;
-                <input type="month" id="search"  class="border col-md-3" [min]="startDate" [(ngModel)]="endDate">
-                <button class="buttonMe" type="button" class="buttonMe col-md-2"  (click)= "goSearch()">SEARCH</button>
-            </div>
+        <div class="row">
+            <div class="col-md-4"> <input type="text" placeholder="Search Book,Title,Author" id="search"  [(ngModel)]="search" class=" border uni" style="margin-top: 0;"></div>
+            <div class="col-md-3"> <input type="month" id="search"  class="border" [max]="endDate" [(ngModel)]="startDate"></div>
+            <div class="col-md-3"><input type="month" id="search"  class="border" [min]="startDate" [(ngModel)]="endDate"></div>
+            <div class="col-md-2"><button class="buttonMe" type="button" class="buttonMe"  (click)= "goSearch()">SEARCH</button></div>
         </div>
     </div>
+ </div>
     <div class="col-md-12 card5 book-type">
         <h1>{{ 'HOME.016' | translate }}</h1>
         <div style="text-align: center">
@@ -54,38 +53,43 @@
         </mat-tab-group>
     </div>
     <!-- Latest Book -->
-    <div class="col-md-12 card6" style="background-color:#3E3F68">
-            <h1>{{ 'HOME.005' | translate }}</h1>
-            <h2>{{ 'HOME.015' | translate }}</h2>
-            <div style="text-align: center">
-                <span class="outer-line"></span>
-                <span class="fa fa-book" aria-hidden="true" style="color: #fff;font-size:25px;margin: 0 12px;"></span>
-                <span class="outer-line"></span>
-            </div>
-            <div class="card1" style="background-color:unset">
-                <div style="padding-right: 18px;text-align: right;font-size: 1.4em;font-weight: 600;letter-spacing: -0.055em;">
-                    <a routerLink="[]" style="color: #F8F9FF;" (click)="goLatestBooks()">{{ 'HOME.007' | translate }}</a>
+    <div style="background-color:#3E3F68">
+        <div class="container">
+            <div class="recommend-slide" >
+                <h1 class="text-center">{{ 'HOME.005' | translate }}</h1>
+            
+                <h2  class="text-center">{{ 'HOME.015' | translate }}</h2>
+                <div style="text-align: center">
+                    <span class="outer-line"></span>
+                    <span class="fa fa-book bookMe" aria-hidden="true"  style="color: #fff;"></span>
+                    <span class="outer-line"></span>
                 </div>
-                <ngx-slick-carousel class="carousel" 
-                #slickModal="slick-carousel" 
-                [config]="slideConfig" 
-                (init)="slickInit($event)"
-                (breakpoint)="breakpoint($event)"
-                (afterChange)="afterChange($event)"
-                (beforeChange)="beforeChange($event)">
-                <div ngxSlickItem *ngFor="let slide of latest_book" (click)="goLatestBook(slide)" class="slide" style="background-color: initial;padding: 20px;">
-                    <img src="{{ slide.coverPhoto }}" alt="" width="100%" height= "220px;">
-                    <div class="card-body">
-                        <h5 class="card-title">{{slide.title}}</h5>
-                        <p class="card-text" *ngFor="let author of slide.authors">{{author.name}}</p>
-                        <ngb-rating [max]="5" [(rate)]="slide.averageRating"></ngb-rating>
+                <div class="card" style="background-color:unset">
+                    <div style="padding-right: 18px;text-align: right;font-size: 1.4em;font-weight: 600;letter-spacing: -0.055em;">
+                        <a routerLink="[]"  (click)="goLatestBooks()" style="color: #F8F9FF;">{{ 'HOME.007' | translate }}</a>
                     </div>
+                    <ngx-slick-carousel class="carousel" 
+                    #slickModal="slick-carousel" 
+                    [config]="slideConfig" 
+                    (init)="slickInit($event)"
+                    (breakpoint)="breakpoint($event)"
+                    (afterChange)="afterChange($event)"
+                    (beforeChange)="beforeChange($event)">
+                    <div ngxSlickItem *ngFor="let slide of latest_book" (click)="goLatestBook(slide)" class="slide" style="background-color: initial;padding: 20px;">
+                        <img src="{{ slide.coverPhoto }}" alt="" class="card-img-top" height= "200px;">
+                        <div class="card-body">
+                            <h5 class="card-title">{{slide.title1}}</h5>
+                            <h6 *ngFor="let author of slide.authors">{{author.name}}</h6>
+                            <ngb-rating [max]="5" [(rate)]="slide.averageRating"></ngb-rating>
+                        </div>
+                    </div>
+                    </ngx-slick-carousel>
                 </div>
-                </ngx-slick-carousel>
             </div>
-    </div>
+        </div>
+        </div>
     <!-- Author -->
-    <div class="col-md-12 card5">
+    <div class="container card5">
         <h1>{{ 'HOME.006' | translate }}</h1>
         <h2>{{ 'HOME.014' | translate }}</h2>
         <div style="text-align: center">
@@ -93,7 +97,7 @@
             <span class="fa fa-book" aria-hidden="true" style="background-color: #F8F9FF;font-size:25px;margin: 0 12px;"></span>
             <span style = "width: 12%;border-bottom: 1px solid;"></span>
         </div>
-        <ngx-slick-carousel class="carousel card1" 
+        <ngx-slick-carousel class="carousel" 
             #slickModal="slick-carousel" 
             [config]="slideAuthorsConfig" 
             (init)="slickInit($event)"
