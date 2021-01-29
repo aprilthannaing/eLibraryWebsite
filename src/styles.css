@@ -138,8 +138,8 @@ input[type="text"] {
     cursor: pointer;
     border-radius: 22px;  
     border: 1px solid #ddd;
-    margin: 3% 0% 0% 58%;
-    font-size: 0.8vw;
+    margin: 20px 0;
+    font-size: 16px;
     color: rgb(44, 43, 43);
     outline: none;
   }
@@ -176,19 +176,21 @@ input[type="text"] {
   }
 
   .atr3:hover{
-    background-color:#ddd;
+    background-color: rgb(3 71 173);
+    color:#fff;
   }
 
   .atr3{
     text-align: left;
-    background-color:#fff;
-    padding: 3px 20px 3px 20px;
-    border-radius: 22px;  
-    border: 1px solid rgb(129, 129, 129);
-    margin: 5% 0% 0% 0%;
-    font-size: 0.8vw;
-    color: rgb(44, 43, 43);
-    margin-right: 3%;
+    background-color: #fff;
+    padding: 8px 30px 8px 30px;
+    border-radius: 22px;
+    border: 1px solid rgb(61 95 243);
+    margin:10px 0;
+    font-size: 15px;
+    color: rgb(3 71 173);
+    width:100%;
+    text-align: center;
   }
   
 
@@ -517,6 +519,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 mdb-navbar .navbar {
   background-color: #EEF7FF !important;
+  
 }
 .nav-item .active {
   border-bottom: 2px solid #5663ff;
@@ -565,6 +568,24 @@ mdb-navbar
 }
 .recommend-slide h1,.recommend-slide h2,.recommend-slide .card-body{
   color:#fff;
+}
+/*detail book*/
+.detail-book{
+  background:url("assets/images/book-detail-bg.jpg") no-repeat;
+  background-size: cover;
+  height:300px;
+  width: 100%;
+  background-position: center center;
+  position: relative;
+}
+.detail-book::before{
+  content:' ';
+  position:absolute;
+  top:0;
+  left:0;
+  width: 100%;
+  height: 100%;
+  background:rgb(34 34 34 / 78%);
 }
 
 @media screen and (max-width: 500px) {

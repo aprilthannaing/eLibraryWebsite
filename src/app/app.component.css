@@ -23,6 +23,10 @@
 .navbar-nav.mr-auto{
     float:right;
 }
+.navbar{
+    position:sticky;
+    position: -webkit-sticky;
+}
 .login{
     background-image: linear-gradient(to bottom, #cdff0736, #b5fbddb5,  #003cff4a);
     width:100%;

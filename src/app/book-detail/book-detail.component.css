@@ -38,21 +38,73 @@
 }
 
 .cover{
-  padding: 40px 20px 40px 20px;
+  padding: 10px;
   border-radius: 10px;
   background-color: #f1f1f1;
-
+  box-shadow:0px 0px 15px #04217140;
+  z-index: 333;
+} 
+.book-des-section{
+  min-height:340px;
 }
-
+.description{
+  padding: 0 20px;
+}
+.book-cover{
+  position: absolute;
+  margin-top:120px;
+}
+.book-title-author h4{
+  font-size: 28px;
+  line-height: 42px;
+}
+.book-title-author .author{
+  color:#fff;
+}
+.book-title-author .star{
+  color:#faa534
+}
+.inner-book-type{
+  background: #fff;
+    border-radius: 20px;
+    box-shadow: 0px 0px 5px rgba(34, 34, 34, 0.401);
+    height: 124px;
+    width: 100%;
+    padding: 10px 20px;
+    font-size: 12px;
+    margin-bottom:15px;
+}
+.inner-book-type p{
+  padding:0;
+  margin:0;
+}
+.inner-book-type h4{
+  font-size: 25px;
+  font-weight: bold;
+  margin:0;
+  padding:0;
+}
+.book-title-author{
+  margin-top:30px;
+}
+.bookmark-section i{
+  font-size: 22px;
+  color: #ccc;
+  margin-top: -30px;
+  background: #fff;
+  padding: 9px;
+  border-radius: 30px;
+  box-shadow: 0px 0px 5px #132642a6;
+  text-align: center;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  margin-left:10px;
+ 
+}
 .profile{
   border-radius: 100%;
   width: 13%;
-  height: auto;
-}
-
-.profile2{
-  border-radius: 100%;
-  width: 8%;
   height: auto;
 }
 
@@ -64,9 +116,16 @@
 
 
 @media only screen and (max-width: 767px) {
-  .book-detail {            
-      color: black;
-  }    
+  .book-cover{
+    position: relative;
+    margin:0;
+    padding-top:30px;
+  }
+  .detail-book{
+    height:auto;
+    color:#fff;
+    padding-bottom:20px;
+  } 
 }
 
 @media only screen and (min-width: 767px) {
