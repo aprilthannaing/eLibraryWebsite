@@ -40,6 +40,25 @@
                 (click)="goBookbyCategory(cat, i)" [class.active]="i == selectedRow"
                 style="color:#212529;font-weight: 500;font-size: 15px;text-transform: capitalize;"
                 class="nav-link waves-light" mdbWavesEffect >{{cat.myanmarName}}</a><!--lang="{{lang}}"-->
+         
+            <li class="mobile-show">
+                <a [routerLink]="['/profile']" title="Library Homepage" class="right"> 
+                    <img src="assets/images/user-icon.png" style=' border-radius: 50%;width: 18px;margin-top:-5px'>
+                    <span>&nbsp; {{ 'HEAD.002' | translate }} </span>&nbsp;
+                   
+                </a>
+            </li>
+            <li class="mobile-show">
+                <a (click)="feedback()" title="Feedback">
+                    <i class="fa fa-envelope-o" aria-hidden="true"
+                        style="font-size: 1.10em;"></i>&nbsp; 
+                    <span class="badge list">{{replyCount}}</span>
+                </a>
+            </li>
+            <li class="mobile-show">  
+                <a (click)="openConfirmationDialog()" title="Log Out"> <i class="fas fa-sign-out-alt" aria-hidden="true" ></i>
+                {{ 'HEAD.003' | translate }}
+                </a>
             </li>
             </ul>
         </links>

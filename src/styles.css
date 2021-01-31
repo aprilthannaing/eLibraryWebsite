@@ -45,7 +45,10 @@ ngx-slick-carousel ul.slick-dots {
 .slick-slide img{
   border-radius: 10px;
 }
+.slick-slide img{
+ border-radius:0;
 
+}
 .div2 {
   background-color: #f1f1f1;  
 }
@@ -603,7 +606,34 @@ mdb-navbar
   height: 100%;
   background:rgb(34 34 34 / 78%);
 }
-
+.modal-dialog {
+  text-align: center;
+}
+.modal-dialog .modal-header{
+  padding:0;
+  border:none;
+}
+.modal-dialog h4{
+  text-align: center;
+  display: block;
+  width: 100%;
+  font-weight: 600;
+  color: #0a56bb;
+  text-shadow: none;
+  border: none;
+  font-size: 18px;
+  margin:0;
+  padding:0;
+}
+.modal-content{
+  padding:20px 10px;
+  border-radius: 20px;
+}
+.modal-footer{
+  display:block;
+  padding:0;
+  border:none;
+}
 @media screen and (max-width: 500px) {
   .navbar a,select{
     float: none;

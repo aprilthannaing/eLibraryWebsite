@@ -168,7 +168,7 @@
                     </ngb-tab>
                     <ngb-tab title="{{ 'HOME.010' | translate }}">
                         <ng-template ngbTabContent>
-                                <ngx-slick-carousel class="carousel" 
+                                <ngx-slick-carousel class="carousel author-slick" 
                                 #slickModal="slick-carousel" 
                                 [config]="slideAuthorsConfig" 
                                 (init)="slickInit($event)"
@@ -178,7 +178,7 @@
                                     <div ngxSlickItem *ngFor="let slide of international_author" class="slide" style="padding: 20px;background-color: initial;" (click)="goBookByAuthors(slide)">
                                         <div *ngIf="slide.authorType == 'INTERNATIONAL'" >
                                             <img src="{{ slide.profilePicture }}" alt="" width="100%">
-                                            <h6 class="card-title" style="padding: 15px;background-color:black;text-align: center;color: white;">{{slide.name}}</h6>
+                                            <h6 class="card-title" style="padding: 15px;background-color:black;text-align: center;color: white;height:65px;">{{slide.name}}</h6>
                                         </div>
                                     </div>
                                 </ngx-slick-carousel>
