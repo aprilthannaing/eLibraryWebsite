@@ -30,7 +30,7 @@ export class BookDetailComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.ics.recommendBooks.length > 0)
-      for (let i = 0; i < 5; i++)
+      for (let i = 0; i < 6; i++)
         this.recommendBooks.push(this.ics.recommendBooks[i]);
     console.log(" this.bookDetail ", this.bookDetail)
 

@@ -1,39 +1,87 @@
 <div>
-    <img src="assets/images/background.jpg" class="bg" *ngIf="pdfView != 1">
-    <div class="container-fluid card1" *ngIf="pdfView != 1">
-        <div class="row" style="margin: -3% 0% 0% 15%;">
-            <div class="col-md-2 cover">
+    <div class="detail-book" *ngIf="pdfView != 1">
+        <!-- <img src="assets/images/book-detail-bg.jpg" class="bg" *ngIf="pdfView != 1"> -->
+        <div class="container" style="position: relative;">
+            <div class=" book-cover">
+               <div class="row">
+                <div class="col-md-3 cover">
+                    <img src="{{bookDetail.coverPhoto}}" style="border-radius: 10px;"
+                        class="card-img-top ">
+                        <div class="text-center"> <button class="atr3" (click)="goBookRead()">Preview</button></div>
+                </div>
+                <div class="col-md-9 book-title-author">
+                    <h4><span class="book-detail" >{{bookDetail.title}}</span></h4>
+                    <div class="author">
+                        <i class="fa fa-user-o" aria-hidden="true"></i> {{bookDetail.authors[0].name}}
+                    </div>
+                    <div class="star">
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star unchecked"></span>
+                        <span class="fa fa-star unchecked"></span>
+                    </div>
+                </div>
+               </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" *ngIf="pdfView != 1">
+        <div class="row">
+            <!-- <div class="col-md-2 cover">
                 <img src="{{bookDetail.coverPhoto}}" style="border-radius: 10px;"
                     class="card-img-top h-100">
 
-            </div>
-            <div class="col-md-10">
+            </div> -->
+            <div class="col-md-3 "></div>
+            <div class="col-md-9 book-des-section">
+                <div class="bookmark-section" style="text-align: right;">
+                    <i class="fa fa-heart-o" aria-hidden="true"
+                        (click)="favourite()" *ngIf="!bookDetail.favouriteStatus"></i>
+                    <i class="fa fa-heart" style="color: blue;" aria-hidden="true" *ngIf="bookDetail.favouriteStatus"></i>
+                    <i class="fa fa-bookmark-o" aria-hidden="true"  (click)="bookmark()" *ngIf="!bookDetail.bookMarkStatus"></i>
+                    <i class="fa fa-bookmark" aria-hidden="true"  style="color: blue;" (click)="bookmark()" *ngIf="bookDetail.bookMarkStatus"></i>
+                </div>
+          
+                <p class="mt-4 description">
+                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptas hic dignissimos minus, earum, cumque error et dicta id distinctio facilis amet, assumenda sed fugit atque nostrum illo non ea perspiciatis!
+                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptas hic dignissimos minus, earum, cumque error et dicta id distinctio facilis amet, assumenda sed fugit atque nostrum illo non ea perspiciatis!
+                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptas hic dignissimos minus, earum, cumque error et dicta id distinctio facilis amet, assumenda sed fugit atque nostrum illo non ea perspiciatis!
+                </p>
+                <p  class="mt-4" >{{bookDetail.comment.description}}</p>
 
-                <div class="div3">
-                    <span class="book-detail" style="font-size:1.2vw;font-family: poppins;">{{bookDetail.title}}</span>
-                    <!-- <br><br> -->
-                    <div class="row" style="margin-top: 8%;">
-                        <img src="assets/images/author1.png" class="profile">
-                        <div class="col-md-5">
-                            <span style="margin-left: 2%;">{{bookDetail.authors[0].name}}</span>
-                            <div>
-                                <span class="fa fa-star"></span>
-                                <span class="fa fa-star"></span>
-                                <span class="fa fa-star"></span>
-                                <span class="fa fa-star unchecked"></span>
-                                <span class="fa fa-star unchecked"></span>
-                            </div>
-                        </div>
-                        <div class="col-md-5" style="text-align: right;">
-                            <i class="fa fa-gratipay" style="font-size:20px;" aria-hidden="true"
-                                (click)="favourite()" *ngIf="!bookDetail.favouriteStatus"></i>
-                            <i class="fa fa-gratipay" style="font-size:20px;color: blue;" aria-hidden="true" *ngIf="bookDetail.favouriteStatus"></i>
-
-                            <i class="fa fa-bookmark" aria-hidden="true"  style="margin-left:5%;font-size:20px;" (click)="bookmark()" *ngIf="!bookDetail.bookMarkStatus"></i>
-                            <i class="fa fa-bookmark" aria-hidden="true"  style="margin-left:5%;font-size:20px;color: blue;" (click)="bookmark()" *ngIf="bookDetail.bookMarkStatus"></i>
-
-                        </div>
+                <div class="row book-type">
+                    <div class="col-md-3 text-center">
+                       <div class="inner-book-type">
+                            <p >Series</p>
+                            <img src="assets/images/1.jpg" class="profile2">
+                            <h4>{{bookDetail.seriesIndex}}</h4>
+                       </div>
                     </div>
+                    <div class="col-md-3 text-center">
+                      <div class="inner-book-type">
+                        <p >Number of books published</p>
+                        <img src="assets/images/2.jpg" class="profile2">
+                        <h4>{{bookDetail.edition}}</h4>
+                      </div>
+                    </div>
+                    <div class="col-md-3 text-center">
+                       <div class="inner-book-type">
+                            <p >Book Size</p>
+                            <img src="assets/images/3.jpg" class="profile2">
+                            <h4>{{bookDetail.size}}</h4>
+                       </div>
+                    </div>
+               </div>
+               
+             
+
+                <!-- <div class="div3">
+                   
+          
+                                          
+                        
                     <div class="row">
 
                         <img src="assets/images/1.jpg" class="profile2">
@@ -69,14 +117,12 @@
                     </div>
                     <p>
                     <p>{{bookDetail.comment.description}}</p>
-                </div>
+                </div> -->
             </div>
-
-
         </div>
-        <div style="margin: 0% 0% 5% 60%;">
-            <button class="atr2" (click)="bookmark()">Add to read</button>
-            <button class="atr3" (click)="goBookRead()">Preview</button>
+        <div >
+            <!-- <button class="atr2" (click)="bookmark()">Add to read</button> -->
+          
 
         </div>
 
@@ -211,14 +257,16 @@
       
       </div>
     <div class="div2" *ngIf="recommendBooks.length >0 && pdfView != 1">
-        <div class="container-fluid card1">
-            <h2>S o m e &nbsp; S i m i l a r &nbsp; B o o k s</h2>
+        <div class="container recommend-book">
+            <h2>Some Similar  Books</h2>
             <div class="row">
                 <div class="col-md-2" *ngFor="let item of recommendBooks">
-                    <div style="height: 80%;margin-bottom: 3%;">
+                    <div style="height: 200px;margin-bottom: 3%;">
                         <img src="{{apiRoute1}}{{item.coverPhoto}}" class="card-img-top h-100 ssbimg">
                     </div>
-
+                    <div class="div2" *ngIf="recommendBooks.length >0 && pdfView != 1">
+            
+                    <p>{{bookDetail.title}}</p>
                     <span class="fa fa-star"></span>
                     <span class="fa fa-star"></span>
                     <span class="fa fa-star"></span>
@@ -229,7 +277,7 @@
                     <button class="atr" (click)="ssbookmark(item.boId)">Add to read</button>
                 </div>
             </div>
-            <br><br>
+           
         </div>
     </div>
     <app-footer></app-footer>

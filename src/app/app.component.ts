@@ -3,6 +3,7 @@ import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { IntercomService } from './framework/intercom.service';
 import { TranslateService } from '@ngx-translate/core';
+import { ConfirmationDialogService } from './confirmation-dialog/confirmation-dialog.service';
 
 @Component({
   selector: 'app-root',
@@ -24,27 +25,30 @@ export class AppComponent {
   _result: string = "";
   replyCount = "10";
   lang = "";
+  home1 = false;
 mySubscription;
   constructor(
     private router: Router,
     private http: HttpClient,
     private route: ActivatedRoute,
     private ics: IntercomService,
-    public translate: TranslateService
+    public translate: TranslateService,
+    private confirmationDialogService: ConfirmationDialogService
   ) {
     this.mySubscription = this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
          if(event.url == "/forgetpassword"){
             this.router.navigate(['/forgetpassword']);
-          }else if(event.url == "/login"){
-            this.router.navigate(['/login']);
+          }else if(event.url == "/login" && this.home1 != true){
           }else{
             if(this.ics._profile.token== ""){
               this.router.navigate(['/login']);
-             }else if(!this.header1){
+             }else if(!this.header1 || this.home1 == true){
               this.goCategory();
               this.getNotiCount();
               this.header1 = true;
+              this.home1 = false;
+              this.selectedRow = this.categories.length+1;
               this.router.navigate(['/home1']);
              }
           }
@@ -66,7 +70,8 @@ ngOnDestroy(){
   @HostListener('window:popstate', ['$event'])
   onPopState(event) {
     if (this.router.url == '/home1') {
-        this.logout();
+        this.home1 = true;
+        this.openConfirmationDialog();
     }
   }
   
@@ -216,6 +221,17 @@ ngOnDestroy(){
     this.selectedRow = this.categories.length+1;
     this.router.navigate(['/home1']);
   }
+  openConfirmationDialog() {
+    this.confirmationDialogService.confirm('Please confirm', 'Do you really want to Logout ?')
+    .then((confirmed) => {
+      if(confirmed){
+        this.logout();
+      }else{
+
+      } 
+    }).catch(() => 
+      console.log('User dismissed the dialog (e.g., by using ESC, clicking the cross icon, or clicking outside the dialog)'));
+  }
   logout(){
     let url = this.ics.apiRoute + '/user/signout'
     let json = {"userid": this.ics._profile.userId}
@@ -230,21 +246,5 @@ ngOnDestroy(){
           this.selectedRow = this.categories.length+1;
         },
         error => {}, () => { });
-    // this.ics._profile = {
-    //   "userId": "",
-    //   "email": "",
-    //   "phno":"",
-    //   "type":"",
-    //   "hluttaw":"",
-    //   "department":"",
-    //   "position":"",
-    //   "userName": "",
-    //   "logoText": "eLibrary",
-    //   "logoLink": "/home",
-    //   "menus": [],
-    //   "rightMenus": [],
-    //   "verifyCode": "",
-    //   "token": "",
-    // };
   }
 }

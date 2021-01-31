@@ -13,7 +13,7 @@
     </div>
    
     <!-- advertisements -->
-    <div class="card5" style="background-color:#EEF7FF">
+    <div class="card5" style="background-color:#EEF7FF;padding:50px 0 30px">
        <div class="container">
             <h1>{{ 'HOME.011' | translate }}</h1>
         
@@ -138,35 +138,18 @@
             </div>
         </div>
     <!-- Author -->
-        <div class="container card5">
-            <h1>{{ 'HOME.006' | translate }}</h1>
-            <h2>{{ 'HOME.014' | translate }}</h2>
-            <div style="text-align: center">
-                <span style = "width: 12%;border-bottom: 1px solid;"></span>
-                <span class="fa fa-book bookMe" aria-hidden="true"></span>
-                <span style = "width: 12%;border-bottom: 1px solid;"></span>
-            </div>
-            <ngb-tabset justify="center" style="font-size: 1.5rem;" style="cursor:pointer">
-                <ngb-tab title="{{ 'HOME.009' | translate }}">
-                    <ng-template ngbTabContent>
-                        <ngx-slick-carousel class="carousel" 
-                        #slickModal="slick-carousel" 
-                        [config]="slideAuthorsConfig" 
-                        (init)="slickInit($event)"
-                        (breakpoint)="breakpoint($event)"
-                        (afterChange)="afterChange($event)"
-                        (beforeChange)="beforeChange($event)">
-                            <div ngxSlickItem *ngFor="let slide of local_author" class="slide" style="padding: 20px;background-color: initial;" (click)="goBookByAuthors(slide)">
-                                <div *ngIf="slide.authorType == 'LOCAL'">
-                                    <img src="{{ slide.profilePicture }}" alt="" width="100%">
-                                    <h6 class="card-title" style="padding: 15px;background-color:black;text-align: center;color: white;">{{slide.name}}</h6>
-                                </div>
-                            </div>
-                        </ngx-slick-carousel>
-                    </ng-template>
-                </ngb-tab>
-                <ngb-tab title="{{ 'HOME.010' | translate }}">
-                    <ng-template ngbTabContent>
+        <div class="authors-block">
+            <div class="container card5">
+                <h1>{{ 'HOME.006' | translate }}</h1>
+                <h2>{{ 'HOME.014' | translate }}</h2>
+                <div style="text-align: center">
+                    <span style = "width: 12%;border-bottom: 1px solid;"></span>
+                    <span class="fa fa-book bookMe" aria-hidden="true"></span>
+                    <span style = "width: 12%;border-bottom: 1px solid;"></span>
+                </div>
+                <ngb-tabset justify="center" style="font-size: 1.5rem;" style="cursor:pointer">
+                    <ngb-tab title="{{ 'HOME.009' | translate }}">
+                        <ng-template ngbTabContent>
                             <ngx-slick-carousel class="carousel" 
                             #slickModal="slick-carousel" 
                             [config]="slideAuthorsConfig" 
@@ -174,35 +157,54 @@
                             (breakpoint)="breakpoint($event)"
                             (afterChange)="afterChange($event)"
                             (beforeChange)="beforeChange($event)">
-                                <div ngxSlickItem *ngFor="let slide of international_author" class="slide" style="padding: 20px;background-color: initial;" (click)="goBookByAuthors(slide)">
-                                    <div *ngIf="slide.authorType == 'INTERNATIONAL'" >
+                                <div ngxSlickItem *ngFor="let slide of local_author" class="slide" style="padding: 20px;background-color: initial;" (click)="goBookByAuthors(slide)">
+                                    <div *ngIf="slide.authorType == 'LOCAL'">
                                         <img src="{{ slide.profilePicture }}" alt="" width="100%">
                                         <h6 class="card-title" style="padding: 15px;background-color:black;text-align: center;color: white;">{{slide.name}}</h6>
                                     </div>
                                 </div>
                             </ngx-slick-carousel>
                         </ng-template>
-                </ngb-tab>
-            </ngb-tabset>
+                    </ngb-tab>
+                    <ngb-tab title="{{ 'HOME.010' | translate }}">
+                        <ng-template ngbTabContent>
+                                <ngx-slick-carousel class="carousel" 
+                                #slickModal="slick-carousel" 
+                                [config]="slideAuthorsConfig" 
+                                (init)="slickInit($event)"
+                                (breakpoint)="breakpoint($event)"
+                                (afterChange)="afterChange($event)"
+                                (beforeChange)="beforeChange($event)">
+                                    <div ngxSlickItem *ngFor="let slide of international_author" class="slide" style="padding: 20px;background-color: initial;" (click)="goBookByAuthors(slide)">
+                                        <div *ngIf="slide.authorType == 'INTERNATIONAL'" >
+                                            <img src="{{ slide.profilePicture }}" alt="" width="100%">
+                                            <h6 class="card-title" style="padding: 15px;background-color:black;text-align: center;color: white;">{{slide.name}}</h6>
+                                        </div>
+                                    </div>
+                                </ngx-slick-carousel>
+                            </ng-template>
+                    </ngb-tab>
+                </ngb-tabset>
+            </div>
         </div>
         <div class="row col-md-12" style="text-align: center;margin: 20px 0;">
             <div class="col-md-1"></div>
             <div class="col-md-3">
                 <a href="https://www.moi.gov.mm/nlm/">
                     <img src="assets/images/News/new.png" width= '80%'>
-                    https://www.moi.gov.mm/nlm/
+                  
                 </a>
             </div>
             <div class="col-md-3">
                 <a href="https://www.moi.gov.mm/nlm/">
                     <img src="assets/images/News/km-logo.png" width= '80%' >
-                    https://www.moi.gov.mm/nlm/
+                  
                 </a>
             </div>
             <div class="col-md-3">
                 <a href="https://www.moi.gov.mm/nlm/">
                     <img src="assets/images/News/Myanma-Alinn.png" width= '80%' >
-                    https://www.moi.gov.mm/nlm/
+                  
                 </a>
             </div>
         </div>

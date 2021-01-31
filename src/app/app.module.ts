@@ -64,6 +64,8 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { LoginComponent } from './login/login.component';
+import { ConfirmationDialogService } from './confirmation-dialog/confirmation-dialog.service';
+import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
 export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient,'./assets/i18n/', '.json');
 }
@@ -82,6 +84,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     FooterComponent,
     UserProfileComponent,
     LoginComponent,
+    ConfirmationDialogComponent,
   ],
   imports: [
     MDBBootstrapModule.forRoot(),
@@ -141,8 +144,10 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     })
   ],
   providers: [
-    IntercomService
+    IntercomService,
+    ConfirmationDialogService
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [ConfirmationDialogComponent]
 })
 export class AppModule { }
