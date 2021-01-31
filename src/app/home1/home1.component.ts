@@ -11,8 +11,8 @@ export class Home1Component implements OnInit {
   playStoreLink = "";
   appStoreLink = "";
   search = "";
-  startDate = Date();
-  endDate = Date();
+  startDate = "";
+  endDate = "";
   obj: any ;
   advertisements = [{"name":"assets/elibrary/Advertisement/simple1.png"},
   {"name":"assets/elibrary/Advertisement/simple1.png"},

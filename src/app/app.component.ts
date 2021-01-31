@@ -1,5 +1,5 @@
 import { Component, Input, HostListener } from '@angular/core';
-import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
+import { Router, ActivatedRoute, NavigationEnd, NavigationStart } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { IntercomService } from './framework/intercom.service';
 import { TranslateService } from '@ngx-translate/core';
@@ -69,9 +69,31 @@ ngOnDestroy(){
   }
   @HostListener('window:popstate', ['$event'])
   onPopState(event) {
-    if (this.router.url == '/home1') {
+  if (this.router.url == '/home1') {
         this.home1 = true;
         this.openConfirmationDialog();
+    }else if (this.router.url.includes('category')) {
+      this.router.events
+      .subscribe((event) => {
+        if (event instanceof NavigationStart) {
+          // Could add more chars url:path?=;other possible
+          const urlDelimitators = new RegExp(/[?//,;&:#$+=]/);
+          let currentUrlPath = event.url.slice(1).split(urlDelimitators)[2];
+          console.log('URL_PATH: ', currentUrlPath);
+          for(let i = 0;i<this.categories.length;i++){
+              if(this.categories[i].boId == currentUrlPath){
+                //this.goBookbyCategory(this.categories[i],i)
+                this.selectedRow = i;
+              }
+          }
+          
+        }
+      });
+      // let categoryId = this.route.url.split ('','');
+      // for(let i = 0;i<this.categories.length;i++){
+      //   if(this.categories[i].boId)
+      // }
+      // this.goBookbyCategory(value,index)
     }
   }
   

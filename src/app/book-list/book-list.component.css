@@ -54,3 +54,23 @@ h3{
     width: 80%;
     overflow: auto;
 }
+#search {
+    font-family: 'Montserrat Alternates', sans-serif;
+    height: 100%;
+    border-radius: 11px;
+    border: none;
+    color: #fff;
+    font-size: 15px;
+    outline: none;
+    height: 50px;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0, 0.4);
+    width:100%;
+    padding:20px;
+  }
+  #search::-webkit-input-placeholder {color: #FFFFFF;}
+  #search::-moz-placeholder {color: #FFFFFF;}
+  #search:-ms-input-placeholder {color: #FFFFFF;}
+  #search:-moz-placeholder {color: #FFFFFF;}
+  #search::-moz-selection {color: #FFFFFF; background: rgba(0,0,0,0.25);}
+  #search::selection {color: #FFFFFF; background: rgba(0,0,0,0.25);}

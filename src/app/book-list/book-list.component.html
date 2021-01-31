@@ -1,7 +1,20 @@
 <!-- <app-header></app-header> -->
 <div class="container" *ngIf ="pdfView != 1">
     <h2 style="text-align: center;">{{title}}</h2>
-    <p style="text-align: center;">Home / {{titleLink}} &nbsp;&nbsp;<button class="btn-success" style="border-radius: 50px;">{{bookCount}}</button></p>
+    <!-- <p style="text-align: center;">Home / {{titleLink}} &nbsp;&nbsp;<button class="btn-success" style="border-radius: 50px;">{{bookCount}}</button></p> -->
+    <div style="background-color:#5663ff">
+        <div class="card3">
+            <h2>{{ 'HOME.001' | translate }}</h2>
+            <h1>{{ 'HOME.002' | translate }}</h1>
+    
+            <div class="row">
+                <div class="col-md-4"> <input type="text" placeholder="Search Book,Title,Author" id="search"  [(ngModel)]="search" class=" border uni" style="margin-top: 0;"></div>
+                <div class="col-md-3"> <input type="month" id="search"  class="border" [max]="endDate" [(ngModel)]="startDate"></div>
+                <div class="col-md-3"><input type="month" id="search"  class="border" [min]="startDate" [(ngModel)]="endDate"></div>
+                <div class="col-md-2"><button class="buttonMe" type="button" class="buttonMe"  (click)= "goSearch()">SEARCH</button></div>
+            </div>
+        </div>
+    </div>
     <div class="card" style="background-color: #d3d3d359;border-radius: 0">
         <h4 style="margin: 20px;">In book section,We have (<b>{{bookCount}}</b>) books totals to read online freely.Please checkout and let us known
                 of readers have any advice.
