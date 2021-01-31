@@ -183,12 +183,18 @@ ngb-rating {
   background: #5663ff;
   color: #FFFFFF;
   border: 1px solid #5663ff!important;
-  height: 60px;
+  height: 50px;
+  width: 100%;
 }
 ::-webkit-calendar-picker-indicator {
 filter: invert(1);
 }
-
+.mat-tab-label .mat-tab-label-content{
+  font-weight: bold;
+}
+.mat-line{
+  font-weight: bold;
+}
 .background1 {
 top: 0;
 left: 0;

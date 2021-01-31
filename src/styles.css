@@ -243,6 +243,9 @@ input[type="text"] {
   background:#5663ff;
   color:#fff !important;
 }
+.login #divbox{
+  background:#fff;
+}
 
 #divbox {
   margin: 40px auto 0;

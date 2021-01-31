@@ -54,23 +54,54 @@ h3{
     width: 80%;
     overflow: auto;
 }
-#search {
+
+  .book-filterbox{
+      color:#222;
+      background:#fff;
+      padding:20px ;
+      border-radius: 20px;
+      box-shadow:0px 0px 5px #ccc;
+  }
+  .book-filterbox h2{
+      margin:0 0 20px;
+  }
+  .book-filterbox #search{
+    margin-top: 0;
+    background: #fff;
+    color: #222;
     font-family: 'Montserrat Alternates', sans-serif;
-    height: 100%;
     border-radius: 11px;
     border: none;
-    color: #fff;
     font-size: 15px;
     outline: none;
-    height: 50px;
-    background-color: rgb(0,0,0);
-    background-color: rgba(0,0,0, 0.4);
+    height: 35px;
     width:100%;
     padding:20px;
   }
-  #search::-webkit-input-placeholder {color: #FFFFFF;}
-  #search::-moz-placeholder {color: #FFFFFF;}
-  #search:-ms-input-placeholder {color: #FFFFFF;}
-  #search:-moz-placeholder {color: #FFFFFF;}
-  #search::-moz-selection {color: #FFFFFF; background: rgba(0,0,0,0.25);}
-  #search::selection {color: #FFFFFF; background: rgba(0,0,0,0.25);}
+  .buttonMe{
+    border-radius: 11px;
+    padding: 0 35px 0 35px;
+    font-size: 15px;
+    background: #5663ff;
+    color: #FFFFFF;
+    border: 1px solid #5663ff!important;
+    height: 35px;
+    width: 100%;
+  }
+  .book-cat-title{
+    border-radius: 50px;
+    padding: 5px 15px;
+    border: none;
+    background: #77a1ff;
+  }
+  .book-count{
+    background-color: #d3d3d359;
+    border-radius: 0;
+    padding: 8px 15px;
+    margin: 20px 0;
+    border-radius: 10px;
+  }
+  .book-count h4{
+      margin:0;
+      padding:0;
+  }

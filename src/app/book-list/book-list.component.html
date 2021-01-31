@@ -2,10 +2,10 @@
 <div class="container" *ngIf ="pdfView != 1">
     <h2 style="text-align: center;">{{title}}</h2>
     <!-- <p style="text-align: center;">Home / {{titleLink}} &nbsp;&nbsp;<button class="btn-success" style="border-radius: 50px;">{{bookCount}}</button></p> -->
-    <div style="background-color:#5663ff">
+    <div class="book-filterbox">
         <div class="card3">
             <h2>{{ 'HOME.001' | translate }}</h2>
-            <h1>{{ 'HOME.002' | translate }}</h1>
+           
     
             <div class="row">
                 <div class="col-md-4"> <input type="text" placeholder="Search Book,Title,Author" id="search"  [(ngModel)]="search" class=" border uni" style="margin-top: 0;"></div>
@@ -15,21 +15,20 @@
             </div>
         </div>
     </div>
-    <div class="card" style="background-color: #d3d3d359;border-radius: 0">
+    <div class="book-count" style="background-color: #d3d3d359;border-radius: 0">
         <h4 style="margin: 20px;">In book section,We have (<b>{{bookCount}}</b>) books totals to read online freely.Please checkout and let us known
                 of readers have any advice.
+                <span class="pull-right"  *ngIf="titleLink!='latestBooks' && titleLink!='popularBooks'" style="    margin-top: -21px;">
+                        Page No.
+                        <select [(ngModel)]="page" (change)="changePage()" class="form-control input-sm" [ngModelOptions]="{standalone: true}">
+                            <option *ngFor="let item of pageArray" [value]="item">{{item}}</option>
+                        </select>
+                </span>
             </h4>
     </div>
-    <br>
-    <div class="pull-right" style="padding-bottom: 30px;" *ngIf="titleLink!='latestBooks' && titleLink!='popularBooks'">
-        <div class="input-group">
-            <h5>Page No.</h5>
-            <select [(ngModel)]="page" (change)="changePage()" class="form-control input-sm" [ngModelOptions]="{standalone: true}">
-                <option *ngFor="let item of pageArray" [value]="item">{{item}}</option>
-            </select>
-        </div>
-    </div>
-    <div class="col-md-12 row">
+    
+    
+    <div class="row">
         <div *ngFor="let book of bookList" class="col-md-6">
             <div class="card" style="border: 1px solid rgba(0,0,0,.125);">
                 <div class="card-title" id="bookTitle" style="background-color:#d3d3d359;border-radius: 10px 10px 0 0">
@@ -46,20 +45,20 @@
                                 <div class="card-body">
                                     <!-- <h6>Short story of Jue</h6> -->
                                     <h4 *ngFor="let author of book.authors">Author :  {{author.name}}</h4>
-                                    <h6><button class="btn-success" style="border-radius: 50px;">{{book.subCategory.myanmarName}}</button></h6>
-                                        <h5 style="font-size: 1.2rem;">
+                                    <h6><button class="btn-success book-cat-title" style="border-radius: 50px;">{{book.subCategory.myanmarName}}</button></h6>
+                                        <p>
                                             <i class="far fa-calendar-alt"></i>&nbsp;
                                             <!-- <span>{{book.publishedDate}}</span> -->
                                             <span>{{book.publishedDate  | date:'dd-MM-yyyy'}}</span> 
-                                        </h5>
-                                        <h5 style="font-size: 1.2rem;">
-                                            <i class="fas fa-male" style="font-size: 2rem;"></i>&nbsp;
+                                        </p>
+                                        <p>
+                                            <i class="fa fa-eye" aria-hidden="true"></i>&nbsp;
                                             <span>Views-0</span> 
-                                        </h5>
-                                        <h5 style="font-size: 1.2rem;">
+                                        </p>
+                                        <p>
                                             <i class="fas fa-book"></i> &nbsp;  
                                             <span>{{book.size}}&nbsp; MB</span> 
-                                        </h5>
+                                        </p>
                                         <p>
                                             <a  class="btn btn-ls read-btn"  (click)="goBookDetails(book)">
                                                 <i class="fas fa-download"></i>&nbsp; Details
