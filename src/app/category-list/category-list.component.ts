@@ -92,17 +92,17 @@ export class CategoryListComponent implements OnInit {
           let id = params['id'];
           this.categoryId = id;
          if(this.categoryId == "CATEGORY10001"){
-            this.backgoundImg = '/assets/images/categories/library.jpg';
+            this.backgoundImg = './assets/images/categories/library.jpg';
           }else  if(this.categoryId == "CATEGORY10002"){
-            this.backgoundImg = '/assets/images/categories/category4.jpg';
+            this.backgoundImg = './assets/images/categories/category4.jpg';
           }else  if(this.categoryId == "CATEGORY10003"){
-            this.backgoundImg = '/assets/images/categories/category6.jpg';
+            this.backgoundImg = './assets/images/categories/category6.jpg';
           }else  if(this.categoryId == "CATEGORY10004"){
-            this.backgoundImg = '/assets/images/categories/category10.jpg';
+            this.backgoundImg = './assets/images/categories/category10.jpg';
           }else  if(this.categoryId == "CATEGORY10005"){
-            this.backgoundImg = '/assets/images/categories/category11.jpg';
+            this.backgoundImg = './assets/images/categories/category11.jpg';
           }else  if(this.categoryId == "CATEGORY10006"){
-            this.backgoundImg = '/assets/images/categories/category3.jpg';
+            this.backgoundImg = './assets/images/categories/category3.jpg';
           }
           this.showBook();
         } 
@@ -263,47 +263,98 @@ export class CategoryListComponent implements OnInit {
     page = "1";
     author_id= "";
     bookList = [];
+    // goSearch() {
+    //   let subcat = "";
+    //   const url = this.ics.apiRoute + '/search/book';
+    //   for(let i=0; i< this.international_author.length;i++){
+    //     if(this.international_author[i].name == this.search){
+    //       this.author_id = this.international_author[i].boId;
+    //     }
+    //   }
+    //   for(let i=0; i< this.local_author.length;i++){
+    //     if(this.local_author[i].name == this.search){
+    //       this.author_id = this.local_author[i].boId;
+    //     }
+    //   }
+    //   for(let i=0; i< this.sub_category.length;i++){
+    //     if(this.sub_category[i].myanmarName == this.search){
+    //       subcat = this.sub_category[i].boId;
+    //     }
+    //   }
+    //   const json =
+    //   { "page": this.page,
+    //     "user_id": this.ics._profile.userId,
+    //     "category_id": this.categoryId,
+    //     "sub_category_id": subcat,
+    //     "author_id": this.author_id,
+    //     "start_date": this.startDate,
+    //     "end_date": this.endDate,
+    //     "searchTerms": this.search 
+    //   }
+    //   try {
+    //     const header: HttpHeaders = new HttpHeaders({
+    //       token: this.ics._profile.token
+    //     });
+    //     const url: string = this.ics.apiRoute + "/search/book";
+    //     this.http.post(url, json, {
+    //      headers: header
+    //    }).subscribe(
+    //       (data: any) => {
+    //             if(data.status){
+    //               if(data.books.length > 0){
+    //                 this.router.navigate(['/book-list','new','bookList']); 
+    //                 this.ics.books = data;
+    //               }else{
+    //                 alert("No Data Found");
+    //               }
+    //             }
+    //           },
+    //           error => {
+    //               if (error.name == "HttpErrorResponse") {
+    //                   alert("Connection Timed Out!");
+    //               }
+    //               else {
+    
+    //               }
+    //           }, () => { });
+    //   } catch (e) {
+    //       alert(e);
+    //   }
+    // }
+    searchKeyup(e: any) {
+      if (e.which == 13) {
+        this.goSearch();
+      }
+    }
     goSearch() {
+      let subcat = "";
       const url = this.ics.apiRoute + '/search/book';
       for(let i=0; i< this.international_author.length;i++){
         if(this.international_author[i].name == this.search){
           this.author_id = this.international_author[i].boId;
         }
       }
+      for(let i=0; i< this.local_author.length;i++){
+        if(this.local_author[i].name == this.search){
+          this.author_id = this.local_author[i].boId;
+        }
+      }
+      for(let i=0; i< this.sub_category.length;i++){
+        if(this.sub_category[i].myanmarName == this.search){
+          subcat = this.sub_category[i].boId;
+        }
+      }
       const json =
       { "page": this.page,
         "user_id": this.ics._profile.userId,
-        "category_id":"",
-        "sub_category_id":"",
+        "category_id": this.categoryId,
+        "sub_category_id": subcat,
         "author_id": this.author_id,
         "start_date": this.startDate,
         "end_date": this.endDate,
         "searchTerms": this.search 
       }
-      try {
-        const header: HttpHeaders = new HttpHeaders({
-          token: this.ics._profile.token
-        });
-        const url: string = this.ics.apiRoute + "/search/book";
-        this.http.post(url, json, {
-         headers: header
-       }).subscribe(
-          (data: any) => {
-                if(data.status){
-                  this.router.navigate(['/book-list','new','bookList']); 
-                  this.ics.books = data;
-                }
-              },
-              error => {
-                  if (error.name == "HttpErrorResponse") {
-                      alert("Connection Timed Out!");
-                  }
-                  else {
-    
-                  }
-              }, () => { });
-      } catch (e) {
-          alert(e);
-      }
+        this.router.navigate(['/book-list','new','bookList']); 
+        this.ics.json = json;
     }
 }

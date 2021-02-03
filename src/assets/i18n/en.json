@@ -15,7 +15,11 @@
       "013": "Here are some of recommended books that are available in Books Library",
       "014": "Here are some of the Top Authors that are available in Book library",
       "015": "Here are some of latest books that are available in Books Library ",
-      "016": "Categories"
+      "016": "Categories",
+      "017": "Do you really want to Logout ?",
+      "018": "Please confirm",
+      "020": "Ok",
+      "021": "Cancel"
     },
     "HEAD": {
       "001": "Language",
@@ -28,11 +32,11 @@
     },
     "Category": {
       "CATEGORY10001": "You can search myanmar books",
-      "CATEGORY10002": "You can serch ministry books",
-      "CATEGORY10003": "You can serch organization books",
-      "CATEGORY10004": "You can serch english books",
-      "CATEGORY10005": "You can serch periodical books",
-      "CATEGORY10006": "You can serch information books"
+      "CATEGORY10002": "You can search ministry books",
+      "CATEGORY10003": "You can search organization books",
+      "CATEGORY10004": "You can search english books",
+      "CATEGORY10005": "You can search periodical books",
+      "CATEGORY10006": "You can search information books"
     }
   }
   

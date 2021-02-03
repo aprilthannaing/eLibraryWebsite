@@ -38,12 +38,8 @@ export class FeedbackComponent implements OnInit {
     }
 
     const url: string = this.ics.apiRoute + "/operation/feedback";
-    console.log("request: ", json)
-    console.log("url: ", url)
-
     this.http.post(url, json, { headers: new HttpHeaders().set('token', this.ics._profile.token) }).subscribe(
       (data: any) => {
-        console.log("data", data)
         if (data.status) {
           this._result = data.message;
           this._error = "";
@@ -68,13 +64,9 @@ export class FeedbackComponent implements OnInit {
     }
 
     const url: string = this.ics.apiRoute + "/operation/replyNoti";
-    console.log("request: ", json)
-    console.log("url: ", url)
-
     this.http.post(url, json, { headers: new HttpHeaders().set('token', this.ics._profile.token) }).subscribe(
       (data: any) => {
         this.feedbacks = data.feedbacks;
-        console.log("reply noti: ", data.feedbacks)
       },
       error => {
         console.warn("error !!!!!!!:", error);
@@ -87,12 +79,8 @@ export class FeedbackComponent implements OnInit {
     }
 
     const url: string = this.ics.apiRoute + "/operation/viewall";
-    console.log("request: ", json)
-    console.log("url: ", url)
-
     this.http.post(url, json, { headers: new HttpHeaders().set('token', this.ics._profile.token) }).subscribe(
       (data: any) => {
-        console.log("data: ", data)
       },
       error => {
         console.warn("error !!!!!!!:", error);

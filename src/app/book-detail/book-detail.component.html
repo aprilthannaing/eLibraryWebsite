@@ -1,283 +1,282 @@
-<div>
+
     <div class="detail-book" *ngIf="pdfView != 1">
-        <!-- <img src="assets/images/book-detail-bg.jpg" class="bg" *ngIf="pdfView != 1"> -->
-        <div class="container" style="position: relative;">
-            <div class=" book-cover">
-               <div class="row">
-                <div class="col-md-3 cover">
-                    <img src="{{bookDetail.coverPhoto}}" style="border-radius: 10px;"
-                        class="card-img-top ">
-                        <div class="text-center"> <button class="atr3" (click)="goBookRead()">Preview</button></div>
-                </div>
-                <div class="col-md-9 book-title-author">
-                    <h4><span class="book-detail" >{{bookDetail.title}}</span></h4>
-                    <div class="author">
-                        <i class="fa fa-user-o" aria-hidden="true"></i> {{bookDetail.authors[0].name}}
+            <!-- <img src="assets/images/book-detail-bg.jpg" class="bg" *ngIf="pdfView != 1"> -->
+            <div class="container" style="position: relative;">
+                <div class=" book-cover">
+                   <div class="row">
+                    <div class="col-md-3 cover">
+                        <img src="{{bookDetail.coverPhoto}}" style="border-radius: 10px;"
+                            class="card-img-top ">
+                            <div class="text-center"> <button class="atr3" (click)="goBookRead()">Preview</button></div>
                     </div>
-                    <div class="star">
-                        <span class="fa fa-star"></span>
-                        <span class="fa fa-star"></span>
-                        <span class="fa fa-star"></span>
-                        <span class="fa fa-star unchecked"></span>
-                        <span class="fa fa-star unchecked"></span>
+                    <div class="col-md-9 book-title-author">
+                        <h4><span class="book-detail" >{{bookDetail.title}}</span></h4>
+                        <div class="author">
+                            <i class="fa fa-user-o" aria-hidden="true"></i> {{bookDetail.authors[0].name}}
+                        </div>
+                        <div class="star">
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star unchecked"></span>
+                            <span class="fa fa-star unchecked"></span>
+                        </div>
                     </div>
+                   </div>
                 </div>
-               </div>
             </div>
         </div>
-    </div>
-
-    <div class="container" *ngIf="pdfView != 1">
-        <div class="row">
-            <!-- <div class="col-md-2 cover">
-                <img src="{{bookDetail.coverPhoto}}" style="border-radius: 10px;"
-                    class="card-img-top h-100">
-
-            </div> -->
-            <div class="col-md-3 "></div>
-            <div class="col-md-9 book-des-section">
-                <div class="bookmark-section" style="text-align: right;">
-                    <i class="fa fa-heart-o" aria-hidden="true"
-                        (click)="favourite()" *ngIf="!bookDetail.favouriteStatus"></i>
-                    <i class="fa fa-heart" style="color: blue;" aria-hidden="true" *ngIf="bookDetail.favouriteStatus"></i>
-                    <i class="fa fa-bookmark-o" aria-hidden="true"  (click)="bookmark()" *ngIf="!bookDetail.bookMarkStatus"></i>
-                    <i class="fa fa-bookmark" aria-hidden="true"  style="color: blue;" (click)="bookmark()" *ngIf="bookDetail.bookMarkStatus"></i>
-                </div>
-          
-                <p class="mt-4 description">
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptas hic dignissimos minus, earum, cumque error et dicta id distinctio facilis amet, assumenda sed fugit atque nostrum illo non ea perspiciatis!
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptas hic dignissimos minus, earum, cumque error et dicta id distinctio facilis amet, assumenda sed fugit atque nostrum illo non ea perspiciatis!
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptas hic dignissimos minus, earum, cumque error et dicta id distinctio facilis amet, assumenda sed fugit atque nostrum illo non ea perspiciatis!
-                </p>
-                <p  class="mt-4" >{{bookDetail.comment.description}}</p>
-
-                <div class="row book-type">
-                    <div class="col-md-3 text-center">
-                       <div class="inner-book-type">
-                            <p >Series</p>
-                            <img src="assets/images/1.jpg" class="profile2">
-                            <h4>{{bookDetail.seriesIndex}}</h4>
-                       </div>
-                    </div>
-                    <div class="col-md-3 text-center">
-                      <div class="inner-book-type">
-                        <p >Number of books published</p>
-                        <img src="assets/images/2.jpg" class="profile2">
-                        <h4>{{bookDetail.edition}}</h4>
-                      </div>
-                    </div>
-                    <div class="col-md-3 text-center">
-                       <div class="inner-book-type">
-                            <p >Book Size</p>
-                            <img src="assets/images/3.jpg" class="profile2">
-                            <h4>{{bookDetail.size}}</h4>
-                       </div>
-                    </div>
-               </div>
-               
-             
-
-                <!-- <div class="div3">
-                   
-          
-                                          
-                        
-                    <div class="row">
-
-                        <img src="assets/images/1.jpg" class="profile2">
-                        <div class="col-md-5" style="margin-top: 2%;">
-
-                            <p style="margin:2% 0% 0% 2%;">Series</p>
-                        </div>
-                        <div class="col-md-5" style="margin-top: 2%;">
-                            <p style="margin:0% 0% 0% 10%;text-align: right;">{{bookDetail.seriesIndex}}</p>
-                        </div>
-                    </div>
-                    <div class="row">
-
-                        <img src="assets/images/2.jpg" class="profile2">
-                        <div class="col-md-7" style="margin-top: 2%;">
-
-                            <p style="margin:2% 0% 0% 2%;">Number of books published</p>
-                        </div>
-                        <div class="col-md-3" style="margin-top: 2%;">
-                            <p style="margin:0% 0% 0% 10%;text-align: right;">{{bookDetail.edition}}</p>
-                        </div>
-                    </div>
-                    <div class="row">
-
-                        <img src="assets/images/3.jpg" class="profile2">
-                        <div class="col-md-5" style="margin-top: 2%;">
-
-                            <p style="margin:2% 0% 0% 2%;">Book Size</p>
-                        </div>
-                        <div class="col-md-5" style="margin-top: 2%;">
-                            <p style="margin:0% 0% 0% 10%;text-align: right;">{{bookDetail.size}}</p>
-                        </div>
-                    </div>
-                    <p>
-                    <p>{{bookDetail.comment.description}}</p>
-                </div> -->
-            </div>
-        </div>
-        <div >
-            <!-- <button class="atr2" (click)="bookmark()">Add to read</button> -->
-          
-
-        </div>
-
-    </div>
-    <div class="pdf-viewer-wrap" *ngIf="pdfView == 1">
-
-        <div class="pdf-viewer-controls-wrap">
-            <div class="btn-group">
-                <button (click)="goBack()" title="go back" style="border:none;background-color:white"> 
-                        <i class="fas fa-arrow-left"></i>
-                </button>
-                <h2>PDF Viewer Controls</h2>
-            </div>
-          <div class="pdf-viewer-controls">
-            <div class="pdfv-control" *ngIf="renderText">
-              Search:
-              <input #queryInp id="pdfQueryInput" type="text" placeholder="Search..." [value]="pdfQuery"
-                (input)="searchQueryChanged($event.target.value)" (keyup.enter)="searchQueryChanged(queryInp.value)">
-            </div>
-            <div class="pdfv-control">
-              <mat-slide-toggle [checked]="originalSize" (change)="toggleoriginalSize($event)">Orginal Size</mat-slide-toggle>
-            </div>
-            <div class="pdfv-control">
-              <mat-slide-toggle [checked]="fitToPage" (change)="togglefitToPage($event)">Fit Page</mat-slide-toggle>
-            </div>
-            <div class="pdfv-control">
-              <mat-slide-toggle [checked]="showAll" (change)="toggleshowAll($event)">Show All Page</mat-slide-toggle>
-            </div>
-            <div class="pdfv-control">
-                <mat-slide-toggle [(ngModel)]="stickToPage">
-                    Stick to page
-                </mat-slide-toggle>
-                </div>
-            
-                <div *ngIf="stickToPage" class="mb">
-                <button (click)="incrementPage(-1)" mat-button type="button">
-                    Previous
-                </button>
-            
-                <mat-form-field class="page-number">
-                    <input matInput type="number" placeholder="Page" [(ngModel)]="pagePDF" pattern="-?[0-9]*(\.[0-9]+)?">
-                    <mat-error>Input is not a number!</mat-error>
-                </mat-form-field>
-            
-                <span *ngIf="pdf">of {{ totalPages}}</span>
-                <button (click)="incrementPage(1)" mat-button type="button">
-                    Next
-                </button>
-            </div>
-            <div class="pdfv-control">
-              <mat-slide-toggle [checked]="autoresize" (change)="toggleautoresize($event)">Auto Resize</mat-slide-toggle>
-            </div>
-            <!-- <div class="pdfv-control">
-              <mat-slide-toggle (click)="showBorders = !showBorders">[show-borders]="{{showBorders}}"</mat-slide-toggle>
-            </div> -->
-            <div class="pdfv-control">
-              <mat-slide-toggle [checked]="renderText" (change)="togglerenderText($event)" >Render text Layer</mat-slide-toggle>
-            </div>
-            <div class="pdfv-control">
-                <button (click)="incrementZoom(-0.1)" mat-button type="button">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <circle cx="11" cy="11" r="8"></circle>
-                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                    <line x1="8" y1="11" x2="14" y2="11"></line>
-                    </svg>
-                </button>
-            
-                <mat-form-field class="page-number">
-                    <input matInput type="number" placeholder="Zoom" [(ngModel)]="zoom" pattern="-?[0-9]*(\.[0-9]+)?">
-                    <mat-error>Input is not a number!</mat-error>
-                </mat-form-field>
-            
-                <button (click)="incrementZoom(0.1)" mat-button type="button">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <circle cx="11" cy="11" r="8"></circle>
-                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                    <line x1="11" y1="8" x2="11" y2="14"></line>
-                    <line x1="8" y1="11" x2="14" y2="11"></line>
-                    </svg>
-                </button>
-                </div>
-            <div class="pdfv-control" *ngIf="!originalSize">
-                <mat-form-field >
-                    <mat-label>Select an option</mat-label>
-                        <mat-select [(ngModel)]="zoomScale">
-                            <mat-option [value]="o" *ngFor="let o of zoomScales">{{o}}</mat-option>
-                        </mat-select>
-                </mat-form-field>
-            </div>
-            <div class="pdfv-control">
-                <button (click)="rotate(-90)" mat-button type="button" matTooltip="Rotate left" [matTooltipPosition]="'above'">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" transform="scale(-1,1)">
-                        <polyline points="23 4 23 10 17 10"></polyline>
-                        <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path>
-                    </svg>
-                    </button>
-            
-                    <mat-form-field class="page-number">
-                    <input matInput type="number" placeholder="Rotation" [ngModel]="rotation" disabled>
-                    <mat-error>Input is not a number!</mat-error>
-                    </mat-form-field>
-            
-                    <button (click)="rotate(90)" mat-button type="button" matTooltip="Rotate right" [matTooltipPosition]="'above'">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <polyline points="23 4 23 10 17 10"></polyline>
-                        <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path>
-                    </svg>
-                </button>
-            </div>
-            <div class="pdfv-control" *ngIf = "downloadApproval=='true'">
-                <div class="btn-group">
-                    <button (click)="downloadPdf()" class="btn-primary"> 
-                        <i class="fas fa-download"></i>&nbsp; DownLoad
-                    </button>  
-                </div>
-            </div>
-          </div>
-        </div>
-      
-        <div class="pdf-viewer-viewer-window">
-          <pdf-viewer [src]="pdfSrc" [page]='pagePDF' [render-text]="renderText"[rotation]="rotation"
-            [zoom]="zoom" [zoom-scale]="zoomScale" [original-size]="originalSize" [fit-to-page]="fitToPage"
-            [show-all]="showAll" [autoresize]="autoresize" [stick-to-page]="stickToPage"
-            (after-load-complete)="callBackFn($event)" (page-rendered)="pageRendered($event)"
-            (text-layer-rendered)="textLayerRendered($event)" (error)="onError($event)" (on-progress)="onProgress($event)">
-          </pdf-viewer><!--[show-borders]="showBorders"  [render-text-mode]="renderTextMode" -->
-        </div>
-      
-      </div>
-    <div class="div2" *ngIf="recommendBooks.length >0 && pdfView != 1">
-        <div class="container recommend-book">
-            <h2>Some Similar  Books</h2>
+    
+        <div class="container" *ngIf="pdfView != 1">
             <div class="row">
-                <div class="col-md-2" *ngFor="let item of recommendBooks">
-                    <div style="height: 200px;margin-bottom: 3%;">
-                        <img src="{{apiRoute1}}{{item.coverPhoto}}" class="card-img-top h-100 ssbimg">
+                <!-- <div class="col-md-2 cover">
+                    <img src="{{bookDetail.coverPhoto}}" style="border-radius: 10px;"
+                        class="card-img-top h-100">
+    
+                </div> -->
+                <div class="col-md-3 "></div>
+                <div class="col-md-9 book-des-section">
+                    <div class="bookmark-section" style="text-align: right;">
+                        <i class="fa fa-heart-o" aria-hidden="true"
+                            (click)="favourite()" *ngIf="!bookDetail.favouriteStatus"></i>
+                        <i class="fa fa-heart" style="color: blue;" aria-hidden="true" *ngIf="bookDetail.favouriteStatus"></i>
+                        <i class="fa fa-bookmark-o" aria-hidden="true"  (click)="bookmark()" *ngIf="!bookDetail.bookMarkStatus"></i>
+                        <i class="fa fa-bookmark" aria-hidden="true"  style="color: blue;" (click)="bookmark()" *ngIf="bookDetail.bookMarkStatus"></i>
                     </div>
-                    <div class="div2" *ngIf="recommendBooks.length >0 && pdfView != 1">
-            
-                    <p>{{bookDetail.title}}</p>
-                    <span class="fa fa-star"></span>
-                    <span class="fa fa-star"></span>
-                    <span class="fa fa-star"></span>
-                    <span class="fa fa-star unchecked"></span>
-                    <span class="fa fa-star unchecked"></span>
-                    <br>
-
-                    <button class="atr" (click)="ssbookmark(item.boId)">Add to read</button>
+              
+                    <p class="mt-4 description">
+                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptas hic dignissimos minus, earum, cumque error et dicta id distinctio facilis amet, assumenda sed fugit atque nostrum illo non ea perspiciatis!
+                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptas hic dignissimos minus, earum, cumque error et dicta id distinctio facilis amet, assumenda sed fugit atque nostrum illo non ea perspiciatis!
+                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptas hic dignissimos minus, earum, cumque error et dicta id distinctio facilis amet, assumenda sed fugit atque nostrum illo non ea perspiciatis!
+                    </p>
+                    <p  class="mt-4" >{{bookDetail.comment.description}}</p>
+    
+                    <div class="row book-type">
+                        <div class="col-md-3 text-center">
+                           <div class="inner-book-type">
+                                <p >Series</p>
+                                <img src="assets/images/1.jpg" class="profile2">
+                                <h4>{{bookDetail.seriesIndex}}</h4>
+                           </div>
+                        </div>
+                        <div class="col-md-3 text-center">
+                          <div class="inner-book-type">
+                            <p >Number of books published</p>
+                            <img src="assets/images/2.jpg" class="profile2">
+                            <h4>{{bookDetail.edition}}</h4>
+                          </div>
+                        </div>
+                        <div class="col-md-3 text-center">
+                           <div class="inner-book-type">
+                                <p >Book Size</p>
+                                <img src="assets/images/3.jpg" class="profile2">
+                                <h4>{{bookDetail.size}}</h4>
+                           </div>
+                        </div>
+                   </div>
+                   
+                 
+    
+                    <!-- <div class="div3">
+                       
+              
+                                              
+                            
+                        <div class="row">
+    
+                            <img src="assets/images/1.jpg" class="profile2">
+                            <div class="col-md-5" style="margin-top: 2%;">
+    
+                                <p style="margin:2% 0% 0% 2%;">Series</p>
+                            </div>
+                            <div class="col-md-5" style="margin-top: 2%;">
+                                <p style="margin:0% 0% 0% 10%;text-align: right;">{{bookDetail.seriesIndex}}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+    
+                            <img src="assets/images/2.jpg" class="profile2">
+                            <div class="col-md-7" style="margin-top: 2%;">
+    
+                                <p style="margin:2% 0% 0% 2%;">Number of books published</p>
+                            </div>
+                            <div class="col-md-3" style="margin-top: 2%;">
+                                <p style="margin:0% 0% 0% 10%;text-align: right;">{{bookDetail.edition}}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+    
+                            <img src="assets/images/3.jpg" class="profile2">
+                            <div class="col-md-5" style="margin-top: 2%;">
+    
+                                <p style="margin:2% 0% 0% 2%;">Book Size</p>
+                            </div>
+                            <div class="col-md-5" style="margin-top: 2%;">
+                                <p style="margin:0% 0% 0% 10%;text-align: right;">{{bookDetail.size}}</p>
+                            </div>
+                        </div>
+                        <p>
+                        <p>{{bookDetail.comment.description}}</p>
+                    </div> -->
                 </div>
             </div>
-           
+            <div >
+                <!-- <button class="atr2" (click)="bookmark()">Add to read</button> -->
+              
+    
+            </div>
+    
         </div>
-    </div>
-    <app-footer></app-footer>
+        <div class="div2" *ngIf="recommendBooks.length >0 && pdfView != 1">
+            <div class="container recommend-book">
+                <h2>Some Similar  Books</h2>
+                <div class="row">
+                    <div class="col-md-2" *ngFor="let item of recommendBooks">
+                        <div style="height: 200px;margin-bottom: 3%;">
+                            <img src="{{apiRoute1}}{{item.coverPhoto}}" class="card-img-top h-100 ssbimg">
+                        </div>
+                        <div class="div2" *ngIf="recommendBooks.length >0 && pdfView != 1">
+                
+                            <p>{{bookDetail.title}}</p>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star unchecked"></span>
+                            <span class="fa fa-star unchecked"></span>
+                            <br>
+    
+                            <button class="atr" (click)="ssbookmark(item.boId)">Add to read</button>
+                        </div>
+                    </div>
+               
+                </div>
+            </div>
+        </div>
+        <div class="pdf-viewer-wrap" *ngIf="pdfView == 1">
+            <div class="pdf-viewer-controls-wrap">
+                <div class="btn-group">
+                    <button (click)="goBack()" title="go back" style="border:none;background-color:white"> 
+                            <i class="fas fa-arrow-left"></i>
+                    </button>
+                    <h2>PDF Viewer Controls</h2>
+                </div>
+                <div class="pdf-viewer-controls">
+                <div class="pdfv-control" *ngIf="renderText">
+                    <input #queryInp id="pdfQueryInput" type="text" placeholder="Search..." [value]="pdfQuery" class="uni"
+                    (input)="searchQueryChanged($event.target.value)" (keyup.enter)="searchQueryChanged(queryInp.value)">
+                </div>
+                <div class="pdfv-control">
+                    <mat-slide-toggle [checked]="renderText" (change)="togglerenderText($event)" >Render text Layer</mat-slide-toggle>
+                </div>
+                <div class="pdfv-control">
+                    <mat-slide-toggle [(ngModel)]="stickToPage">
+                        Stick to page
+                    </mat-slide-toggle>
+                </div>
+                
+                <div *ngIf="stickToPage" class="mb">
+                    <button (click)="incrementPage(-1)" mat-button type="button">
+                        Previous
+                    </button>
+                
+                    <mat-form-field class="page-number">
+                        <input matInput type="number" placeholder="Page" [(ngModel)]="pagePDF" pattern="-?[0-9]*(\.[0-9]+)?">
+                        <mat-error>Input is not a number!</mat-error>
+                    </mat-form-field>
+                
+                    <span *ngIf="pdf">of {{ totalPages}}</span>
+                    <button (click)="incrementPage(1)" mat-button type="button">
+                        Next
+                    </button>
+                </div>
+                <div class="pdfv-control">
+                    <mat-slide-toggle [checked]="originalSize" (change)="toggleoriginalSize($event)">Orginal Size</mat-slide-toggle>
+                </div>
+                <div class="pdfv-control">
+                    <mat-slide-toggle [checked]="fitToPage" (change)="togglefitToPage($event)">Fit Page</mat-slide-toggle>
+                </div>
+                <div class="pdfv-control">
+                    <mat-slide-toggle [checked]="showAll" (change)="toggleshowAll($event)">Show All Page</mat-slide-toggle>
+                </div>
+                
+                <div class="pdfv-control">
+                    <mat-slide-toggle [checked]="autoresize" (change)="toggleautoresize($event)">Auto Resize</mat-slide-toggle>
+                </div>
+                <!-- <div class="pdfv-control">
+                    <mat-slide-toggle (click)="showBorders = !showBorders">[show-borders]="{{showBorders}}"</mat-slide-toggle>
+                </div> -->
+                <div class="pdfv-control">
+                    <button (click)="incrementZoom(-0.1)" mat-button type="button">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        <line x1="8" y1="11" x2="14" y2="11"></line>
+                        </svg>
+                    </button>
+                
+                    <mat-form-field class="page-number">
+                        <input matInput type="number" placeholder="Zoom" [(ngModel)]="zoom" pattern="-?[0-9]*(\.[0-9]+)?">
+                        <mat-error>Input is not a number!</mat-error>
+                    </mat-form-field>
+                
+                    <button (click)="incrementZoom(0.1)" mat-button type="button">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        <line x1="11" y1="8" x2="11" y2="14"></line>
+                        <line x1="8" y1="11" x2="14" y2="11"></line>
+                        </svg>
+                    </button>
+                    </div>
+                <div class="pdfv-control" *ngIf="!originalSize">
+                    <mat-form-field >
+                        <mat-label>Select an option</mat-label>
+                            <mat-select [(ngModel)]="zoomScale">
+                                <mat-option [value]="o" *ngFor="let o of zoomScales">{{o}}</mat-option>
+                            </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="pdfv-control">
+                    <button (click)="rotate(-90)" mat-button type="button" matTooltip="Rotate left" [matTooltipPosition]="'above'">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" transform="scale(-1,1)">
+                            <polyline points="23 4 23 10 17 10"></polyline>
+                            <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path>
+                        </svg>
+                        </button>
+                
+                        <mat-form-field class="page-number">
+                        <input matInput type="number" placeholder="Rotation" [ngModel]="rotation" disabled>
+                        <mat-error>Input is not a number!</mat-error>
+                        </mat-form-field>
+                
+                        <button (click)="rotate(90)" mat-button type="button" matTooltip="Rotate right" [matTooltipPosition]="'above'">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="23 4 23 10 17 10"></polyline>
+                            <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path>
+                        </svg>
+                    </button>
+                </div>
+                <div class="pdfv-control" *ngIf = "downloadApproval=='true'">
+                    <div class="btn-group">
+                        <button (click)="downloadPdf()" class="btn-primary"> 
+                            <i class="fas fa-download"></i>&nbsp; DownLoad
+                        </button>  
+                    </div>
+                </div>
+                </div>
+            </div>
+            
+            <div class="pdf-viewer-viewer-window">
+                <pdf-viewer [src]="pdfSrc" [page]='pagePDF' [render-text]="renderText"[rotation]="rotation"
+                [zoom]="zoom" [zoom-scale]="zoomScale" [original-size]="originalSize" [fit-to-page]="fitToPage"
+                [show-all]="showAll" [autoresize]="autoresize" [stick-to-page]="stickToPage"
+                (after-load-complete)="callBackFn($event)" (page-rendered)="pageRendered($event)"
+                (text-layer-rendered)="textLayerRendered($event)" (error)="onError($event)" (on-progress)="onProgress($event)">
+                </pdf-viewer><!--[show-borders]="showBorders"  [render-text-mode]="renderTextMode" -->
+            </div>
+        </div>
+        <app-footer></app-footer>

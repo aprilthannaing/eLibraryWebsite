@@ -32,8 +32,6 @@ export class BookDetailComponent implements OnInit {
     if (this.ics.recommendBooks.length > 0)
       for (let i = 0; i < 6; i++)
         this.recommendBooks.push(this.ics.recommendBooks[i]);
-    console.log(" this.bookDetail ", this.bookDetail)
-
   }
 
   userAction(boId, actionStatus) {
@@ -45,13 +43,8 @@ export class BookDetailComponent implements OnInit {
     }
 
     const url: string = this.apiRoute + "/history/action";
-    console.log("request: ", json)
-    console.log("url: ", url)
-
     this.http.post(url, json, { headers: new HttpHeaders().set('token', this.ics._profile.token) }).subscribe(
       (data: any) => {
-      //  console.log("data !!!!!!!:", data);
-
       },
       error => {
         console.warn("error !!!!!!!:", error);
@@ -59,7 +52,6 @@ export class BookDetailComponent implements OnInit {
   }
 
   bookmark() {
-    console.log(" book mark !!!!!!!!! ")
     this.bookDetail.bookMarkStatus = true;
     this.userAction(this.bookDetail.boId, "bookmark");
   }
@@ -72,7 +64,6 @@ export class BookDetailComponent implements OnInit {
   }
 
   ssbookmark(boId) {
-    console.log("boId: ", boId);
     this.userAction(boId, "bookmark");
 
   }
@@ -83,7 +74,7 @@ export class BookDetailComponent implements OnInit {
   PDFtitle = 'angular-pdf-viewer-app';
   @ViewChild(PdfViewerComponent) private pdfComponent: PdfViewerComponent;
   pagePDF = 1;
-  renderText = false;
+  renderText = true;
   originalSize = false;
   fitToPage = false;
   showAll = false;
@@ -93,11 +84,11 @@ export class BookDetailComponent implements OnInit {
   renderTextMode = 1;
   rotation = 0;
   zoom = 1.0;
-  zoomScale = 'page-width';
+  zoomScale = 'page-fit';
   zoomScales = ['page-width', 'page-fit', 'page-height'];
   pdfQuery = '';
   totalPages: number;
-  stickToPage = false;
+  stickToPage = true;
   pdf:any;
   incrementZoom(amount: number) {
     this.zoom += amount;
@@ -128,20 +119,18 @@ export class BookDetailComponent implements OnInit {
   }
   callBackFn(event) {
     this.pdf = event;
-    console.log('callBackFn', event);
     this.totalPages = event._pdfInfo.numPages
   }
   pageRendered(event) {
-    console.log('pageRendered', event);
   }
   textLayerRendered(event) {
-    console.log('textLayerRendered', event);
   }
   onError(event) {
+    alert("No Data Avaliable");
+    this.pdfView = 0;
     console.error('onError', event);
   }
   onProgress(event) {
-    console.log('onProgress', event);
   }
   goBookRead(){
     this.downloadApproval = this.bookDetail.downloadApproval;

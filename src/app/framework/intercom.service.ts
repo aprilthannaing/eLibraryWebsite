@@ -19,7 +19,7 @@ export class IntercomService {
   books = [];
   language = "myan";
   recommendBooks = [];
-
+  json :any;
   _profile = {
     "userId": "",
     "email": "",
@@ -72,13 +72,9 @@ export class IntercomService {
     }
 
     const url: string = this.apiRoute + "/home";
-    console.log("request: ", json)
-    console.log("url: ", url)
-
     this.http.post(url, json, { headers: new HttpHeaders().set('token', this._profile.token) }).subscribe(
       (data: any) => {
         this.recommendBooks = data.recommend_book;
-       // console.log("data !!!!!!!:", this.recommendBooks);
 
       },
       error => {

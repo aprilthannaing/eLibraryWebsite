@@ -1,10 +1,9 @@
-    <!-- Search Box -->
-    <div class="background">
+    <div class="background" style="background-image:url('./assets/images/showcase.jpg')">
         <div class="container card2 card3" ><!--style="height: 400px;"background-color: rgba(0,0,0, 0.4);-->
             <h2>{{ 'HOME.001' | translate }}</h2>
             <h1>{{ 'HOME.002' | translate }}</h1>
             <div class="row">
-                    <div class="col-md-4"> <input type="text" placeholder="Search Book,Title,Author" id="search"  [(ngModel)]="search" class=" border uni" style="margin-top: 0;"></div>
+                    <div class="col-md-4"> <input type="text" placeholder="Search Book,Title,Author" id="search"  [(ngModel)]="search" (keyup)="searchKeyup($event)" class=" border uni" style="margin-top: 0;"></div>
                     <div class="col-md-3"> <input type="month" id="search"  class="border" [max]="endDate" [(ngModel)]="startDate"></div>
                     <div class="col-md-3"><input type="month" id="search"  class="border" [min]="startDate" [(ngModel)]="endDate"></div>
                     <div class="col-md-2"><button class="buttonMe" type="button" class="buttonMe"  (click)= "goSearch()">SEARCH</button></div>
@@ -47,7 +46,7 @@
        </div>
     </div>
     <!-- recommend book -->
-        <div class="background1">
+        <div class="background1" style="background-image:url('./assets/images/hl.jpg')">
            <div class="container">
                 <div class=" recommend-slide" >
                     <h1 class="text-center">{{ 'HOME.003' | translate }}</h1>

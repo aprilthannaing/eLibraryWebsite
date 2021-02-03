@@ -22,7 +22,6 @@ export class ForgetpasswordComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    console.log("Profile !!!!!!!", this.ics._profile)
   }
 
   verify() {
@@ -38,11 +37,10 @@ export class ForgetpasswordComponent implements OnInit {
     this.http.post(url, json,
       { headers: new HttpHeaders().set('token', this.ics._profile.token) }).subscribe(
         (data: any) => {
-
-          console.log("data: ", data);
           if (data.status) {
             this.ics._profile.verifyCode = this.verifyCode;
             this.router.navigate(['/forgetpassword2'])
+            this.showMessage(data.message,true);
           } else {
             this._result = data.message;
           }
@@ -53,5 +51,15 @@ export class ForgetpasswordComponent implements OnInit {
           this.loading = false;
         });
 
+  }
+  searchKeyup(e: any) {
+    if (e.which == 13) {
+      this.verify();
+    }
+  }
+  showMessage(msg, bool) {
+    if (bool == true) { this.ics.sendBean({ "t1": "rp-alert", "t2": "success", "t3": msg }); }
+    if (bool == false) { this.ics.sendBean({ "t1": "rp-alert", "t2": "warning", "t3": msg }); }
+    if (bool == undefined) { this.ics.sendBean({ "t1": "rp-alert", "t2": "primary", "t3": msg }); }
   }
 }

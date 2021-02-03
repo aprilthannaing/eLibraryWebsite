@@ -14,7 +14,7 @@ const FileSaver = require('file-saver');
   styleUrls: ['./book-list.component.css']
 })
 export class BookListComponent implements OnInit {
-  json = "";
+  json: any;
   pdfSrc = "";
   pdfView = 0;
   page = "1";
@@ -30,6 +30,11 @@ export class BookListComponent implements OnInit {
   subCategoryId = "";
   authorId = "";
   titleLink = "";
+  startDate = "";
+  endDate ="";
+  search = "";
+  cmd = "";
+  id = "";
   constructor(
     private router: Router,
     private http: HttpClient,
@@ -40,77 +45,48 @@ export class BookListComponent implements OnInit {
   ngOnInit(): void {
     this.sub = this.route.params.subscribe(params => {
       let cmd = params['cmd'];
+      this.cmd = cmd;
       if (cmd != null && cmd != "" && cmd == "new") {
-        let id = params['id'];
-        this.titleLink = id;
-        if(id == "bookList"){
-          this.bookListing(this.ics.books);
-        }else{
-            if(id == "popularBooks"){
-              this.title = "Popular Book List";
-            }
-            else if(id == "latestBooks"){
-              this.title = "Latest Book List";
-            } 
-            else if(id == "recommendBooks"){
-              this.title = "Recommended Book List";
-            }
-            else if(id.includes("Author")){
-              this.title = "Book by Author List";
-            }
-            this.bookList = this.ics.bookList;
-            this.bookCount = this.bookList.length;
-            for(let i=0;i <this.bookList.length; i++){
-              if(!this.bookList[i].coverPhoto.includes("http")){
-                if(this.bookList[i].coverPhoto != ""){
-                  if(!this.bookList[i].coverPhoto.includes("assets")){
-                    let coverPhoto =this.ics.apiRoute1 + this.bookList[i].coverPhoto;
-                    coverPhoto.replace("\/","/");
-                    this.bookList[i].coverPhoto =  coverPhoto;
-                  }
-                }else if(!this.bookList[i].coverPhoto.includes("assets"))
-                      this.bookList[i].coverPhoto = "assets/images/notfound.jpg";
-              }
-            this.bookList[i].title = this.add3Dots(this.bookList[i].title,100 );
-          }
-        }
+        this.id = params['id'];
+        this.titleLink = this.id;
+        this.bookListByNew(this.id);
       }
       else if (cmd != null && cmd != "" && cmd == "read") {
-        let id = params['id'];
+        this.id = params['id'];
         let id1 = "";
         if(params['id1']){
           id1 = params['id1'];
         }
-        if(id.includes("CATEGORY"))
-          this.categoryId = id;
+        if(this.id.includes("CATEGORY"))
+          this.categoryId = this.id;
         if(id1.includes("SUBCATEGORY"))
           this.subCategoryId = id1;
-        if(id.includes("Author")){
-          this.authorId = id;
+        if(this.id.includes("Author")){
+          this.authorId = this.id;
           this.title = "Book by Author"
         }
-         if(id.includes("favourite")){
-          this.bookTitle = id;
+         if(this.id.includes("favourite")){
+          this.bookTitle = this.id;
           this.title = "Favourite List"
-          this.titleLink = id;
+          this.titleLink = this.id;
          }
-         if(id.includes("bookmark")){
-          this.bookTitle = id;
+         if(this.id.includes("bookmark")){
+          this.bookTitle = this.id;
           this.title = "Bookmark List"
-          this.titleLink = id
+          this.titleLink = this.id
          }
         //For Title
-          if(id == "CATEGORY10001")
+          if(this.id == "CATEGORY10001")
           this.title = "Myanmar Book List";
-          if(id == "CATEGORY10002")
+          if(this.id == "CATEGORY10002")
           this.title = "Ministry Book List";
-          if(id == "CATEGORY10003")
+          if(this.id == "CATEGORY10003")
           this.title = "Organization Book List";
-          if(id == "CATEGORY10004")
+          if(this.id == "CATEGORY10004")
           this.title = "English Book List";
-          if(id == "CATEGORY10005")
+          if(this.id == "CATEGORY10005")
           this.title = "Periodicals Book List";
-          if(id == "CATEGORY10006")
+          if(this.id == "CATEGORY10006")
           this.title = "Information List";
 
           this.titleLink = this.ics.titleLink;
@@ -122,6 +98,66 @@ export class BookListComponent implements OnInit {
       }
   });
   }
+  bookListByNew(id){
+    if(id == "bookList"){
+      this.goSearchingByHomeAndCategory();
+      //this.bookListing(this.ics.books);
+    }else{
+        if(id == "popularBooks"){
+          this.title = "Popular Book List";
+        }
+        else if(id == "latestBooks"){
+          this.title = "Latest Book List";
+        } 
+        else if(id == "recommendBooks"){
+          this.title = "Recommended Book List";
+        }
+        else if(id.includes("Author")){
+          this.title = "Book by Author List";
+        }
+        this.bookList = this.ics.bookList;
+        this.bookCount = this.bookList.length;
+        for(let i=0;i <this.bookList.length; i++){
+          if(!this.bookList[i].coverPhoto.includes("http")){
+            if(this.bookList[i].coverPhoto != ""){
+              if(!this.bookList[i].coverPhoto.includes("assets")){
+                let coverPhoto =this.ics.apiRoute1 + this.bookList[i].coverPhoto;
+                coverPhoto.replace("\/","/");
+                this.bookList[i].coverPhoto =  coverPhoto;
+              }
+            }else if(!this.bookList[i].coverPhoto.includes("assets"))
+                  this.bookList[i].coverPhoto = "assets/images/notfound.jpg";
+          }
+        this.bookList[i].title = this.add3Dots(this.bookList[i].title,100 );
+      }
+    }
+  }
+  searchKeyup(e: any) {
+    if (e.which == 13) {
+      this.goSearching()
+    }
+  }
+  goSearching(){
+    this.page = "1";
+    const json =
+      { "page": this.page,
+        "user_id": this.ics._profile.userId,
+        "category_id": this.categoryId,
+        "sub_category_id": "",
+        "author_id": this.authorId,
+        "start_date": this.startDate,
+        "end_date": this.endDate,
+        "searchTerms": this.search 
+      }
+    this.json = json;
+    this.goSearch1();
+  }
+  goSearchingByHomeAndCategory(){
+    this.json = this.ics.json;
+    this.json.page = this.page;
+    this.goSearch1();
+  }
+
   goSearch1() {
     const url = this.ics.apiRoute + '/search/book';
     const json = this.json
@@ -129,12 +165,21 @@ export class BookListComponent implements OnInit {
       const header: HttpHeaders = new HttpHeaders({
         token: this.ics._profile.token
       });
-      const url: string = this.ics.apiRoute + "/book";
       this.http.post(url, json, {
        headers: header
      }).subscribe(
         (data: any) => {
-              this.bookListing(data);
+              if(data.status){
+                if(data.books.length > 0){
+                  this.bookListing(data);
+                }
+              }else{
+                  if(this.cmd == "new"){
+                    this.bookListByNew(this.id);
+                  }else{
+                    this.showBook();
+                  }
+              }
             },
             error => {
                 if (error.name == "HttpErrorResponse") {
@@ -194,7 +239,6 @@ export class BookListComponent implements OnInit {
     }).subscribe(
        (data: any) => {
          if(data.status){
-          console.warn("data: ", data);
           this.bookList = data.books;
           this.bookCount = data.total_count;
           this.last_page = + data.last_page;
@@ -247,14 +291,16 @@ export class BookListComponent implements OnInit {
     this.ics.bookDetail = value;
   }
   changePage(){
-    this.showBook();
+    if(this.id == "bookList")
+        this.goSearchingByHomeAndCategory();
+    else this.showBook();
   }
   //PDF Viewer
   downloadApproval = "";
   PDFtitle = 'angular-pdf-viewer-app';
   @ViewChild(PdfViewerComponent) private pdfComponent: PdfViewerComponent;
   pagePDF = 1;
-  renderText = false;
+  renderText = true;
   originalSize = false;
   fitToPage = false;
   showAll = false;
@@ -264,11 +310,11 @@ export class BookListComponent implements OnInit {
   renderTextMode = 1;
   rotation = 0;
   zoom = 1.0;
-  zoomScale = 'page-width';
+  zoomScale = 'page-fit';
   zoomScales = ['page-width', 'page-fit', 'page-height'];
   pdfQuery = '';
   totalPages: number;
-  stickToPage = false;
+  stickToPage = true;
   pdf:any;
   incrementZoom(amount: number) {
     this.zoom += amount;
@@ -299,20 +345,18 @@ export class BookListComponent implements OnInit {
   }
   callBackFn(event) {
     this.pdf = event;
-    console.log('callBackFn', event);
     this.totalPages = event._pdfInfo.numPages
   }
   pageRendered(event) {
-    console.log('pageRendered', event);
   }
   textLayerRendered(event) {
-    console.log('textLayerRendered', event);
   }
   onError(event) {
+    alert("No Data Avaliable");
+    this.pdfView = 0;
     console.error('onError', event);
   }
   onProgress(event) {
-    console.log('onProgress', event);
   }
   goBookRead(book){
     this.downloadApproval = book.downloadApproval;

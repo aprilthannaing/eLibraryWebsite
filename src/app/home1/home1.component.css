@@ -37,7 +37,6 @@ ngb-rating {
     margin: 0 auto;
     width: 100%;
     height:80vh;
-    background-image:url("/assets/images/showcase.jpg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -150,7 +149,6 @@ ngb-rating {
     border: 1px solid #5e5e5f!important;
   }
   #search {
-    font-family: 'Montserrat Alternates', sans-serif;
     height: 100%;
     border-radius: 11px;
     border: none;
@@ -185,8 +183,6 @@ ngb-rating {
 }
 
 .background1 {
-
-  background-image:url('/assets/images/hl.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

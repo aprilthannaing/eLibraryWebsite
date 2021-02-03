@@ -41,10 +41,6 @@ export class MenuComponent{
     ]
   };
   constructor(private ics: IntercomService, private _router: Router) {
-    console.log("Profile>>", this._profile);
-    //this._profile = ics._profile;
-    //pms.showNotification('top', 'center', 'Welcome '+this._profile.userName, 'success');
-    //this.subscription = ics.rpbean$.subscribe(x => { this._profile = ics._profile; });
   }
   cmd() {
     this._router.navigate(['/command', this._cmd]);

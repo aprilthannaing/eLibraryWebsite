@@ -10,7 +10,7 @@
         <h1 *ngIf="categoryId == 'CATEGORY10006'">{{ 'Category.CATEGORY10006' | translate }}</h1>
 
         <div class="row">
-            <div class="col-md-4"> <input type="text" placeholder="Search Book,Title,Author" id="search"  [(ngModel)]="search" class=" border uni" style="margin-top: 0;"></div>
+            <div class="col-md-4"> <input type="text" placeholder="Search Book,Title,Author" id="search" (keyup)="searchKeyup($event)" [(ngModel)]="search" class=" border uni" style="margin-top: 0;"></div>
             <div class="col-md-3"> <input type="month" id="search"  class="border" [max]="endDate" [(ngModel)]="startDate"></div>
             <div class="col-md-3"><input type="month" id="search"  class="border" [min]="startDate" [(ngModel)]="endDate"></div>
             <div class="col-md-2"><button class="buttonMe" type="button" class="buttonMe"  (click)= "goSearch()">SEARCH</button></div>

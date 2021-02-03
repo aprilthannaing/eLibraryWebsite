@@ -37,14 +37,10 @@ export class LoginComponent implements OnInit {
         password: this.ics.encrypt(this.password),
       }
   
-      const url: string = this.ics.apiRoute + "/user/goLoginByAdmin";
-      console.log("request: ", json)
-      console.log("url: ", url)
-  
+      const url: string = this.ics.apiRoute + "/user/goLoginByWebsite";
       this.http.post(url, json).subscribe(
         (data: any) => {
           if (data.status) {
-            console.log("user : ", data)
             this.ics.user = data.data;
             this.ics._profile.token = data.token;
             this.ics._profile.userId = data.data.id;
@@ -57,7 +53,6 @@ export class LoginComponent implements OnInit {
             //this.loginDialog(data.message);
           }
           this.loading = false;
-          console.log("profile: ", this.ics._profile)
   
         },
         error => {
@@ -75,13 +70,9 @@ export class LoginComponent implements OnInit {
     }
 
     const url: string = this.ics.apiRoute + "/home/notiCount";
-    console.log("request: ", json)
-    console.log("url: ", url)
-
     this.http.post(url, json, { headers: new HttpHeaders().set('token', this.ics._profile.token) }).subscribe(
       (data: any) => {
         this.ics._profile.replyCount = data.notiCount;
-        console.log("noti count: ", data)
       },
       error => {
         console.warn("error !!!!!!!:", error);
@@ -105,8 +96,6 @@ export class LoginComponent implements OnInit {
   }
   forgetPassword() {
     this.loading = true;
-    console.log("forget password")
-    console.log("email !!!!!", this.email)
     if (this.email == "") {
       this._result = "Please enter your email address!";
       this.loading = false;
@@ -122,12 +111,29 @@ export class LoginComponent implements OnInit {
 
     this.http.post(url, json).subscribe(
       (data: any) => {
-       this.router.navigate(['forgetpassword'])
-        this.ics._profile.token = data.token;
-        this.loading = false;
+        if (data != null && data != undefined) {
+          if (!data.status)
+            this._result = data.message;
+          else {
+            this.router.navigate(['forgetpassword'])
+            this.ics._profile.token = data.token;
+            this.showMessage(data.message, true);
+          }
+        }
+          this.loading = false;
       },
       error => {
         this.loading = false;
       });
+  }
+  searchKeyup(e: any) {
+    if (e.which == 13) {
+      this.login();
+    }
+  }
+  showMessage(msg, bool) {
+    if (bool == true) { this.ics.sendBean({ "t1": "rp-alert", "t2": "success", "t3": msg }); }
+    if (bool == false) { this.ics.sendBean({ "t1": "rp-alert", "t2": "warning", "t3": msg }); }
+    if (bool == undefined) { this.ics.sendBean({ "t1": "rp-alert", "t2": "primary", "t3": msg }); }
   }
 }

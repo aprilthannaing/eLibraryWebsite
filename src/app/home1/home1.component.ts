@@ -14,9 +14,10 @@ export class Home1Component implements OnInit {
   startDate = "";
   endDate = "";
   obj: any ;
-  advertisements = [{"name":"assets/elibrary/Advertisement/simple1.png"},
-  {"name":"assets/elibrary/Advertisement/simple1.png"},
-  {"name":"assets/elibrary/Advertisement/simple1.png"}];
+  advertisements = [];
+  // [{"name":"assets/elibrary/Advertisement/simple1.png"},
+  // {"name":"assets/elibrary/Advertisement/simple1.png"},
+  // {"name":"assets/elibrary/Advertisement/simple1.png"}];
   slideConfig = {
     "slidesToShow": 5,
     "slidesToScroll": 1,
@@ -200,18 +201,17 @@ export class Home1Component implements OnInit {
                       this.latest_book[i].coverPhoto = "assets/images/notfound.jpg";
                     }
                   }
-                    console.log(this.advertisements)
                   //advertisements
-                  // this.advertisements = data.advertisements
-                  // for(let i=0;i <this.advertisements.length; i++){
-                  //   if(this.advertisements[i].name != ""){
-                  //     let coverPhoto =this.ics.apiRoute + this.advertisements[i].name;
-                  //     coverPhoto.replace("\/","/");
-                  //     this.advertisements[i].name =  coverPhoto;
-                  //   }else{
-                  //     this.advertisements[i].name = "assets/images/notfound.jpg";
-                  //   }
-                  // }
+                  this.advertisements = data.advertisements
+                  for(let i=0;i <this.advertisements.length; i++){
+                    if(this.advertisements[i].name != ""){
+                      let coverPhoto =this.ics.apiRoute1 + this.advertisements[i].name;
+                      coverPhoto.replace("\/","/");
+                      this.advertisements[i].name =  coverPhoto;
+                    }else{
+                      this.advertisements[i].name = "assets/elibrary/Advertisement/simple1.png";
+                    }
+                  }
               }
             },
             error => {
@@ -267,8 +267,67 @@ export class Home1Component implements OnInit {
   page = "1";
   author_id= "";
   bookList = [];
+  // goSearch() {
+  //   for(let i=0; i< this.international_author.length;i++){
+  //     if(this.international_author[i].name.includes(this.search)){
+  //       this.author_id = this.international_author[i].boId;
+  //     }
+  //   }
+  //   if(this.author_id == ""){
+  //     for(let i=0; i< this.local_author.length;i++){
+  //       if(this.local_author[i].name.includes(this.search)){
+  //         this.author_id = this.local_author[i].boId;
+  //       }
+  //     }
+  //   }
+    
+  //   const json =
+  //   { "page": this.page,
+  //     "user_id": this.ics._profile.userId,
+  //     "category_id":"",
+  //     "sub_category_id":"",
+  //     "author_id": this.author_id,
+  //     "start_date": this.startDate,
+  //     "end_date": this.endDate,
+  //     "searchTerms": this.search 
+  //   }
+  //   try {
+  //     const header: HttpHeaders = new HttpHeaders({
+  //       token: this.ics._profile.token
+  //     });
+  //     const url: string = this.ics.apiRoute + "/search/book";
+  //     this.http.post(url, json, {
+  //      headers: header
+  //    }).subscribe(
+  //       (data: any) => {
+  //             if(data.status){
+  //               if(data.books.length > 0){
+  //                 this.router.navigate(['/book-list','new','bookList']); 
+  //                 this.ics.books = data;
+  //               }else{
+  //                 alert("No Data Found");
+  //               }
+  //             }
+  //           },
+  //           error => {
+  //               if (error.name == "HttpErrorResponse") {
+  //                   alert("Connection Timed Out!");
+  //               }
+  //               else {
+  
+  //               }
+  //           }, () => { });
+  //   } catch (e) {
+  //       alert(e);
+  //   }
+  // }
+  searchKeyup(e: any) {
+    if (e.which == 13) {
+      this.goSearch();
+    }
+  }
+  
   goSearch() {
-    const url = this.ics.apiRoute + '/search/book';
     for(let i=0; i< this.international_author.length;i++){
       if(this.international_author[i].name.includes(this.search)){
         this.author_id = this.international_author[i].boId;
@@ -292,34 +351,7 @@ export class Home1Component implements OnInit {
       "end_date": this.endDate,
       "searchTerms": this.search 
     }
-    try {
-      const header: HttpHeaders = new HttpHeaders({
-        token: this.ics._profile.token
-      });
-      const url: string = this.ics.apiRoute + "/search/book";
-      this.http.post(url, json, {
-       headers: header
-     }).subscribe(
-        (data: any) => {
-              if(data.status){
-                if(data.books.length > 0){
-                  this.router.navigate(['/book-list','new','bookList']); 
-                  this.ics.books = data;
-                }else{
-                  
-                }
-              }
-            },
-            error => {
-                if (error.name == "HttpErrorResponse") {
-                    alert("Connection Timed Out!");
-                }
-                else {
-  
-                }
-            }, () => { });
-    } catch (e) {
-        alert(e);
-    }
+        this.router.navigate(['/book-list','new','bookList']); 
+        this.ics.json = json;
   }
 }

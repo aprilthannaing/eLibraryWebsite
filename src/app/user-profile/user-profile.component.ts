@@ -27,7 +27,6 @@ export class UserProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.user = this.ics.user;
-    console.log("user profile: ", this.ics.user);
   }
 
   bookmark() {
@@ -40,28 +39,20 @@ export class UserProfileComponent implements OnInit {
   }
 
   changePassword() {
-    console.log("here loading !")
     this.loading = true;
     if (this.newPassword == "" || this.oldPassword == "") {
       this._result = "Password must not empty!"
       return;
     }
-
-    console.log("newPassword !!!!", this.newPassword)
-    console.log("confirmPassword !!!!", this.oldPassword)
-
     const json = {
       old_password: this.ics.encrypt(this.oldPassword),
       new_password: this.ics.encrypt(this.newPassword),
     }
 
     const url: string = this.ics.apiRoute + "/user/goChangepwdByAdmin";
-    console.log("request: ", json)
-    console.log("url: ", url)
 
     this.http.post(url, json, { headers: new HttpHeaders().set('token', this.ics._profile.token) }).subscribe(
       (data: any) => {
-        console.log("data !!!!!!!:", data);
         if (data.status) {
           this.newPassword = "";
           this.oldPassword = "";

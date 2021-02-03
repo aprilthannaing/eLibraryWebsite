@@ -4,7 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { IntercomService } from './framework/intercom.service';
 import { TranslateService } from '@ngx-translate/core';
 import { ConfirmationDialogService } from './confirmation-dialog/confirmation-dialog.service';
-
+declare var jQuery: any;
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -27,6 +27,8 @@ export class AppComponent {
   lang = "";
   home1 = false;
 mySubscription;
+_alertflag = true;
+  _alertmsg = "";
   constructor(
     private router: Router,
     private http: HttpClient,
@@ -37,8 +39,10 @@ mySubscription;
   ) {
     this.mySubscription = this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
-         if(event.url == "/forgetpassword"){
-            this.router.navigate(['/forgetpassword']);
+         if(event.url == "/forgetpassword" || event.url == '/forgetpassword2'){
+            //this.router.navigate(['/forgetpassword']);
+            if(this.ics._profile.token== "")
+              this.router.navigate(['/login']);
           }else if(event.url == "/login" && this.home1 != true){
           }else{
             if(this.ics._profile.token== ""){
@@ -48,11 +52,50 @@ mySubscription;
               this.getNotiCount();
               this.header1 = true;
               this.home1 = false;
-              this.selectedRow = this.categories.length+1;
               this.router.navigate(['/home1']);
              }
           }
       }
+      ics.rpbean$.subscribe(x => {
+        if (x.t1 !== null && x.t1 == "rp-popup") {
+          jQuery("#rootpopupsize").attr('class', 'modal-dialog modal-lg');
+          jQuery("#rootpopuptitle").text(x.t2);
+          jQuery("#rootpopupbody").load(x.t3);
+          jQuery("#rootpopup").modal();
+        } else if (x.t1 !== null && x.t1 == "rp-wait") {
+          jQuery("#rootpopupsize").attr('class', 'modal-dialog modal-sm');
+          jQuery("#rootpopuptitle").text("Please Wait");
+          jQuery("#rootpopupbody").text(x.t2);
+          jQuery("#rootpopup").modal();
+        } else if (x.t1 !== null && x.t1 == "rp-error") {
+          jQuery("#rootpopupsize").attr('class', 'modal-dialog modal-sm');
+          jQuery("#rootpopuptitle").text("System Exception");
+          jQuery("#rootpopupbody").text(x.t2);
+          jQuery("#rootpopup").modal();
+        } else if (x.t1 !== null && x.t1 == "rp-msg") {
+          jQuery("#rootpopupsize").attr('class', 'modal-dialog modal-sm');
+          jQuery("#rootpopuptitle").text(x.t2);
+          jQuery("#rootpopupbody").text(x.t3);
+          jQuery("#rootpopup").modal();
+        } else if (x.t1 !== null && x.t1 == "rp-msg-off") {
+          jQuery("#rootpopuptitle").text("");
+          jQuery("#rootpopupbody").text("");
+          jQuery("#rootpopup").modal('hide');
+        }
+        else if (x.t1 !== null && x.t1 == "rp-alert") {
+          this._alertmsg = x.t3;
+          this._alertflag = false;
+          let _snack_style = 'msg-info';
+          if (x.t2 == "success") _snack_style = 'msg-success';
+          else if (x.t2 == "warning") _snack_style = 'msg-warning';
+          else if (x.t2 == "danger") _snack_style = 'msg-danger';
+          else if (x.t2 == "information") _snack_style = 'msg-info';
+          document.getElementById("snackbar").innerHTML = this._alertmsg;
+          let snackbar = document.getElementById("snackbar");
+          snackbar.className = "show " + _snack_style;
+          setTimeout(function () { snackbar.className = snackbar.className.replace("show", ""); }, 3000);
+        }
+      });
     }); 
     translate.addLangs(['myan', 'en']);
     translate.setDefaultLang('myan');
@@ -71,29 +114,26 @@ ngOnDestroy(){
   onPopState(event) {
   if (this.router.url == '/home1') {
         this.home1 = true;
+        this.selectedRow = this.categories.length+1;
         this.openConfirmationDialog();
-    }else if (this.router.url.includes('category')) {
-      this.router.events
-      .subscribe((event) => {
+    }else if (this.router.url.includes('category-list')) {
+      this.router.events.subscribe((event) => {
         if (event instanceof NavigationStart) {
           // Could add more chars url:path?=;other possible
           const urlDelimitators = new RegExp(/[?//,;&:#$+=]/);
           let currentUrlPath = event.url.slice(1).split(urlDelimitators)[2];
-          console.log('URL_PATH: ', currentUrlPath);
-          for(let i = 0;i<this.categories.length;i++){
+          if(currentUrlPath != undefined){
+            for(let i = 0;i<this.categories.length;i++){
               if(this.categories[i].boId == currentUrlPath){
                 //this.goBookbyCategory(this.categories[i],i)
                 this.selectedRow = i;
               }
-          }
+            }
+          }else this.selectedRow = this.categories.length +1;
+          
           
         }
       });
-      // let categoryId = this.route.url.split ('','');
-      // for(let i = 0;i<this.categories.length;i++){
-      //   if(this.categories[i].boId)
-      // }
-      // this.goBookbyCategory(value,index)
     }
   }
   
@@ -108,13 +148,9 @@ ngOnDestroy(){
     }
 
     const url: string = this.ics.apiRoute + "/home/notiCount";
-    console.log("request: ", json)
-    console.log("url: ", url)
-
     this.http.post(url, json, { headers: new HttpHeaders().set('token', this.ics._profile.token) }).subscribe(
       (data: any) => {
         this.replyCount = data.notiCount;
-        console.log("noti count: ", data)
       },
       error => {
         console.warn("error !!!!!!!:", error);
@@ -131,7 +167,6 @@ ngOnDestroy(){
 
     this.http.post(url, json).subscribe(
       (data: any) => {
-       // console.log("data !!!!!!!!!", data)
        this.router.navigate(['forgetpassword'])
         this.ics._profile.token = data.token;
         this.loading = false;
@@ -143,8 +178,6 @@ ngOnDestroy(){
 
   forgetPassword() {
     this.loading = true;
-    console.log("forget password")
-    console.log("email !!!!!", this.email)
     if (this.email == "") {
       this._result = "Please enter your email address!";
       this.loading = false;
@@ -179,14 +212,10 @@ ngOnDestroy(){
       password: this.ics.encrypt(this.password),
     }
 
-    const url: string = this.ics.apiRoute + "/user/goLoginByAdmin";
-    console.log("request: ", json)
-    console.log("url: ", url)
-
+    const url: string = this.ics.apiRoute + "/user/goLoginByWebsite";
     this.http.post(url, json).subscribe(
       (data: any) => {
         if (data.status) {
-          console.log("user : ", data)
           this.ics.user = data.data;
           this.ics._profile.token = data.token;
           this.ics._profile.userId = data.data.id;
@@ -202,10 +231,6 @@ ngOnDestroy(){
           //this.loginDialog(data.message);
         }
         this.loading = false;
-
-        console.log("profile: ", this.ics._profile)
-
-
       },
       error => {
         this.loading = false;

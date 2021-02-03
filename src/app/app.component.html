@@ -1,15 +1,18 @@
+<div class="container">
+    <div id="snackbar" [hidden]="_alertflag">{{_alertmsg}}</div>
+</div>
 <header class="site-header" *ngIf="header1"><!--*ngIf="header1"-->
     <div class="navbar hidden-md top-nav">
         <div style="text-align: left;">
-            <a href="#"><i class="fa fa-phone" style="font-size: 1.10em;"></i> (+959)123456789</a> 
-            <a href="#"><i class="fa fa-envelope" style="font-size: 1.10em;"></i> {{ 'HEAD.006' | translate }}</a> 
+            <a href="#" title="(+959)123456789"><i class="fa fa-phone" style="font-size: 1.10em;"></i> (+959)123456789</a> 
+            <a href="#" title="{{ 'HEAD.006' | translate }}"><i class="fa fa-envelope" style="font-size: 1.10em;"></i> {{ 'HEAD.006' | translate }}</a> 
         </div>
             <div style="text-align: right;">
         <select #langSelect class="langSelect" (change)="translate.use(langSelect.value)">
             <option *ngFor="let lang of translate.getLangs()" [value]="lang"
                 [selected]="lang === translate.currentLang">{{ lang }}</option>
         </select>
-        <a [routerLink]="['/profile']" title="Library Homepage" class="right"> 
+        <a [routerLink]="['/profile']" title="{{ 'HEAD.002' | translate }}" class="right"> 
 			<span>&nbsp; {{ 'HEAD.002' | translate }} </span>&nbsp;
 			<img src="assets/images/user-icon.png" style=' border-radius: 50%;width: 18px;margin-top:-5px'>
 		</a>
@@ -20,7 +23,7 @@
 			style="font-size: 0.8em;background-color:white;border-radius: 20px;">{{replyCount}}</span>
 		</a>
 		
-        <a (click)="openConfirmationDialog()" title="Log Out" style="color:white"> <i class="fas fa-sign-out-alt" aria-hidden="true" style="color: white;font-size: 1.10em;font-weight: 900"></i>
+        <a (click)="openConfirmationDialog()" title="{{ 'HEAD.003' | translate }}" style="color:white"> <i class="fas fa-sign-out-alt" aria-hidden="true" style="color: white;font-size: 1.10em;font-weight: 900"></i>
             {{ 'HEAD.003' | translate }}
         </a>
         </div>

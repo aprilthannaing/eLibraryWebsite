@@ -167,7 +167,6 @@ i:hover {
   border-bottom: 1px solid #cccc;
 }
 .pdfv-control button {
-  /* background: #9dff00; */
   border: none;
   padding: 5px 10px;
   border-radius: 5px;
@@ -182,4 +181,7 @@ i:hover {
   border: 5px solid #cccccc;
   width: 80%;
   overflow: auto;
+}
+.page-number {
+  width: 50px;
 }

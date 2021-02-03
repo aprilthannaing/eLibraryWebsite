@@ -41,13 +41,13 @@
                             </span>
                         </div>
                         <div class="inputWithIcon">
-                            <input type="text" style="font-family:  poppins" placeholder="  Enter Email" [(ngModel)]="email">
+                            <input type="text" style="font-family:  poppins" placeholder="  Enter Email" [(ngModel)]="email" autofocus>
                             <i style="font-size: 20px;margin-left: 3%;" class="fa fa-user-circle-o" aria-hidden="true"></i>
     
                         </div>
                         <div class="inputWithIcon">
                             <input type="password" style="font-family:  poppins" placeholder="   Enter Password"
-                                [(ngModel)]="password">
+                                [(ngModel)]="password" (keyup)="searchKeyup($event)">
                             <i style="cursor:pointer;font-size: 20px;margin-left: 3%;" class="fa fa-lock" aria-hidden="true"></i>
                         </div>
     
