@@ -7,10 +7,11 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   providedIn: 'root'
 })
 export class IntercomService {
-  apiRoute: string = "http://136.228.165.174:8080/elibrary";
-  apiRoute1: string = "http://136.228.165.174:8080";
-  //apiRoute: string = "http://localhost:8082"
-  //apiRoute1: string = "http://localhost:8082";
+  //apiRoute: string = "http://136.228.165.174:8080/elibrary";
+  //apiRoute1: string = "http://136.228.165.174:8080";
+  apiRoute: string = "http://localhost:8082"
+  apiRoute1: string = "http://localhost:8082";
+  apiRouteNL: string ="http://18.138.135.236:81";
   appStoreLink = "";
   palyStoreLink = "";
   bookDetail: any;

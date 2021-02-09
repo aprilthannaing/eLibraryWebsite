@@ -354,4 +354,8 @@ export class Home1Component implements OnInit {
         this.router.navigate(['/book-list','new','bookList']); 
         this.ics.json = json;
   }
+  unionCataloque(){
+    this.router.navigate(['/book-list','new','unionCataloque']); 
+    this.ics.bookList = [];
+  }
 }

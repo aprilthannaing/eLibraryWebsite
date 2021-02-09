@@ -19,6 +19,7 @@ export class BookListComponent implements OnInit {
   pdfView = 0;
   page = "1";
   pageArray = [];
+  keywordArray = ["General Keyword","Title","Author","Publisher"];
   title = "";
   bookTitle = "";
   last_page = 0;
@@ -35,6 +36,9 @@ export class BookListComponent implements OnInit {
   search = "";
   cmd = "";
   id = "";
+  flagbox = false;
+  keyword = "General Keyword"
+  unionCatalogueData = [];
   constructor(
     private router: Router,
     private http: HttpClient,
@@ -103,6 +107,10 @@ export class BookListComponent implements OnInit {
       this.goSearchingByHomeAndCategory();
       //this.bookListing(this.ics.books);
     }else{
+        if(id == "unionCataloque"){
+          this.title = "Union Cataloque Myanmar"
+          this.flagbox = true;
+        }
         if(id == "popularBooks"){
           this.title = "Popular Book List";
         }
@@ -117,19 +125,21 @@ export class BookListComponent implements OnInit {
         }
         this.bookList = this.ics.bookList;
         this.bookCount = this.bookList.length;
-        for(let i=0;i <this.bookList.length; i++){
-          if(!this.bookList[i].coverPhoto.includes("http")){
-            if(this.bookList[i].coverPhoto != ""){
-              if(!this.bookList[i].coverPhoto.includes("assets")){
-                let coverPhoto =this.ics.apiRoute1 + this.bookList[i].coverPhoto;
-                coverPhoto.replace("\/","/");
-                this.bookList[i].coverPhoto =  coverPhoto;
-              }
-            }else if(!this.bookList[i].coverPhoto.includes("assets"))
-                  this.bookList[i].coverPhoto = "assets/images/notfound.jpg";
+        if(this.bookList.length > 0){
+          for(let i=0;i <this.bookList.length; i++){
+            if(!this.bookList[i].coverPhoto.includes("http")){
+              if(this.bookList[i].coverPhoto != ""){
+                if(!this.bookList[i].coverPhoto.includes("assets")){
+                  let coverPhoto =this.ics.apiRoute1 + this.bookList[i].coverPhoto;
+                  coverPhoto.replace("\/","/");
+                  this.bookList[i].coverPhoto =  coverPhoto;
+                }
+              }else if(!this.bookList[i].coverPhoto.includes("assets"))
+                    this.bookList[i].coverPhoto = "assets/images/notfound.jpg";
+            }
+            this.bookList[i].title = this.add3Dots(this.bookList[i].title,100 );
           }
-        this.bookList[i].title = this.add3Dots(this.bookList[i].title,100 );
-      }
+        }
     }
   }
   searchKeyup(e: any) {
@@ -138,26 +148,32 @@ export class BookListComponent implements OnInit {
     }
   }
   goSearching(){
-    this.page = "1";
-    const json =
-      { "page": this.page,
-        "user_id": this.ics._profile.userId,
-        "category_id": this.categoryId,
-        "sub_category_id": "",
-        "author_id": this.authorId,
-        "start_date": this.startDate,
-        "end_date": this.endDate,
-        "searchTerms": this.search 
-      }
-    this.json = json;
-    this.goSearch1();
+    if(this.flagbox){
+      this.goUnionCatalogue();
+    }else{
+      this.page = "1";
+      const json =
+        { "page": this.page,
+          "user_id": this.ics._profile.userId,
+          "category_id": this.categoryId,
+          "sub_category_id": "",
+          "author_id": this.authorId,
+          "start_date": this.startDate,
+          "end_date": this.endDate,
+          "searchTerms": this.search 
+        }
+      this.json = json;
+      this.goSearch1();
+    }
   }
   goSearchingByHomeAndCategory(){
     this.json = this.ics.json;
     this.json.page = this.page;
     this.goSearch1();
   }
-
+  changeSelectBox(){
+    this.page = "1";
+  }
   goSearch1() {
     const url = this.ics.apiRoute + '/search/book';
     const json = this.json
@@ -291,9 +307,13 @@ export class BookListComponent implements OnInit {
     this.ics.bookDetail = value;
   }
   changePage(){
-    if(this.id == "bookList")
+    if(this.flagbox){
+      this.goUnionCatalogue();
+    }else{
+      if(this.id == "bookList")
         this.goSearchingByHomeAndCategory();
-    else this.showBook();
+      else this.showBook();
+    }
   }
   //PDF Viewer
   downloadApproval = "";
@@ -393,5 +413,55 @@ export class BookListComponent implements OnInit {
   }
   togglerenderText(event: MatSlideToggleChange) {
     this.renderText = event.checked;
+  }
+  goUnionCatalogue() {
+    this.pageArray = []
+    this.bookCount = 0;
+    let searchkeyword = "?";
+    if(this.keyword == "Title"){
+      searchkeyword = searchkeyword.concat("title=" + this.search)
+    }
+    if(this.keyword == "Author"){
+      if(searchkeyword != "?"){
+        searchkeyword = searchkeyword.concat("&")
+      } 
+      searchkeyword = searchkeyword.concat("author=" + this.search)
+    }
+    if(this.keyword == "Publisher"){
+      if(searchkeyword != "?"){
+        searchkeyword = searchkeyword.concat("&")
+      } 
+      searchkeyword = searchkeyword.concat("publisher=" + this.search)
+    }
+
+    if(this.keyword == "General Keyword"){
+      searchkeyword = searchkeyword.concat("keyword=" + this.search)
+    }
+    if(searchkeyword != "?"){
+      searchkeyword = searchkeyword.concat("&")
+    } 
+    searchkeyword = searchkeyword.concat("page=" + this.page);
+    const url = this.ics.apiRouteNL + '/opac-search' + searchkeyword;
+    const json = this.json
+    try {
+      this.http.get(url, json).subscribe(
+        (data: any) => {
+              this.unionCatalogueData = [];
+              console.log("National Library List......" + data);
+              if(data.searchResults.data.length > 0){
+                this.last_page =  data.searchResults.last_page;
+                this.bookCount = data.searchResults.total;
+                  for (var i = 1; i <= this.last_page; i++) {
+                    this.pageArray.push(i);
+                }
+                this.unionCatalogueData = data.searchResults.data;
+              }
+            },
+            error => {
+                alert("Connection Time Out");
+            }, () => { });
+    } catch (e) {
+        alert(e);
+    }
   }
 }

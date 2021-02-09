@@ -104,3 +104,9 @@ h3{
       margin:0;
       padding:0;
   }
+  .select-box{
+    color: black;
+    width: 100%;
+    outline: none;
+    border-radius: 11px;
+  }

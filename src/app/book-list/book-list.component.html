@@ -9,8 +9,13 @@
     
             <div class="row">
                 <div class="col-md-4"> <input type="text" placeholder="Search Book,Title,Author" id="search" (keyup)="searchKeyup($event)" [(ngModel)]="search" class=" border uni" style="margin-top: 0;"></div>
-                <div class="col-md-3"> <input type="month" id="search"  class="border" [max]="endDate" [(ngModel)]="startDate"></div>
-                <div class="col-md-3"><input type="month" id="search"  class="border" [min]="startDate" [(ngModel)]="endDate"></div>
+                <div class="col-md-3" *ngIf = "!flagbox"> <input type="month" id="search"  class="border" [max]="endDate" [(ngModel)]="startDate"></div>
+                <div class="col-md-3" *ngIf = "!flagbox"><input type="month" id="search"  class="border" [min]="startDate" [(ngModel)]="endDate"></div>
+                <div class="col-md-3" *ngIf = "flagbox">
+                    <select [(ngModel)]="keyword"  class="border select-box"> 
+                        <option *ngFor="let item of keywordArray" [value]="item" (change)="changeSelectBox()">{{item}}</option>
+                    </select>
+                </div>
                 <div class="col-md-2"><button class="buttonMe" type="button" class="buttonMe"  (click)= "goSearching()">SEARCH</button></div>
             </div>
         </div>
@@ -18,7 +23,7 @@
     <div class="book-count" style="background-color: #d3d3d359;border-radius: 0">
         <h4 style="margin: 20px;">In book section,We have (<b>{{bookCount}}</b>) books totals to read online freely.Please checkout and let us known
                 of readers have any advice.
-                <span class="pull-right"  *ngIf="titleLink!='latestBooks' && titleLink!='popularBooks'" style="    margin-top: -21px;">
+                <span class="pull-right"  *ngIf="bookList.length >0 || unionCatalogueData.length > 0" style="margin-top: -21px;">
                         Page No.
                         <select [(ngModel)]="page" (change)="changePage()" class="form-control input-sm" [ngModelOptions]="{standalone: true}">
                             <option *ngFor="let item of pageArray" [value]="item">{{item}}</option>
@@ -77,6 +82,41 @@
             <br>
         </div>
     </div>
+    <div class="row" *ngIf = "flagbox">
+            <div *ngFor="let book of unionCatalogueData" class="col-md-6">
+                <div class="card" style="border: 1px solid rgba(0,0,0,.125);">
+                    <div class="card-title" id="bookTitle" style="background-color:#d3d3d359;border-radius: 10px 10px 0 0">
+                        <h4 style="color: #6650a9;margin: 20px">&nbsp; {{book.title}}</h4>
+                        <!-- class="d-inline-block text-truncate" -->
+                    </div>
+                    <div class="card-body">
+                        <div class="card">
+                            <div class="row no-gutters">
+                                <div class="col-sm-5">
+                                    <img src="assets/images/notfound.jpg"  class="card-img-top"  style="border-radius: 15px;border:1px solid #f2f2f2;box-shadow: 0 0 5px #e0dfdf;">
+                                </div>
+                                <div class="col-sm-7">
+                                    <div class="card-body">
+                                        <!-- <h6>Short story of Jue</h6> -->
+                                        <h4>Author :  {{book.author}}</h4>
+                                        <h6><button class="btn-success book-cat-title" style="border-radius: 50px;">{{book.itemtype}}</button></h6>
+                                            <p>
+                                                <i class="far fa-calendar-alt"></i>&nbsp;
+                                                <span>{{book.publishDate}}</span> 
+                                            </p>
+                                            <p>
+                                                <span>Publisher : </span>
+                                                <span>{{book.publisher}}</span>
+                                            </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+            </div>
+        </div>
     <br>
 </div>
 <!-- <div  class="container-fluid" *ngIf="pdfView == 1">
